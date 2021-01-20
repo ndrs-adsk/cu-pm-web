@@ -1,0 +1,574 @@
+.bems
+
+  .bems-map
+    position: relative
+
+    .bems-map-back
+      position: absolute
+      bottom: $base-size / 2
+      right: $base-size / 2
+      z-index: 50
+
+    .bems-map-zoom
+      position: absolute
+      top: $base-size * 2
+      left: 10%
+      cursor: pointer
+      z-index: 100
+
+    .bems-map-visibility
+      position: absolute
+      top: ($base-size * 2)+45
+      left: 10%
+      cursor: pointer
+      z-index: 100
+
+    @media #{$media-no-widescreen}
+      overflow-x: scroll
+
+    .bems-map-default-resolution
+      zoom: 100% !important
+
+    .bems-map-inner-wrapper
+      width: 1440px
+      margin: 0 auto
+      position: relative
+      -webkit-text-size-adjust: auto
+
+      .bems-map-back
+        border: 0
+        @media #{$media-widescreen}
+          position: absolute
+          z-index: 20
+          right: 5vw
+          bottom: 10vh
+          cursor: pointer
+          width: 84px
+          height: 84px
+          vertical-align: middle
+          padding-left: -50px
+        @media #{$media-no-widescreen}
+          position: fixed
+          bottom: $base-size * 2.5
+          right: $base-size / 2
+
+        .material-icons
+          @media #{$media-widescreen}
+            vertical-align: middle
+            display: inline-flex
+            font-size: 64px
+            position: relative
+            left: -8px
+
+      .btn-fab:hover
+        background-color: $quattuor-color
+
+      .bems-map-img
+        display: block
+        max-width: 1440px
+        max-height: 720px
+        margin: 0 auto
+      
+
+      .bems-map-area
+        display: block
+        position: absolute
+        opacity: 0.5
+        transition: all 0.5s linear
+
+        &:hover
+          opacity: 0.75
+        &.red
+          background-color: $graph-red
+        &.yellow
+          background-color: $graph-yellow
+        &.green
+          background-color: $graph-green
+
+
+      .bems-map-text
+        position: absolute
+        font-weight: $font-bold
+        clear: both
+        top: 220px
+        right: 235px
+        background-color: #fffafc
+        border-style: solid
+        border-color: #fc63a8
+        border-radius: 10px
+        padding: 10px
+
+        .material-icons
+          vertical-align: middle
+
+        .first-line
+          margin-bottom: 5px
+
+        .last-line
+          margin-top: 5px
+          margin-left: $base-size
+
+      .arrow_box:after, .arrow_box:before 
+        left: 100%
+        top: 50%
+        border: solid transparent
+        content: " "
+        height: 0
+        width: 0
+        position: absolute
+        pointer-events: none
+
+      .arrow_box:after
+        border-color: rgba(136, 183, 213, 0)
+        border-left-color: #fffafc
+        border-width: 18px
+        margin-top: -18px
+
+      .arrow_box:before 
+        border-color: rgba(194, 225, 245, 0)
+        border-left-color: #fc63a8
+        border-width: 24px
+        margin-top: -24px
+
+      .bems-map-text.bems-map-legend
+        color: $map-legend-color
+
+      .bems-map-line
+        position: absolute
+        background-color: transparent
+        border: 0 $map-legend-text solid
+
+        &.red
+          border-color: $graph-red
+        &.yellow
+          border-color: $graph-yellow
+        &.green
+          border-color: $graph-green
+
+      .bems-map-line.bems-map-legend
+        border-color: $map-legend-color
+
+      .bems-map-point
+        position: absolute
+        background-color: $map-legend-text
+        border-radius: $base-size * 9999
+        width: $base-size * 0.5
+        height: $base-size * 0.5
+
+        &.red
+          background-color: $graph-red
+        &.yellow
+          background-color: $graph-yellow
+        &.green
+          background-color: $graph-green
+
+      .bems-map-point.bems-map-legend
+        background-color: $map-legend-color
+
+      .bems-map-point-alt
+        @extend .bems-map-point
+        border: 3px $quinque-color solid
+        width: $base-size * 0.75
+        height: $base-size * 0.75
+        +box-shadow()
+
+      .bems-map-point-alt.bems-map-legend
+        background-color: $map-legend-color
+
+      .bems-map-div
+        position: absolute
+        text-align: center
+
+      .bems-map-div:hover
+        z-index: 301
+
+      .bems-name-box
+        max-width: 250px;
+
+        .all-name
+          width: 100%;
+
+      .bems-map-evy-hr-text-box
+        position: relative
+        display: block
+        cursor: pointer
+        line-height: 1.5
+        padding: 5px
+        background: rgba(255,255,255, 0.85)
+        border-radius: 10px
+        border-style: solid
+        border-color: #6E2D43
+        z-index: 299
+        transition: all .2s
+      
+      .bems-map-name-box-top
+        color: firebrick
+        position: relative
+        display: block
+        line-height: 1.5
+        padding: 5px
+        background: rgba(255, 228, 249, 0.85)
+        border-radius: 10px
+        border-style: solid
+        border-color: #f37fa6
+        z-index: 300
+        transition: all .2s
+      .bems-map-name-box-top:after 
+        bottom: 100%
+        left: 50%
+        border: solid transparent
+        content: " "
+        height: 0
+        width: 0
+        position: absolute
+        pointer-events: none
+        border-color: rgba(110, 45, 67, 0)
+        border-bottom-color: #f37fa6
+        border-width: 9px
+        margin-left: -9px
+      
+      .bems-map-name-box-right
+        color: firebrick
+        position: relative
+        display: block
+        line-height: 1.5
+        padding: 5px
+        background: rgba(255, 228, 249, 0.85)
+        border-radius: 10px
+        border-style: solid
+        border-color: #f37fa6
+        z-index: 300
+        transition: all .2s
+      .bems-map-name-box-right:after
+        left: 100%
+        top: 50%
+        border: solid transparent
+        content: " "
+        height: 0
+        width: 0
+        position: absolute
+        pointer-events: none
+        border-color: rgba(110, 45, 67, 0)
+        border-left-color: #f37fa6
+        border-width: 9px
+        margin-top: -9px
+
+      .bems-map-name-box-left
+        color: firebrick
+        position: relative
+        display: block
+        line-height: 1.5
+        padding: 5px
+        background: rgba(255, 228, 249, 0.85)
+        border-radius: 10px
+        border-style: solid
+        border-color: #f37fa6
+        z-index: 300
+        transition: all .2s
+      .bems-map-name-box-left:after
+        right: 100%
+        top: 50%
+        border: solid transparent
+        content: " "
+        height: 0
+        width: 0
+        position: absolute
+        pointer-events: none
+        border-color: rgba(110, 45, 67, 0)
+        border-right-color: #f37fa6
+        border-width: 9px
+        margin-top: -9px
+        
+
+      .bems-map-evy-hr-text-box:hover
+        z-index: 300
+        transform: scale(1.2)
+
+      .bems-map-pin-location-img
+        cursor: pointer
+
+      .bems-map-pin-location
+        cursor: pointer
+        width: 50px
+        height: 50px
+        background-color: pink
+        display: block
+        border-radius: 50%
+        border-style: solid
+        border-color: darken(pink, 10%)
+        margin: auto
+    
+      .bems-map-pin-location:after, .bems-map-pin-location:before
+        top: 92%
+        left: 50%
+        border: solid transparent
+        content: " "
+        height: 0
+        width: 0
+        position: absolute
+        pointer-events: none
+    
+      .bems-map-pin-location:after
+        border-color: rgba(136, 183, 213, 0)
+        border-top-color: pink
+        border-width: 15px
+        margin-left: -15px
+    
+      .bems-map-pin-location:before
+        border-color: rgba(194, 225, 245, 0)
+        border-top-color: darken(pink, 10%)
+        border-width: 19px
+        margin-left: -19px
+
+      .bems-map-pin-location-legend
+        width: 25px
+        height: 25px
+        display: block
+        border-radius: 50%
+        border-style: solid
+        margin: auto
+        
+      .bems-map-pin-location-legend:after, .bems-map-pin-location-legend:before
+        display: table-cell !important
+        top: 65.5%
+        left: 50%
+        border: solid transparent
+        content: " "
+        height: 0
+        width: 0
+        position: absolute
+        pointer-events: none
+    
+      .bems-map-pin-location-legend:after
+        border-color: rgba(136, 183, 213, 0)
+        border-top-color: pink
+        border-width: 6.5px
+        margin-left: -6.25px
+    
+      .bems-map-pin-location-legend:before
+        border-color: rgba(194, 225, 245, 0)
+        border-top-color: darken(pink, 10%)
+        border-width: 10px
+        margin-left: -10px
+      .gray
+        background-color: lighten($gray,10%)
+        border-color: darken($gray,10%)
+      .gray:after
+        border-top-color: lighten($gray,10%)
+      .gray:before
+        border-top-color: darken($gray,10%)
+
+      .red
+        background-color: lighten($rubeus,3%)
+        border-color: darken($rubeus,10%)
+      .red:after
+        border-top-color: lighten($rubeus,3%)
+      .red:before
+        border-top-color: darken($rubeus,10%)
+
+      .orange
+        background-color: darken($fire,5%)
+        border-color: darken($fire,10%)
+      .orange:after
+        border-top-color: darken($fire,5%)
+      .orange:before
+        border-top-color: darken($fire,10%)
+
+      .yellow
+        background-color: lighten($yellow,15%)
+        border-color: darken($yellow,5%)
+      .yellow:after
+        border-top-color: lighten($yellow,15%)
+      .yellow:before
+        border-top-color: darken($yellow,5%)
+
+      .green
+        background-color: lighten($graph-alt-green,5%)
+        border-color: darken($graph-alt-green,5%)
+      .green:after
+        border-top-color: lighten($graph-alt-green,5%)
+      .green:before
+        border-top-color: darken($graph-alt-green,5%)
+
+      .blue
+        background-color: lighten($caeruleus,10%)
+        border-color: darken($caeruleus,5%)
+      .blue:after
+        border-top-color: lighten($caeruleus,10%)
+      .blue:before
+        border-top-color: darken($caeruleus,5%)
+
+      .bems-map-pin-location-inner
+        position: relative
+        top: -55px
+        width: 30px
+        height: 30px
+        line-height: 2
+        background-color: white
+        border-radius: 50%
+        margin: auto
+        margin-top: 5px
+        @media #{$media-desktop}
+        @media #{$media-tablet}
+          // font-size: $overview-consumption-number-font-size-sm*1.5
+        @media #{$media-phone}
+          // font-size: 14px
+      
+      .bems-map-pin-location-inner-legend
+        width: 15px
+        height: 15px
+        top: 20px
+        line-height: 2
+        background-color: white
+        border-radius: 50%
+        margin: auto
+        margin-top: 2px
+        z-index: 1
+        position: sticky
+
+    .modal-dialog
+      max-width: 900px;
+    
+    .modal-header-consumption
+      color: #fff
+      border-top-left-radius: 8px
+      border-top-right-radius: 8px
+      padding-bottom: 0
+      border-bottom: 1px solid #d0d0d0
+      background-color: #bf6080
+
+    .modal-header-consumption
+      padding: 15px
+
+    .modal-header-consumption-text
+      padding-left: 5px
+      line-height: 65px
+      @media #{$media-desktop}
+        font-size: $overview-consumption-number-font-size-md*1.6
+      @media #{$media-tablet}
+        font-size: $overview-consumption-number-font-size-sm*1.5
+      @media #{$media-phone}
+        font-size: $overview-consumption-number-font-size-xs*1.5
+    
+    .modal-header-name-place-text
+      padding-left: 10px
+      font-weight: 800
+
+  .modal-body-header-usage-details
+    color: #bfd532
+    font-size: 23px
+    position: relative
+    top: 20px
+    display: inline-block
+    margin-bottom: 20px
+
+  .modal-body-usage-details
+    margin-left: 50px
+    margin-top: -45px
+    position: relative
+    color:#bf6080
+    @media #{$media-desktop}
+      font-size: $overview-consumption-number-font-size-md
+    @media #{$media-tablet}
+      font-size: $overview-consumption-number-font-size-sm
+    @media #{$media-phone}
+      font-size: $overview-consumption-number-font-size-xs
+
+
+    .modal-body-usage-details-circle
+      font-size: 60px
+      display: inline-block
+      position: relative
+      top: 15px
+
+    .modal-body-usage-details-value-unit
+      position: absolute
+      right: 100px
+      bottom: 9px
+      @media #{$media-desktop}
+        font-size: $overview-usage-unit-font-size-md
+      @media #{$media-tablet}
+        font-size: $overview-usage-unit-font-size-sm
+      @media #{$media-phone}
+        font-size: $overview-usage-unit-font-size-xs
+
+    .modal-body-usage-details-unit
+      display: inline-block
+      position: absolute
+      bottom: 13px
+      right: 50px
+
+  .modal-hr-consumption
+    width: 84%
+    margin-top: 5px
+    border-width: 2px
+    border-color: #282537
+
+  .modal-hr-consumption-help
+    border-width: 2px
+    border-color: #282537
+
+  .bems-map-img-legend
+    @media #{$media-desktop}
+      max-height: 1.8vw
+      min-height: 36px
+    @media #{$media-tablet}
+      height: 4vw
+      min-height: 36px
+    @media #{$media-phone}
+      height: 5.8vw
+
+
+  .red
+    background-color: lighten($rubeus,3%)
+
+  .orange
+    background-color: darken($fire,5%)
+
+  .yellow
+    background-color: lighten($yellow,15%)
+
+  .green
+    background-color: lighten($graph-alt-green,5%)
+
+  .blue
+    background-color: lighten($caeruleus,10%)
+  
+  .bems-map-legend
+    display: -webkit-inline-box
+    border-style: solid
+    border-radius: 13px
+    border-color: #6E2D43
+
+  .bems-map-legend-first
+    border-top-left-radius: 10px
+    border-bottom-left-radius: 10px
+
+  .bems-map-legend-last
+    border-top-right-radius: 10px
+    border-bottom-right-radius: 10px
+
+  .bems-map-legend-box
+    width: 120px
+    height: 30px
+
+  .bems-map-legend-text
+    display: table-cell
+    vertical-align: middle
+
+.bems-map-btn
+  @media #{$media-phone}
+    height: 50px
+.page-name
+  top: 5px
+  font-size: 40px
+  left: 15%
+  position: absolute
+  @media #{$media-tablet}
+    top: 15px
+    font-size: 28px
+    left: 10%
+  @media #{$media-phone}
+    top: 15px
+    font-size: 28px
+    left: 5%

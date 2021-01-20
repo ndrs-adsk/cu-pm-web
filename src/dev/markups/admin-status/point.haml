@@ -1,0 +1,15 @@
+%br
+.form-group.label-floating
+  %label.control-label{:for => "bems-admin-point-input"} Search
+  %input#bems-admin-point-input.bems-admin-point-input.form-control{:type => "text", "ng-model" => "pointFilter"}
+%table.bems-search-point-table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th Point ID Name
+      %th Status
+  %tbody
+    %tr{"ng-repeat" => "status in pointStatus| filter:pointFilter", "ng-class" => "status.status ? 'success':'danger'"}
+      %td {{ status.name }}
+      %td.text-center{"ng-class" => "status.status ? 'bemms-admin-ok':'bems-admin-danger'"}
+        %i.material-icons{"ng-show" => "{{ status.status }}"} check
+        %i.material-icons{"ng-hide" => "{{ status.status }}"} close

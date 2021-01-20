@@ -1,0 +1,42 @@
+.bems
+
+  .bems-search
+    @extend %wrapper-parent
+
+    .bems-search-container
+      @extend %wrapper
+
+      .bems-search-point-table-wrapper
+        max-height: $base-size * 5
+        overflow-y: scroll
+        margin-bottom: 20px
+
+        .bems-search-point-table
+          font-weight: $font-normal
+
+      .bems-search-device-title
+        @extend %section-header
+        font-size: 24px
+
+      .bems-search-device-list
+        width: 95%
+        margin: 0 auto
+
+        .bems-search-device-item
+          border-bottom: 1px dotted $search-device-item-border-color
+          &:last-child
+            border-bottom-width: 0
+
+          .bems-search-device-name-wrapper
+            overflow: hidden
+
+            .material-icons
+              position: relative
+              top: 6px
+
+            .bems-search-device-item-name
+              line-height: $search-device-tiem-name-line-height
+              font-size: $search-device-item-name-font-size
+
+          .bems-search-device-item-delete-button
+            width: 100%

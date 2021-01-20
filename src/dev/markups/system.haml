@@ -1,0 +1,261 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-system{:style => "position: relative;padding-bottom:22px"}
+    .bems-system-container.bems-container.panel.panel-default{"ng-controller" => "systemCtrl"}
+      %a.page-name
+        %span{:style => "color:#EB85B1 "} CHAMCHURI 5
+        %span{:style => "color:#bfd532 "} ENERGY AWARDS
+      / .bems-login-header.panel-heading.panel-superheader System Overview
+
+      .panel-body
+        .bems-system-quota.col-lg-4.col-xs-12{"ng-show" => "showName == 'realtime'"}
+          %h4{"ng-click" => "showName = 'daily'",:style => "cursor:pointer"}
+            {{showRealPerf()}}
+          .row
+            .col-lg-12.col-md-4.col-xs-12
+              .bems-system-rank-1
+                %img{:src => "svg/gold.svg"}
+                %span {{ranking[0].name}} ({{digit(ranking[0].percent)}}%)
+                .clearfix
+            .col-lg-12.col-md-4.col-sm-6.col-xs-12
+              .bems-system-rank-2
+                %img{:src => "svg/silver.svg"}
+                %span {{ranking[1].name}} ({{digit(ranking[1].percent)}}%)
+                .clearfix
+            .col-lg-12.col-md-4.col-sm-6.col-xs-12
+              .bems-system-rank-3
+                %img{:src => "svg/bronze.svg"}
+                %span {{ranking[2].name}} ({{digit(ranking[2].percent)}}%)
+                .clearfix
+        .bems-system-quota.col-lg-4.col-xs-12{"ng-show" => "showName == 'daily'"}
+          %h4{"ng-click" => "showName = 'realtime';checkView()",:style => "cursor:pointer"}
+            {{showDailyPerf()}}
+          .row
+            .col-lg-12.col-md-4.col-xs-12
+              .bems-system-rank-1
+                %img{:src => "svg/gold.svg"}
+                %span {{daily[0].name}} ({{digit(daily[0].percent)}}%)
+                .clearfix
+            .col-lg-12.col-md-4.col-sm-6.col-xs-12
+              .bems-system-rank-2
+                %img{:src => "svg/silver.svg"}
+                %span {{daily[1].name}} ({{digit(daily[1].percent)}}%)
+                .clearfix
+            .col-lg-12.col-md-4.col-sm-6.col-xs-12
+              .bems-system-rank-3
+                %img{:src => "svg/bronze.svg"}
+                %span {{daily[2].name}} ({{digit(daily[2].percent)}}%)
+                .clearfix
+        .col-lg-8.col-xs-12.hidden-xs.hidden-sm
+          .col-sm-4.col-xs-12
+            %br
+            .bems-system-demand-item.row
+              .col-sm-6.col-xs-12
+                .bems-system-supply-pv
+                  %span.bems-system-supply-pv-title PV
+                  %br
+                  %span.bems-system-supply-pv-value {{digit(usage[8].energy)}} kWh
+                  %img.bems-system-supply-pv-img{:src => "img/pv.png"}
+              .col-sm-6.col-xs-12
+                .bems-system-arrow
+                  .bems-system-arrow-line.bems-system-arrow-line-supply
+                    / .bems-system-arrow-dot
+                    / .bems-system-arrow-chevron
+                    .bems-system-arrow-chevron2 
+                    .bems-system-arrow-chevron3
+                    .bems-system-arrow-chevron4 
+            %br
+            %br
+            .bems-system-demand-item.row
+              .col-sm-6.col-xs-12
+                .bems-system-supply-mea
+                  %span.bems-system-supply-mea-title MEA
+                  %br
+                  %span.bems-system-supply-mea-value {{digit(usage[7].energy)}} kWh
+                  %img.bems-system-supply-mea-img{:src => "img/mea.png"}
+              .col-sm-6.col-xs-12
+                .bems-system-arrow
+                  .bems-system-arrow-line.bems-system-arrow-line-supply
+                    / .bems-system-arrow-dot
+                    / .bems-system-arrow-chevron
+                    .bems-system-arrow-chevron2
+                    .bems-system-arrow-chevron3
+                    .bems-system-arrow-chevron4 
+          .col-sm-8.col-xs-12
+            .building-system.energy_data{:style => "position:relative;overflow: hidden;text-align: center;margin: 0 auto;","ng-show" => "showData == 'energy'"}
+              %button.btn{:style =>"position:absolute;right:5px;top: 0px;border-radius: 15px;background-color: transparent;border: 1px solid #ddd;padding: 7px;color: #676767;font-size: 11px;","ng-click" => "showData = 'power'"} 
+                %b{:style => "font-size:12px;"} Energy
+                %span -> Power
+              %img.building-img{:src => "img/building-new1.png"}
+              .flr7{:style => "position:absolute;width: 117px;height: 23px;top: 92px;left: 70px;"}
+                .flr7-graph.graph-data{:style => "width:{{digit(usage[6].energy_width)}}%"}
+                .flr7-data.graph-value {{digit(usage[6].energy)}} kWh
+              .flr6{:style => "position:absolute;width:117px;height:23px;top: 132px;left: 70px;"}
+                .flr6-graph.graph-data{:style => "width:{{usage[5].energy_width}}%"}
+                .flr6-data.graph-value  {{digit(usage[5].energy)}} kWh 
+              .flr5{:style => "position:absolute;width:117px;height:23px;top: 174px;left: 70px;"}
+                .flr5-graph.graph-data{:style => "width:{{digit(usage[4].energy_width)}}%"}
+                .flr5-data.graph-value  {{digit(usage[4].energy)}} kWh 
+              .flr4{:style => "position:absolute;width:117px;height:23px;top: 217px;left: 70px;"}
+                .flr4-graph.graph-data{:style => "width:{{digit(usage[3].energy_width)}}%"}
+                .flr4-data.graph-value  {{digit(usage[3].energy)}} kWh 
+              .flr3{:style => "position:absolute;width:117px;height:23px;top: 257px;left: 70px;"} 
+                .flr3-graph.graph-data{:style => "width:{{digit(usage[2].energy_width)}}%"}
+                .flr3-data.graph-value  {{digit(usage[2].energy)}} kWh
+              .flr2{:style => "position:absolute;width:117px;height:23px;top: 299px;left: 70px;"} 
+                .flr2-graph.graph-data{:style => "width:{{usage[1].energy_width}}%"}
+                .flr2-data.graph-value  {{digit(usage[1].energy)}} kWh
+              .flr1{:style => "position:absolute;width:117px;height:23px;top: 342px;left: 70px;"} 
+                .flr1-graph.graph-data{:style => "width:{{digit(usage[0].energy_width)}}%"}
+                .flr1-data.graph-value  {{digit(usage[0].energy)}} kWh
+            .building-system.power_data{:style => "position:relative;overflow: hidden;text-align: center;margin: 0 auto;","ng-show" => "showData == 'power'"}
+              %button.btn{:style =>"position:absolute;right:5px;top: 0px;border-radius: 15px;background-color: transparent;border: 1px solid #ddd;padding: 7px;color: #676767;font-size: 11px;","ng-click" => "showData = 'energy'"}
+                %b{:style => "font-size:12px;"} Power
+                %span -> Energy
+              %img.building-img{:src => "img/building-new1.png"}
+              .flr7{:style => "position:absolute;width: 117px;height: 23px;top: 92px;left: 70px;"}
+                .flr7-graph.graph-data{:style => "width:{{digit(usage[6].power_width)}}%"}
+                .flr7-data.graph-value {{digit(usage[6].power)}} kW
+              .flr6{:style => "position:absolute;width:117px;height:23px;top: 132px;left: 70px;"}
+                .flr6-graph.graph-data{:style => "width:{{digit(usage[5].power_width)}}%"}
+                .flr6-data.graph-value  {{digit(usage[5].power)}} kW 
+              .flr5{:style => "position:absolute;width:117px;height:23px;top: 174px;left: 70px;"}
+                .flr5-graph.graph-data{:style => "width:{{digit(usage[4].power_width)}}%"}
+                .flr5-data.graph-value  {{digit(usage[4].power)}} kW 
+              .flr4{:style => "position:absolute;width:117px;height:23px;top: 217px;left: 70px;"}
+                .flr4-graph.graph-data{:style => "width:{{digit(usage[3].power_width)}}%"}
+                .flr4-data.graph-value  {{digit(usage[3].power)}} kW 
+              .flr3{:style => "position:absolute;width:117px;height:23px;top: 257px;left: 70px;"} 
+                .flr3-graph.graph-data{:style => "width:{{digit(usage[2].power_width)}}%"}
+                .flr3-data.graph-value  {{digit(usage[2].power)}} kW
+              .flr2{:style => "position:absolute;width:117px;height:23px;top: 299px;left: 70px;"} 
+                .flr2-graph.graph-data{:style => "width:{{digit(usage[1].power_width)}}%"}
+                .flr2-data.graph-value  {{digit(usage[1].power)}} kW
+              .flr1{:style => "position:absolute;width:117px;height:23px;top: 342px;left: 70px;"} 
+                .flr1-graph.graph-data{:style => "width:{{digit(usage[0].power_width)}}%"}
+                .flr1-data.graph-value  {{digit(usage[0].power)}} kW
+        / .name-data{:style => "position: absolute;top: -17px;background-color: white;font-size: 24px;padding: 0 15px;"} Last Month       
+      .panel-body.row.visible-xs.visible-sm
+        %br
+        .bems-system-demand-item.row
+          .col-xs-6
+            .bems-system-supply-pv{:style => "width: 100%;"}
+              %span.bems-system-supply-pv-title PV
+              %br
+              %span.bems-system-supply-pv-value {{digit(usage[8].energy)}} kWh
+              %img.bems-system-supply-pv-img{:src => "img/pv.png"}
+          .col-xs-6
+            .bems-system-supply-mea{:style => "width: 100%;"}
+              %span.bems-system-supply-mea-title MEA
+              %br
+              %span.bems-system-supply-mea-value {{digit(usage[7].energy)}} kWh
+              %img.bems-system-supply-mea-img{:src => "img/mea.png"}   
+        .bems-system-demand-item.row
+          .col-xs-6
+            .bems-system-arrow
+              .bems-system-arrow-line-sm.bems-system-arrow-line-supply-sm
+                .bems-system-arrow-chevron
+                .bems-system-arrow-chevron2
+                .bems-system-arrow-chevron3
+                .bems-system-arrow-chevron4 
+          .col-xs-6
+            .bems-system-arrow
+              .bems-system-arrow-line-sm.bems-system-arrow-line-supply-sm
+                .bems-system-arrow-chevron
+                .bems-system-arrow-chevron2
+                .bems-system-arrow-chevron3
+                .bems-system-arrow-chevron4
+        .building-system.energy_data{:style => "text-align: center;margin: 0 auto;position: relative;margin-top:30px","ng-show" => "showData == 'energy'"}
+          %button.btn{:style =>"position:absolute;right:5px;top: 0px;border-radius: 15px;background-color: transparent;border: 1px solid #ddd;padding: 7px;color: #676767;font-size: 11px;","ng-click" => "showData = 'power'"}
+            %b{:style => "font-size:12px;"} Energy
+            %span -> Power
+          .building-img-sm
+            .flr7-sm
+              .flr7-graph.graph-data{:style => "width:{{digit(usage[6].power_width)}}%"}
+              .flr7-data.graph-value {{digit(usage[6].energy)}} kWh 
+            .flr6-sm
+              .flr6-graph.graph-data{:style => "width:{{digit(usage[5].power_width)}}%"}
+              .flr6-data.graph-value  {{digit(usage[5].energy)}} kWh  
+            .flr5-sm
+              .flr5-graph.graph-data{:style => "width:{{digit(usage[4].power_width)}}%"}
+              .flr5-data.graph-value  {{digit(usage[4].energy)}} kWh 
+            .flr4-sm
+              .flr4-graph.graph-data{:style => "width:{{digit(usage[3].power_width)}}%"}
+              .flr4-data.graph-value  {{digit(usage[3].energy)}} kWh  
+            .flr3-sm
+              .flr3-graph.graph-data{:style => "width:{{digit(usage[2].power_width)}}%"}
+              .flr3-data.graph-value  {{digit(usage[2].energy)}} kWh 
+            .flr2-sm 
+              .flr2-graph.graph-data{:style => "width:{{digit(usage[1].power_width)}}%"}
+              .flr2-data.graph-value  {{digit(usage[1].energy)}} kWh 
+            .flr1-sm 
+              .flr1-graph.graph-data{:style => "width:{{digit(usage[0].power_width)}}%"}
+              .flr1-data.graph-value  {{digit(usage[0].energy)}} kWh 
+        .building-system{:style => "text-align: center;margin: 0 auto;position: relative;margin-top:30px","ng-show" => "showData == 'power'"}
+          %button.btn{:style =>"position:absolute;right:5px;top: 0px;border-radius: 15px;background-color: transparent;border: 1px solid #ddd;padding: 7px;color: #676767;font-size: 11px;","ng-click" => "showData = 'energy'"}
+            %b{:style => "font-size:12px;"} Power
+            %span -> Energy
+          .building-img-sm
+            .flr7-sm
+              .flr7-graph.graph-data{:style => "width:{{digit(usage[6].power_width)}}%"}
+              .flr7-data.graph-value {{digit(usage[6].power)}} kW
+            .flr6-sm
+              .flr6-graph.graph-data{:style => "width:{{digit(usage[5].power_width)}}%"}
+              .flr6-data.graph-value  {{digit(usage[5].power)}} kW  
+            .flr5-sm
+              .flr5-graph.graph-data{:style => "width:{{digit(usage[4].power_width)}}%"}
+              .flr5-data.graph-value  {{digit(usage[4].power)}} kW  
+            .flr4-sm
+              .flr4-graph.graph-data{:style => "width:{{digit(usage[3].power_width)}}%"}
+              .flr4-data.graph-value  {{digit(usage[3].power)}} kW  
+            .flr3-sm
+              .flr3-graph.graph-data{:style => "width:{{digit(usage[2].power_width)}}%"}
+              .flr3-data.graph-value  {{digit(usage[2].power)}} kW 
+            .flr2-sm 
+              .flr2-graph.graph-data{:style => "width:{{digit(usage[1].power_width)}}%"}
+              .flr2-data.graph-value  {{digit(usage[1].power)}} kW 
+            .flr1-sm 
+              .flr1-graph.graph-data{:style => "width:{{digit(usage[0].power_width)}}%"}
+              .flr1-data.graph-value  {{digit(usage[0].power)}} kW
+      .panel.row{:style => "width: 100%"}
+        .col-lg-6.col-xs-12
+          %h4 Best Performance of {{showMonth()}}
+          .bems-system-demand-item.row.alt
+            %div
+              .col-md-offset-3.col-md-6.col-xs-12
+                .bems-system-rank-sm1.row
+                  %img{:src => "svg/gold.svg"}
+                  %span  {{lastmonth.perform[0].name}} ({{digit(lastmonth.perform[0].percent)}}%)
+                  .clearfix
+              .col-md-6.col-xs-12
+                .bems-system-rank-sm2.row
+                  %img{:src => "svg/silver.svg"}
+                  %span  {{lastmonth.perform[1].name}} ({{digit(lastmonth.perform[1].percent)}}%)
+                  .clearfix
+              .col-md-6.col-xs-12
+                .bems-system-rank-sm3.row
+                  %img{:src => "svg/bronze.svg"}
+                  %span  {{lastmonth.perform[2].name}} ({{digit(lastmonth.perform[2].percent)}}%)
+                  .clearfix
+        .col-lg-6.col-xs-12
+          %h4 Best Improvement of {{showMonth()}}
+          .bems-system-demand-item.row.alt
+            .col-md-offset-3.col-md-6.col-xs-12
+              .bems-system-rank-sm1.row
+                %img{:src => "svg/gold.svg"}
+                %span {{lastmonth.improve[0].name}} ({{digit(lastmonth.improve[0].percent)}}%)
+                .clearfix
+            .col-md-6.col-xs-12
+              .bems-system-rank-sm2.row
+                %img{:src => "svg/silver.svg"}
+                %span  {{lastmonth.improve[1].name}} ({{digit(lastmonth.improve[1].percent)}}%)
+                .clearfix
+            .col-md-6.col-xs-12
+              .bems-system-rank-sm3.row
+                %img{:src => "svg/bronze.svg"}
+                %span {{lastmonth.improve[2].name}} ({{digit(lastmonth.improve[2].percent)}}%)
+                .clearfix
+ 
+%br
+.bems-footer{:style => "margin-top: 12px;"}
+  #footer-b-outter.hidden-xs.hidden-sm Copyright 2018 , Chulalongkorn University Building Energy Management System  

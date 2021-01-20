@@ -1,0 +1,464 @@
+%bems-dashboard-extend
+  @media #{$media-widescreen}
+    height: 13vw
+  @media #{$media-desktop-only}
+    height: 17vw
+  @media #{$media-handheld}
+    height: 24vw
+
+.bems
+
+  .bems-dashboard
+    @extend %wrapper-parent
+    background: #fff
+    padding-top: $base-size * 2
+    padding-bottom: $base-size
+    overflow-x: hidden
+    position: relative
+
+    .bems-dashboard-containter
+      width: 100vw
+      overflow-x: hidden
+      @media #{$media-widescreen}
+        padding: 1vw 15.5vw 0.25vw 15.5vw
+      @media #{$media-desktop-only}
+        padding: 1.75vw 2.5vw
+      @media #{$media-handheld}
+        padding: 3vw 3vw 1vw 3vw
+
+      .bems-dashboard-item-wrapper
+        overflow-x: hidden
+        perspective: 1000
+        float: left
+        border-radius: 10px
+        transition: all 0.5s linear
+        @extend %bems-dashboard-extend
+        @media #{$media-desktop}
+          margin-right: 1vw
+          margin-top: 1vw
+        @media #{$media-widescreen}
+          width: 22vw
+        @media #{$media-desktop-only}
+          width: 31vw
+        @media #{$media-handheld}
+          width: 46vw
+          margin-top: 2vw
+          margin-right: 2vw
+
+        &:nth-child(2n)
+          @media #{$media-handheld}
+            margin-right: 0
+
+        &:nth-child(3n)
+          @media #{$media-desktop}
+            margin-right: 0
+
+        &:first-child,
+        &:nth-child(2)
+          margin-top: 0
+
+        &:nth-child(3)
+          @media #{$media-desktop}
+            margin-top: 0
+
+        .bems-dashboard-item
+          cursor: pointer
+          position: relative
+          width: 100%
+          transform-style: preserve-3d
+          -webkit-transform-style: preserve-3d
+          transition: all 1s ease-in-out
+          clear: both
+          @extend %bems-dashboard-extend
+
+          .bems-dashboard-item-front,
+          .bems-dashboard-item-back
+            position: absolute
+            width: 100%
+            backface-visibility: hidden
+            -webkit-backface-visibility: hidden
+            color: $dashboard-item-color
+            clear: both
+            @extend %bems-dashboard-extend
+
+            *
+              backface-visibility: hidden
+              -webkit-backface-visibility: hidden
+
+          .bems-dashboard-item-front
+            +metro-gradient($dashboard-item-background-color)
+            @media #{$media-widescreen}
+              padding: 1vw
+            @media #{$media-no-widescreen}
+              padding: 1.25vw
+
+            .bems-dashboard-item-name
+              position : relative
+              font-weight: $font-bold
+              text-transform: uppercase
+              @media #{$media-widescreen}
+                font-size: 1.5vw
+              @media #{$media-desktop-only}
+                font-size: 2vw
+                margin-bottom: 1vw
+              @media #{$media-handheld}
+                font-size: 3vw
+                margin-bottom: 1.25vw
+
+            .bems-dashboard-item-image-wrapper,
+            .bems-dashboard-item-text
+              float: left
+
+            .bems-dashboard-item-image-wrapper
+              text-align: center
+              @media #{$media-desktop}
+                width: 35%
+              @media #{$media-handheld}
+                width: 40%
+
+              .bems-dashboard-item-image
+                margin-top: 0.5vw
+                @media #{$media-desktop}
+                  max-width: 95%
+                @media #{$media-widescreen}
+                  max-height: 7vw
+                @media #{$media-desktop-only}
+                  max-height: 8vw
+                @media #{$media-handheld}
+                  max-width: 98%
+                  max-height: 12vw
+
+            .bems-dashboard-item-text
+              position : absolute
+              right: 5%
+              z-index: 99
+              @media #{$media-desktop}
+                width: 65%
+              @media #{$media-handheld}
+                width: 60%
+
+              .bems-dashboard-item-current
+                font-weight: $font-bold
+
+                .bems-dashboard-item-current-value
+                  font-size: 3vw
+                  @media #{$media-widescreen}
+                    line-height: 4.25vw
+                  @media #{$media-desktop-only}
+                    line-height: 4.5vw
+                  @media #{$media-handheld}
+                    font-size: 5.75vw
+                    line-height: 6vw
+
+                .bems-dashboard-item-current-unit
+                  font-size: 3.25vw
+                  @media #{$media-widescreen}
+                    line-height: 2.75vw
+                  @media #{$media-desktop-only}
+                    line-height: 3.25vw
+                  @media #{$media-handheld}
+                    font-size: 5vw
+                    line-height: 4.75vw
+
+                .bems-dashboard-item-current-unit-mfk
+                  font-size: 1.75vw
+                  @media #{$media-widescreen}
+                    line-height: 2.75vw
+                  @media #{$media-desktop-only}
+                    line-height: 3.25vw
+                  @media #{$media-handheld}
+                    font-size: 2.75vw
+                    line-height: 4.75vw
+
+              .bems-dashboard-item-target
+                @media #{$media-widescreen}
+                  font-size: 1.5vw
+                @media #{$media-desktop-only}
+                  font-size: 1.75vw
+                @media #{$media-desktop}
+                  position: relative
+                  top: 0.5vw
+                  left: -0.5vw
+                @media #{$media-handheld}
+                  font-size: 2.25vw
+                @media #{$media-phone}
+                  position: relative
+                  top: 1vw
+
+                .bems-dashboard-item-target-text,
+                .bems-dashboard-item-target-value,
+                .bems-dashboard-item-target-unit
+                  float: left
+
+                .bems-dashboard-item-target-text
+                  width: 25%
+
+                .bems-dashboard-item-target-value
+                  font-weight: $font-bold
+                  width: 45%
+
+                .bems-dashboard-item-target-unit
+                  width: 30%
+
+                .bems-dashboard-item-target-unit-mfk
+                  @media #{$media-widescreen}
+                    font-size: 0.75vw
+                  @media #{$media-desktop-only}
+                    font-size: 0.87vw
+                  @media #{$media-handheld}
+                    font-size: 1.12vw
+                    font-weight: $font-bold
+
+          .bems-dashboard-item-back
+            +metro-gradient(lighten($dashboard-item-background-color, 5%))
+            transform: rotateY(180deg)
+            -webkit-transform: rotateY(180deg)
+            font-weight: $font-normal
+            @media #{$media-widescreen}
+              font-size: 2vw
+              padding: 1vw
+            @media #{$media-desktop-only}
+              font-size: 2.5vw
+              padding: 1.5vw
+            @media #{$media-handheld}
+              font-size: 2.5vw
+              padding: 1.75vw
+
+        .bems-dashboard-item-1
+          .bems-dashboard-item-front
+            background: $metro-teal
+            overflow: hidden;
+            &:after
+              background: #018886
+              transform: skewY(145deg)
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+            &:before
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+              top: 0px
+              background: #00c3c1
+              transform: skewY(45deg)
+          .bems-dashboard-item-back
+            +metro-gradient($metro-teal)
+            z-index: 999
+        .bems-dashboard-item-2
+          .bems-dashboard-item-front
+            background: $metro-purple
+            overflow: hidden;
+            &:after
+              background: #8800d6
+              transform: skewY(145deg)
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+            &:before
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+              top: 0px
+              background: #b025ff
+              transform: skewY(45deg)
+          .bems-dashboard-item-back
+            z-index: 999
+            +metro-gradient($metro-purple)
+        .bems-dashboard-item-3
+          .bems-dashboard-item-front
+            background: $metro-magenta
+            overflow: hidden;
+            &:after
+              background: #cc0079
+              transform: skewY(145deg)
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+            &:before
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+              top: 0px
+              background: #ff30ab
+              transform: skewY(45deg)
+          .bems-dashboard-item-back
+            z-index: 999
+            +metro-gradient($metro-magenta)
+        .bems-dashboard-item-4
+          .bems-dashboard-item-front
+            background: $metro-lime
+            overflow: hidden;
+            &:after
+              background: #76a022
+              transform: skewY(145deg)
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+            &:before
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+              top: 0px
+              background: #a5e02d
+              transform: skewY(45deg)
+          .bems-dashboard-item-back
+            z-index: 999
+            +metro-gradient($metro-lime)
+        .bems-dashboard-item-5
+          .bems-dashboard-item-front
+            background: $metro-brown
+            overflow: hidden;
+            &:after
+              background: #7d4002
+              transform: skewY(145deg)
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+            &:before
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+              top: 0px
+              background: #cc6600
+              transform: skewY(45deg)
+          .bems-dashboard-item-back
+            z-index: 999
+            +metro-gradient($metro-brown)
+        .bems-dashboard-item-6
+          .bems-dashboard-item-front
+            background: $metro-pink
+            overflow: hidden;
+            &:after
+              background: #bf5c98
+              transform: skewY(145deg)
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+            &:before
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+              top: 0px
+              background: #ff84cf
+              transform: skewY(45deg)
+          .bems-dashboard-item-back
+            z-index: 999
+            +metro-gradient($metro-pink)
+        .bems-dashboard-item-7
+          .bems-dashboard-item-front
+            background: $metro-orange
+            overflow: hidden;
+            &:after
+              background: #d69329
+              transform: skewY(145deg)
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+            &:before
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+              top: 0px
+              background: #ffa81f
+              transform: skewY(45deg)
+          .bems-dashboard-item-back
+            z-index: 999
+            +metro-gradient($metro-orange)
+        .bems-dashboard-item-8
+          .bems-dashboard-item-front
+            background: $metro-blue
+            overflow: hidden;
+            &:after
+              background: #1887bd
+              transform: skewY(145deg)
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+            &:before
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+              top: 0px
+              background: #22b7ff
+              transform: skewY(45deg)
+          .bems-dashboard-item-back
+            z-index: 999
+            +metro-gradient($metro-blue)
+        .bems-dashboard-item-9
+          .bems-dashboard-item-front
+            background: $metro-green
+            overflow: hidden;
+            &:after
+              background: #098c09
+              transform: skewY(145deg)
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+            &:before
+              position: absolute
+              content: ''
+              left: 0px
+              height: 100%
+              width: 100%
+              transform-origin: right top
+              top: 0px
+              background: #3bb33b
+              transform: skewY(45deg)
+          .bems-dashboard-item-back
+            z-index: 999
+            +metro-gradient($metro-green)
+
+      .bems-dashboard-item-wrapper.flipped>.bems-dashboard-item
+        transform: rotateY(180deg)
+        -webkit-transform: rotateY(180deg)

@@ -1,0 +1,9 @@
+.col-xs-12
+  %treecontrol.tree-boot{"tree-model" => "data", :options => "tOps"}
+    .tree-label-inner{"ng-class" => "{'bems-node-selected':detailNode.id == node.id}", :title => "{{node.name}}"}
+      .tree-label-wrapper
+        .row
+          .col-xs-6 {{node.name}}
+          .col-xs-6
+            %a.pull-right.btn.btn-info.btn-sm{"ng-click" => "editRoom(node.id)", "ng-show" => "node.level_name === 'room'"}
+              %span.glyphicon.glyphicon-edit

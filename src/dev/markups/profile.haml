@@ -1,0 +1,12 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-profile{:style => "position: relative"}
+    .bems-profile-container.bems-container.panel.panel-default{"ng-controller" => "profileCtrl" }
+      %a.page-name
+        %span{:style => "color:#EB85B1 "} LOAD 
+        %span{:style => "color:#bfd532 "} PROFILE
+      %a.material-icons.md-18{:style => "float: right;padding: 5 0;color: #6d2e43;","ng-show" => "super", "ng-class" => "{'active' : active('/admin')}",:href => "#/admin/dashboard"} settings
+      / .bems-login-header.panel-heading.panel-superheader Load Profile
+      +include 'src/dev/markups/profile/pie.haml'
+      +include 'src/dev/markups/profile/load.haml'
++include 'src/dev/markups/partials/footer.haml'

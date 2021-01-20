@@ -1,0 +1,506 @@
+$system-heading-color: #46718b
+$system-gold: #f5bb02
+$system-silver: #9c9c9c
+$system-bronze: #f29862
+
+.bems
+
+  .bems-system
+    @extend %wrapper-parent
+
+    .panel
+      box-shadow: none
+      -webkit-box-shadow: none
+    .bems-system-container
+      @extend %wrapper
+
+      .panel.panel-default,
+      .panel-body
+        background: transparent
+
+      .bems-system-quota
+        @media #{$media-no-widescreen}
+          margin-bottom: $base-size
+
+      h1,h2,h3,h4,h5,h6
+        color: $system-heading-color
+        font-weight: $font-bold
+
+      .bems-system-rank-1,
+      .bems-system-rank-2,
+      .bems-system-rank-3
+        color: $quattuor-color
+        font-weight: $font-bold
+        line-height: 1.1
+        border-radius: $base-size / 2
+        border: $system-heading-color 3px solid
+
+        span
+          padding: $base-size / 2
+          display: inline-block
+          min-height: 80px
+          font-size: 20px
+          width: calc(100% - 80px)
+          overflow-wrap: break-word
+          color: $tres-color
+
+          @media #{$media-desktop-only}
+            min-height: 96px
+
+        img
+          width: 80px
+          float: left
+
+      .bems-system-rank-1
+        border-color: $system-gold
+        background-color: $system-gold
+
+        @media #{$media-handheld}
+          margin-bottom: $base-size
+
+      .bems-system-rank-2
+        border-color: $system-silver
+        background-color: $system-silver
+
+        @media #{$media-phone}
+          margin-bottom: $base-size
+
+      .bems-system-rank-3
+        border-color: $system-bronze
+        background-color: $system-bronze
+
+      .bems-system-rank-1,
+      .bems-system-rank-2
+        @media #{$media-widescreen}
+          margin-bottom: $base-size
+
+
+      .bems-system-demand-item.alt
+        border-radius: $base-size / 2
+        border: $system-heading-color 3px solid
+        margin-left: 7.5px
+
+        @media #{$media-widescreen}
+          margin-right: 7.5px
+
+      .bems-system-rank-sm1,
+      .bems-system-rank-sm2,
+      .bems-system-rank-sm3
+        text-align: left
+        padding: $base-size / 2
+        line-height: 1.1
+        border-radius: $base-size / 2
+        position: relative
+
+        span
+          padding: 0 $base-size / 2
+          display: inline-block
+          min-height: 60px
+          font-size: 18px
+          width: calc(100% - 60px)
+          overflow-wrap: break-word
+
+        img
+          width: 60px
+          float: left
+
+      .bems-system-rank-sm1
+        color: $system-gold
+
+      .bems-system-rank-sm2
+        color: $system-silver
+
+      .bems-system-rank-sm3
+        color: $system-bronze
+
+      .bems-system-supply-mea
+        text-align: center
+        margin: 0 auto
+        width: $system-supply-width / 1.5
+        padding: $base-size / 2
+        line-height: 1.1
+        border: #e04628 3px solid
+        border-radius: $base-size / 2
+        position: relative
+
+        .bems-system-supply-mea-title
+          color: #e04628
+          font-weight: $font-bold
+          font-size: 24px
+
+        .bems-system-supply-mea-value
+          font-size: $system-supply-value-font-size
+
+        .bems-system-supply-mea-img
+          width: 75%;
+          display: block;
+          margin: 0 auto;
+
+      .bems-system-supply-pv
+        text-align: center
+        margin: 0 auto
+        width: $system-supply-width / 1.5
+        padding: $base-size / 2
+        line-height: 1.1
+        border: #46718b 3px solid
+        border-radius: $base-size / 2
+        position: relative
+
+        .bems-system-supply-pv-title
+          color: #46718b
+          font-weight: $font-bold
+          font-size: 24px
+
+        .bems-system-supply-pv-value
+          font-size: $system-supply-value-font-size
+
+        .bems-system-supply-pv-img
+          width: 75%;
+          display: block;
+          margin: 0 auto;
+
+    .bems-system-arrow
+
+
+      .bems-system-arrow-line
+        width: $base-size / 5
+        height: $base-size * 4
+        margin: 0 auto
+        position: relative
+        transform: rotate(270deg)
+        margin-top: -15px
+
+        .bems-system-arrow-dot
+          position: absolute
+          width: $base-size * 0.8
+          height: $base-size * 0.8
+          border-radius: 9999px
+          background: pink
+
+        .bems-system-arrow-chevron
+        	border-style: solid
+        	border-width: 6px 6px 0 0
+        	content: ''
+        	display: inline-block
+        	height: 2em
+        	position: absolute
+        	transform: rotate(135deg)
+        	vertical-align: top
+        	width: 2em
+
+        .bems-system-arrow-chevron2
+          border-style: solid
+          border-width: 6px 6px 0 0
+          content: ''
+          display: inline-block
+          height: 2em
+          position: absolute
+          transform: rotate(135deg)
+          vertical-align: top
+          width: 2em
+        .bems-system-arrow-chevron3
+          border-style: solid
+          border-width: 6px 6px 0 0
+          content: ''
+          display: inline-block
+          height: 2em
+          position: absolute
+          transform: rotate(135deg)
+          vertical-align: top
+          width: 2em
+        .bems-system-arrow-chevron4
+          border-style: solid
+          border-width: 6px 6px 0 0
+          content: ''
+          display: inline-block
+          height: 2em
+          position: absolute
+          transform: rotate(135deg)
+          vertical-align: top
+          width: 2em
+
+
+      .bems-system-arrow-line-supply
+        background-color:  transparent
+
+        .bems-system-arrow-dot
+          top: $base-size / -2
+          left: -8.5px
+          background-color:  $system-supply-color
+
+        .bems-system-arrow-chevron
+          bottom: $base-size * 2.25
+          left: $base-size / -0.5
+          border-color:  lighten($system-supply-color,30%)
+        .bems-system-arrow-chevron2
+          bottom: $base-size *1.25
+          left: $base-size / -0.5
+          border-color:  lighten($system-supply-color,15%)
+        .bems-system-arrow-chevron3
+          bottom: $base-size * 0.25
+          left: $base-size / -0.5
+          border-color:  lighten($system-supply-color,5%)
+        .bems-system-arrow-chevron4
+          bottom: $base-size * -0.75
+          left: $base-size / -0.5
+          border-color:  $system-supply-color
+
+      .bems-system-arrow-line-sm
+        width: $base-size /0.9
+        height: $base-size * 4
+        margin: 0 auto
+        position: relative
+
+        .bems-system-arrow-dot
+          position: absolute
+          width: $base-size * 0.9
+          height: $base-size * 0.8
+          border-radius: 9999px
+          background: pink
+
+        .bems-system-arrow-chevron
+          border-style: solid
+          border-width: 6px 6px 0 0
+          content: ''
+          display: inline-block
+          height: 2em
+          position: absolute
+          transform: rotate(135deg)
+          vertical-align: top
+          width: 2em
+
+        .bems-system-arrow-chevron2
+          border-style: solid
+          border-width: 6px 6px 0 0
+          content: ''
+          display: inline-block
+          height: 2em
+          position: absolute
+          transform: rotate(135deg)
+          vertical-align: top
+          width: 2em
+        .bems-system-arrow-chevron3
+          border-style: solid
+          border-width: 6px 6px 0 0
+          content: ''
+          display: inline-block
+          height: 2em
+          position: absolute
+          transform: rotate(135deg)
+          vertical-align: top
+          width: 2em
+        .bems-system-arrow-chevron4
+          border-style: solid
+          border-width: 6px 6px 0 0
+          content: ''
+          display: inline-block
+          height: 2em
+          position: absolute
+          transform: rotate(135deg)
+          vertical-align: top
+          width: 2em
+
+
+      .bems-system-arrow-line-supply-sm
+        background-color:  transparent
+
+        .bems-system-arrow-chevron
+          bottom: $base-size * 3
+          border-color:  lighten($system-supply-color,30%)
+        .bems-system-arrow-chevron2
+          bottom: $base-size *2
+          border-color:  lighten($system-supply-color,15%)
+        .bems-system-arrow-chevron3
+          bottom: $base-size * 1
+          border-color:  lighten($system-supply-color,5%)
+        .bems-system-arrow-chevron4
+          bottom: $base-size * 0
+          border-color:  $system-supply-color
+
+      .bems-system-arrow-line-demand
+        background-color: $system-demand-color
+
+        .bems-system-arrow-dot
+          bottom: $base-size / -2
+          left: -8.5px
+          background-color: $system-demand-color
+
+        .bems-system-arrow-chevron
+          top: -24px
+          left: -11px
+          border-color: $system-demand-color
+
+    .bems-system-demand-wrapper
+      background-color: $system-demand-background-color
+      margin-left: 0
+      margin-right: 0
+      margin-bottom: 0
+      border: $system-demand-sub-color 3px solid
+      border-radius: $base-size / 2
+      padding-top: $base-size / 2
+      padding-bottom: $base-size / 2
+
+      .bems-system-demand-item
+        background-color: $tres-color
+        text-align: center
+        margin: 0 auto $base-size / 2 auto
+        padding: $base-size / 2
+        line-height: 1.1
+        border: $system-demand-color 3px solid
+        border-radius: $base-size / 2
+
+        &:first-child
+          margin-top: $base-size / 2
+
+        &:last-child
+          margin-bottom: 0
+
+        .col-xs-12,
+        .col-xs-4
+          @media #{$media-phone}
+            padding-left: 1px
+            padding-right: 1px
+
+        .bems-system-demand-title
+
+          .bems-system-demand-name
+            color: $system-demand-color
+            font-weight: $font-bold
+            font-size: $system-demand-title-font-size
+
+          .bems-system-demand-value
+            font-size: $system-demand-value-font-size
+
+          hr
+            background-color: $system-demand-color
+            margin: $base-size / 2 0
+
+        .bems-system-demand-sub-name
+          color: $system-demand-sub-color
+          font-weight: $font-bold
+          font-size: 20px
+
+        .bems-system-demand-sub-value
+          font-size: $system-demand-value-font-size
+          @media #{$media-tablet}
+            font-size: $system-demand-value-font-size-sm
+          @media #{$media-phone}
+            font-size: $system-demand-value-font-size-xs
+
+        .bems-system-demand-sub-img
+          width: 60%
+          margin: 0 auto
+  .building-img
+    height: 340px
+  .building-img-sm
+    background-image: url('../img/building-new1.png')
+    background-repeat: no-repeat, repeat
+    width: 80%
+    height: 100%
+    margin: 0 auto
+    position: relative
+    max-height: 550px
+    @media #{$media-phone}
+      background-image: url('../img/building-new1-sm.png')
+      width: 98%
+      background-repeat: no-repeat, repeat
+      height: 100%
+      margin: 0 auto
+      position: relative
+      max-height: 350px
+
+  .building-system
+    color: #5a450b
+    padding: 40px 5px
+    border: #d6b14b 3px solid
+    border-radius: 15px
+    @media #{$media-desktop}
+      max-width: 420px
+      padding: 40px
+    .graph-data
+      background-color: #e4b124
+      height: 100%
+    .graph-value
+      margin-top: -19px
+      font-weight: bold
+      float: left
+      @media #{$media-tablet}
+        margin-top: -32px
+        font-size: 24px
+    .flr7-sm
+      position: absolute
+      width: 185px
+      height: 35px
+      top: 84px
+      left: 47px
+      @media #{$media-phone}
+        width: 113px
+        height: 22px
+        top: 51px
+        left: 29px
+    .flr6-sm
+      position: absolute
+      width: 185px
+      height: 35px
+      top: 150
+      left: 47px
+      @media #{$media-phone}
+        width: 113px
+        height: 22px
+        top: 91px
+        left: 29px
+    .flr5-sm
+      position: absolute
+      width: 185px
+      height: 35px
+      top: 216px
+      left: 47px
+      @media #{$media-phone}
+        width: 113px
+        height: 22px
+        top: 132px
+        left: 29px
+    .flr4-sm
+      position: absolute
+      width: 185px
+      height: 35px
+      top: 284px
+      left: 47px
+      @media #{$media-phone}
+        width: 113px
+        height: 22px
+        top: 173px
+        left: 29px
+    .flr3-sm
+      position: absolute
+      width: 185px
+      height: 35px
+      top: 351px
+      left: 47px
+      @media #{$media-phone}
+        width: 113px
+        height: 22px
+        top: 214px
+        left: 29px
+    .flr2-sm
+      position: absolute
+      width: 185px
+      height: 35px
+      top: 418px
+      left: 47px
+      @media #{$media-phone}
+        width: 113px
+        height: 22px
+        top: 254px
+        left: 29px
+    .flr1-sm
+      position: absolute
+      width: 185px
+      height: 35px
+      top: 487px
+      left: 47px
+      @media #{$media-phone}
+        width: 113px
+        height: 22px
+        top: 296px
+        left: 29px

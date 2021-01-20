@@ -1,0 +1,48 @@
+.row
+  .col-sm-9.col-xs-12
+    .btn-group.btn-group-justified.btn-block
+      %a.btn.btn-raised{"ng-class" => "{'btn-primary' : roomRange == 'day' ? true:false}", "ng-click" => "tabRange('day')"} Day
+      %a.btn.btn-raised{"ng-class" => "{'btn-primary' : roomRange == 'month' ? true:false}", "ng-click" => "tabRange('month')"} Month
+      %a.btn.btn-raised{"ng-class" => "{'btn-primary' : roomRange == 'year' ? true:false}", "ng-click" => "tabRange('year')"} Year
+    .row.bems-room-section-progress
+      .col-md-4.col-xs-5.bems-room-section-map-usage-name
+        .row
+          .col-xs-6 Energy
+          .col-xs-6.bems-room-section-map-usage-name-percent{"ng-hide" => "roomRange === 'year'"} {{getPercent(room.energy,room.quota.en.total)}}%
+      .col-md-8.col-xs-7
+        .progress
+          .progress-bar{"ng-class" => "getClass(room.energy,room.quota.en.yellow,room.quota.en.red)", "ng-style" => "{width:getPercent(room.energy,room.quota.en.total)+'%'}"}
+          .progress-bar-value {{room.energy | number:1}} kWh
+      .col-md-4.col-xs-5.bems-room-section-map-usage-name
+        .row
+          .col-xs-6 Power
+          .col-xs-6.bems-room-section-map-usage-name-percent{"ng-hide" => "roomRange === 'year'"} {{getPercent(room.power,room.quota.pw.total)}}%
+      .col-md-8.col-xs-7
+        .progress
+          .progress-bar{"ng-class" => "getClass(room.power,room.quota.pw.yellow,room.quota.pw.red)", "ng-style" => "{width:getPercent(room.power,room.quota.pw.total)+'%'}"}
+          .progress-bar-value {{room.power | number:1}} kW
+      .col-xs-12.bems-room-section-map-usage-peak
+        Peak Demand {{room.peak | number:1}} kW
+  .col-xs-3.hidden-xs.bems-room-section-award
+    .bems-room-section-award-item{"ng-show" => "getAward().show"}
+      %span {{ getAward().text }}
+      %img.bems-room-section-award-img{"ng-src" => "{{ getAward().img }}"}
+.bems-room-section-progress
+%hr
+.bems-room-section-overview
+  %h2.bems-room-section-overview-title Area Overview
+  #bems-room-section-overview-pie.bems-room-section-overview-pie
+%hr
+.bems-room-section-profile
+  %h2.bems-room-section-profile-title Power Profile
+  .btn-group.btn-group-justified.btn-block
+    %a.btn.btn-raised{"ng-class" => "{'btn-primary' : profileType == 'overall' ? true:false}", "ng-click" => "tabType('overall')"} Overall
+    %a.btn.btn-raised{"ng-if"=>"checkGraphDeviceOption('aircon')", "ng-class" => "{'btn-primary' : profileType == 'aircon' ? true:false}", "ng-click" => "tabType('aircon')"} Air
+    %a.btn.btn-raised.hidden-xs{"ng-if"=>"checkGraphDeviceOption('light')", "ng-class" => "{'btn-primary' : profileType == 'light' ? true:false}", "ng-click" => "tabType('light')"} Light
+    %a.btn.btn-raised.hidden-xs{"ng-if"=>"checkGraphDeviceOption('outlet')", "ng-class" => "{'btn-primary' : profileType == 'outlet' ? true:false}", "ng-click" => "tabType('outlet')"} Outlet
+    / %a.btn.btn-raised.hidden-xs{"ng-if"=>"checkGraphDeviceOption('fan_vav')", "ng-class" => "{'btn-primary' : profileType == 'fan_vav' ? true:false}", "ng-click" => "tabType('fan_vav')"} Fan vav
+  .btn-group.btn-group-justified.btn-block.visible-xs-block
+    %a.btn.btn-raised{"ng-if"=>"checkGraphDeviceOption('light')", "ng-class" => "{'btn-primary' : profileType == 'light' ? true:false}", "ng-click" => "tabType('light')"} Light
+    %a.btn.btn-raised{"ng-if"=>"checkGraphDeviceOption('outlet')", "ng-class" => "{'btn-primary' : profileType == 'outlet' ? true:false}", "ng-click" => "tabType('outlet')"} Outlet
+    / %a.btn.btn-raised{"ng-if"=>"checkGraphDeviceOption('fan_vav')", "ng-class" => "{'btn-primary' : profileType == 'fan_vav' ? true:false}", "ng-click" => "tabType('fan_vav')"}Fan vav
+  #bems-room-section-profile-graph.bems-room-section-profile-graph

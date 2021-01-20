@@ -1,0 +1,81 @@
++include 'src/dev/markups/partials/header.haml'
+#bems-admin-noti-modal-success.bems-admin-noti-modal-success.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-noti-modal-success-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons update
+          Update Successfully.
+      .modal-footer.bems-admin-noti-modal-success-footer.text-center
+        %button.btn.btn-success{:type => "button", "data-dismiss" => "modal"} Close
+
+#bems-admin-noti-modal-failed.bems-admin-noti-modal-failed.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-noti-modal-failed-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons update
+          Update failed.
+      .modal-footer.bems-admin-noti-modal-failed-footer.text-center
+        %button.btn.btn-success{:type => "button", "data-dismiss" => "modal"} Close
+
+.bems-outer-wrapper
+  .bems-wrapper.bems-admin
+    .bems-admin-container.bems-container.panel.panel-default
+      .bems-login-header.panel-heading.panel-superheader Notification Setting
+      .panel-body.row{"ng-controller" => "notificationAdminCtrl"}
+        .btn-toolbar.col-xs-12
+          .btn-group.btn-group-justified.btn-group-raised
+            .bems-admin-button.btn{"ng-click" => "tabbing(false)", "ng-class" => "{'btn-primary': !tab}"} Subscription
+            .bems-admin-button.btn{"ng-click" => "tabbing(true)", "ng-class" => "{'btn-primary': tab}"} Notification Content
+        .bems-admin-tab-point.col-xs-12{"ng-show" => "!tab"}
+          .panel-body.row
+            .col-xs-12
+              %table.table.table-striped.table-hover
+                %thead
+                  %tr
+                    %th Name
+                    %th{:style => "width:10%" } Type
+                    %th{:style => "width:40%" } Key
+                    %th{:colspan => "1"}
+                %tbody
+                  %tr{"ng-repeat" => "result in noti_data "}
+                    %td
+                      .bems-admin-td.form-group.label-static
+                        %input.form-control{:type => "text",:disabled => "disabled","ng-model" => "result.name"}
+                    %td
+                      .bems-admin-td.form-group.label-static
+                        %input.form-control{:type => "text",:disabled => "disabled","ng-model" => "result.type"}
+                    %td
+                      .bems-admin-td.form-group.label-static
+                        %input.form-control{:type => "text","ng-model" => "result.key"}
+                    %td{:style =>"text-align:center"}
+                      %button.btn.btn-success.btn-sm.btn-raised{"ng-click" => "updateKey(result.id,result.name,result.type,result.map_id,result.key)"}
+                        %i.material-icons save
+        .bems-admin-tab-point.col-xs-12{"ng-show" => "tab"}
+          .panel-body.row
+            .col-xs-12
+              %table.table.table-striped.table-hover
+                %thead
+                  %tr
+                    %th Name
+                    %th Type
+                    %th{:style => "width:70%" } Message
+                    %th{:colspan => "1"}
+                %tbody
+                  %tr{"ng-repeat" => "resultMsg in notiMsg_data "}
+                    %td
+                      .bems-admin-td.form-group.label-static
+                        %input.form-control{:type => "text",:disabled => "disabled","ng-model" => "resultMsg.name"}
+                    %td
+                      .bems-admin-td.form-group.label-static
+                        %input.form-control{:type => "text",:disabled => "disabled","ng-model" => "resultMsg.type"}
+                    %td
+                      .bems-admin-td.form-group.label-static
+                        %textarea.form-control{:type => "text",:rows =>"3","ng-model" => "resultMsg.message"}
+                    %td{:style =>"text-align:center"}
+                      %button.btn.btn-success.btn-sm.btn-raised{"ng-click" => "updateMessage(resultMsg.id,resultMsg.name,resultMsg.type,resultMsg.message)"}
+                        %i.material-icons save
++include 'src/dev/markups/partials/footer.haml'

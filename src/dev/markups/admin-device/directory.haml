@@ -1,0 +1,117 @@
+#bems-admin-device-modal-success.bems-admin-device-modal-success.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-device-modal-success-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons update
+          Update Successfully.
+      .modal-footer.bems-admin-device-modal-success-footer.text-center
+        %button.btn.btn-success{:type => "button", "data-dismiss" => "modal"} Close
+#bems-admin-device-modal-create.bems-admin-device-modal-create.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-device-modal-create-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons pin_drop
+          Add Device
+      .modal-body
+        .row
+          .col-xs-4
+            .form-group.label-static
+              %label.control-label Device Name
+              %input.form-control{:type => "text", "ng-model" => "newDevice.name"}
+          .col-xs-4
+            .form-group
+              %select.form-control{"ng-model" => "newDevice.type", "ng-change" => "changeNewType(currentId,newDevice.type)"}
+                %option{"ng-repeat" => "optNew in type", "ng-value" => "optNew.name", "ng-selected" => "optNew.name === newDevice.type"} {{ optNew.name }}
+      .modal-footer.bems-admin-device-modal-create-footer.text-center
+        %button.btn.btn-default{:type => "button", "data-dismiss" => "modal"} Close
+        %button.btn.btn-default.btn-success{:type => "button", "data-dismiss" => "modal", "ng-show" => "newDevice.name.length !== 0", "ng-click" => "confirmCreateDevice()"} Add Device
+#bems-admin-device-modal-manipulate.bems-admin-device-modal-manipulate.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-device-modal-manipulate-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons pin_drop
+          Manipulate Device
+      .modal-body
+        %table.table.table-hover.table-striped
+          %tbody
+            %tr{"ng-repeat" => "manPin in dList", "ng-show" => "checkSamPos(manPin.pin_pos)"}
+              %td
+                %img.device-icon{"ng-src" => "{{manPin.icon}}"}
+                &nbsp; {{manPin.name}}
+              %td
+                .form-group
+                  %select.form-control{"ng-model" => "manPin.type", "ng-change" => "changeType($index,manPin.type)"}
+                    %option{"ng-repeat" => "opt2 in type", "ng-value" => "opt2.name", "ng-selected" => "opt2.name === device.type"} {{ opt2.name }}
+              %td
+                %button.btn.btn-raised.btn-danger.pull-right{:type => "button", "ng-click" => "dList[$index].pin_pos = null"}
+                  %i.material-icons delete
+            %tr
+              %td.text-center{:colspan => "3"}
+                .form-group
+                  .row
+                    %label.control-label.col-xs-3{:for => "select111"} Select Device
+                    .col-xs-4
+                      %select#select111.form-control{"ng-model" => "newPin"}
+                        %option{"ng-repeat" => "addPin in dList", "ng-value" => "$index", "ng-hide" => "checkSamPos(addPin.pin_pos)"} {{ addPin.name }}
+                    .col-xs-5
+                      %button.btn.btn-raised.btn-success{:type => "button", "ng-show" => "newPin != -1", "ng-click" => "changePos(1)"}
+                        %i.material-icons add
+                        %span Add device
+      .modal-footer.bems-admin-device-modal-manipulate-footer.text-center
+        %button.btn.btn-default{:type => "button", "data-dismiss" => "modal"} Close
+#bems-admin-device-modal-alert.bems-admin-device-modal-alert.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-device-modal-alert-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons warning
+          Please choose device
+      .modal-footer.bems-admin-device-modal-alert-footer.text-center
+        %button.btn.btn-alert{:type => "button", "data-dismiss" => "modal"} Close
+#bems-admin-device-modal-delete.bems-admin-device-modal-delete.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-device-modal-delete-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons delete_forever
+          Do you want to delete {{delDevice.name}}?
+      .modal-footer.bems-admin-device-modal-delete-footer.text-center
+        %button.btn.btn-default{:type => "button", "data-dismiss" => "modal"} Close
+        %button.btn.btn-danger{:type => "button", "data-dismiss" => "modal", "ng-click" => "confirmDelDevice(delDevice.fixId)"} Confirm
+#bems-admin-device-dialog-modal.bems-admin-device-dialog-modal.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-device-dialog-modal-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons pin_drop
+          Choose Device.
+      .modal-body
+        .row.bems-admin-device-dialog-choose
+          .col-xs-6{"ng-repeat" => "choosePin in dList"}
+            .form-group
+              .radio.radio-primary
+                %label
+                  %input{:type => "radio", :name => "chosenPinn", "ng-value" => "$index", "ng-model" => "$parent.chosenPin"}
+                  {{choosePin.name}}
+                %img.pull-right{"ng-src" => "{{choosePin.icon}}"}
+      .modal-footer.bems-admin-device-dialog-modal-footer.text-center
+        %button.btn.btn-success{:type => "button", "ng-show" => "chosenPin != -1", "ng-click" => "changePos()"} Choose
+        %button.btn{:type => "button", "data-dismiss" => "modal"} Cancel
+.col-xs-12
+  %treecontrol.tree-boot{"tree-model" => "data", :options => "tOps"}
+    .tree-label-inner{"ng-class" => "{'bems-node-selected':detailNode.id == node.id}", :title => "{{node.name}}"}
+      .tree-label-wrapper
+        .row
+          .col-xs-6 {{node.name}}
+          .col-xs-6
+            %a.pull-right.btn.btn-info.btn-sm{"ng-click" => "chooseRoom(node.id)", "ng-show" => "node.level_name === 'room'"}
+              %span.glyphicon.glyphicon-edit

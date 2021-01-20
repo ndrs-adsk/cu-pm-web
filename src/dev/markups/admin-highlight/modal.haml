@@ -1,0 +1,20 @@
+#bems-admin-highlight-modal.bems-admin-highlight-modal.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-highlight-modal-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons update
+          Update Successfully.
+      .modal-footer.bems-admin-highlight-modal-footer.text-center
+        %button.btn.btn-success{:type => "button", "data-dismiss" => "modal"} Close
+#bems-admin-highlight-modal-failed.bems-admin-highlight-modal.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-highlight-modal-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons update
+          Data is not present.
+      .modal-footer.bems-admin-highlight-modal-footer.text-center
+        %button.btn.btn-danger{:type => "button", "data-dismiss" => "modal"} Close

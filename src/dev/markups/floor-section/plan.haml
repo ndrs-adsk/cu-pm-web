@@ -1,0 +1,78 @@
+.row
+  %h1.col-xs-12.bems-floor-section-header
+    %span.bld-name {{ bld.name }}
+    %span.floor-name {{ floor.name }}
+  .col-md-7.col-xs-12
+    / .btn-group.btn-group-justified.btn-group-raised
+    /   %a.btn{"ng-class" => "{'btn-primary' : zoneTab == 'all' ? true:false}", "ng-click" => "tabZone('all')"} All
+    /   %a.btn{"ng-repeat" => "zone in zones track by $index", "ng-class" => "{'btn-primary' : zoneTab == $index ? true:false}", "ng-click" => "tabZone($index)"} {{zone.name}}
+    .form-group
+      %label{:for => "s1"} Area
+      / %select#s1.form-control{"ng-change" => "zoneChanged()", "ng-model" => "value" , :style => "display:inline"}
+      /   %option{"ng-click" => "{'btn-primary' : zoneTab == 'all' ? true:false}", "ng-click" => "tabZone('all')"} All
+      /   %option{"ng-repeat" => "zone in zones track by $index", "ng-class" => "{'btn-primary' : zoneTab == $index ? true:false}", "ng-click" => "tabZone($index)"} {{zone.name }}
+      %select#s1.form-control{"ng-change" => "zoneChanged()", "ng-model" => "zone" , :style => "display:inline"}
+        %option{:value => "all", :selected => true} All
+        %option{"ng-repeat" => "zone in zones track by $index","ng-if"=>"zone.id != 190 && zone.name != 'PV'", :value => "{{$index}}"} {{zone.name }}
+      
+      &#9660
+    .form-group
+      %label{:for => "s2"} Mode View 
+      %select#s2.form-control{"ng-model" => "pointVisibility" , :style => "display:inline"}
+     
+        %option{"ng-value" => "'1'" }  Icon
+        %option{"ng-value" => "'2'" }  Icon + Name
+        %option{"ng-value" => "'3'" }  Energy & Power Usage
+      &#9660
+    / .btn-group.btn-block.bems-floor-section-view-button
+    /   %a.btn.btn-raised.dropdown-toggle.bems-floor-section-view-button-inner{"data-target" => "#", "data-toggle" => "dropdown"}
+    /     %i.material-icons filter_none
+    /     View Mode
+    /     %span.caret
+    /   %ul.dropdown-menu
+    /     %li
+    /       %a{"ng-click" => "pointVisibility = 1"} Icon
+    /     %li
+    /       %a{"ng-click" => "pointVisibility = 2"} Icon + Name
+    /     %li
+    /       %a{"ng-click" => "pointVisibility = 3 "} Energy & Power Usage
+  .col-md-5.col-xs-12
+    .btn-group.btn-group-justified.btn-group-raised
+      %a.btn{"ng-class" => "{'btn-primary' : rangeTab == 'day' ?true:false}", "ng-click" => "tabRange('day')"} Day
+      %a.btn{"ng-class" => "{'btn-primary' : rangeTab == 'month' ?true:false}", "ng-click" => "tabRange('month')"} Month
+      %a.btn{"ng-class" => "{'btn-primary' : rangeTab == 'year'?true:false}", "ng-click" => "tabRange('year')"} Year
+    .btn.btn-default.btn-lg.btn-block.btn-raised{"ng-click" => "meanVisibility=!meanVisibility"}
+      %i.material-icons view_list
+      Map Meanings
+  .col-xs-12
+    .bems-floor-section-map-wrapper
+      .bems-floor-section-meaning.row{"ng-show" => "meanVisibility"}
+        .bems-floor-section-meaning-item.col-xs-6{"ng-repeat" => "mean in means track by $index"}
+          %i.material-icons {{mean.icon}}
+          &nbsp; {{mean.name}}
+      %a.btn.btn-fab.btn-primary.btn-fab-mini{"ng-click" => "zoomFloor()", "ng-show" => "showZoom()", :style => "position:absolute;top:0;left:15px;z-index:100;"}
+        %i.material-icons{"ng-show" => "zoom"} zoom_in
+        %i.material-icons{"ng-show" => "!zoom"} zoom_out
+      .bems-floor-section-inner-wrapper{"ng-style" => "floorStyle"}
+        .bems-floor-section-map-area{"ng-repeat" => "zoning in area","ng-if"=>"zoning.name != 'PRM Headquater' && zoning.name != 'PV'", "ng-style" => "zonePolygon(zoning.area_pos)", "ng-class" => "zoneColor(zoning.quota.en,zoning.energy,$index)"} {{zoning.name}}
+        %a.bems-floor-section-map-point{"ng-repeat" => "pinpoint in area","ng-if"=>"pinpoint.name != 'PRM Headquater' && pinpoint.name != 'PV'", "ng-show" => "pointVisibility !== '3'", "ng-style" => "pinpoint.pin_pos", :href => "#/area/{{pinpoint.id}}"}
+          %i.material-icons {{pinpoint.icon}}
+        .bems-floor-section-map-point-name{"ng-repeat" => "pinname in area","ng-if"=>"pinname.name != 'PRM Headquater' && pinname.name != 'PV'", "ng-show" => "pointVisibility === '2'", "ng-style" => "pinname.name_pos"} {{pinname.name}}
+        .bems-floor-section-map-usage{"ng-repeat" => "usage in area","ng-if"=>"usage.name != 'PRM Headquater'  && usage.name != 'PV'", "ng-show" => "pointVisibility === '3'", "ng-style" => "usage.tab_pos"}
+          .row
+            .col-xs-12.bems-floor-section-map-usage-name Area : {{usage.name}}
+            .col-xs-5
+              Energy
+              %span{"ng-hide" => "rangeTab == 'year'"} {{usagePercent(usage.quota.en.total,usage.energy)}}%
+            .col-xs-7
+              .progress
+                .progress-bar{"ng-class" => "usageClass(usage.quota.en,usage.energy)", "ng-style" => "{'width': usagePercent(usage.quota.en.total,usage.energy)+'%'}"}
+                .progress-bar-value {{usage.energy | number:2}} kWh
+            .col-xs-5
+              Power
+            .col-xs-7
+              .progress
+                .progress-bar{"ng-class" => "usageClass(usage.quota.pw,usage.power)", "ng-style" => "{'width': usagePercent(usage.quota.pw.total,usage.power)+'%'}"}
+                .progress-bar-value {{usage.power | number:2}} kW
+            .col-xs-12.bems-floor-section-map-usage-peak Peak Demand {{usage.peak | number:2}} kW
+        %img.bems-floor-section-map{"ng-src" => "{{floor.img}}"}

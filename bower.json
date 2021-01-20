@@ -1,0 +1,39 @@
+{
+  "name": "bems-ui",
+  "description": "building energy management system",
+  "main": "",
+  "authors": [
+    "NDR Solution <ndrs@ndrsolution.com> (http://ndrsolution.com)"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "ndrs",
+    "bems"
+  ],
+  "moduleType": [],
+  "homepage": "http://ndrsolution.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.6.9",
+    "angular-resource": "~1.6.9",
+    "angular-route": "~1.6.9",
+    "angular-sanitize": "~1.6.9",
+    "angular-ui-sortable": "~0.14.3",
+    "arrive": "~2.4.1",
+    "bootstrap": "~3.3.6",
+    "highcharts": "4.2.5",
+    "highcharts-ng": "~0.0.11",
+    "jquery": "~2.2.2",
+    "jquery-ui": "~1.12.0",
+    "material-design-icons": "~2.2.3",
+    "ng-file-upload": "~12.2.13",
+    "angular-tree-control": "~0.2.28"
+  }
+}

@@ -1,0 +1,27 @@
+.bems-wrapper.bems-login
+  .bems-login-container.bems-container.panel.panel-default
+    .bems-login-header.panel-heading CUBEMS :: LOG IN
+    .bems-login-body.panel-body
+      %form#bems-login-form.bems-login-form{"ng-controller" => "loginCtrl"}
+        .form-group.label-floating
+          %label.control-label{:for => "bems-login-username" } Username
+          %input#bems-login-username.bems-login-username.form-control{:type => "text", "ng-model" => "username", "ng-keydown" => "keyEnter($event)"}
+        .form-group.label-floating
+          %label.control-label{:for => "bems-login-password" } Password
+          %input#bems-login-password.bems-login-password.form-control{:type => "password", "ng-model" => "password", "ng-keydown" => "keyEnter($event)"}
+        %span.bems-login-msg.help-block{"ng-show" => "invalid"} Username or Password are not correct.
+        %button.bems-login-button.btn.btn-raised.btn-primary{:type => "submit", "ng-click" => "login()", "ng-keydown" => "keyEnter($event)"}
+          %span.bems-login-button-icon.glyphicon.glyphicon-log-in{"aria-hidden" => "true"}
+          %span.bems-login-button-text &nbsp; Log In
+        .form-group.row
+          .checkbox.col-xs-12
+            %label
+              %input#bems-login-remember{:type => "checkbox", "ng-model" => "remember"}
+              &nbsp;
+              %span
+                Remember
+                %span.visible-lg-inline-block Me
+          .col-xs-6
+            %a.bems-login-forget{"ng-hide" => "1"} Forget Password
+        %a{:href =>"#/",:style =>"float:right"} Skip login
++include 'src/dev/markups/partials/footer.haml'

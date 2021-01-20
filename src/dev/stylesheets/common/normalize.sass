@@ -1,0 +1,136 @@
+a
+  text-decoration: none
+  &:hover
+    text-decoration: none
+
+p
+  margin: 0
+
+legend
+  color: $quattuor-color
+
+%i.material-icons
+  vertical-align: middle
+
+body
+  background-color: $unus-alt-color
+  max-width: 100%
+
+.well
+  padding: $base-size / 2
+  margin: $base-size / 2 0
+
+.form-group
+  margin-top: $base-size / 6
+
+  label.control-label-icon
+    margin-top: $base-size / 5
+
+.width-100
+  width: 100%
+
+.md-18
+  font-size: $real-font-size
+
+.tree-node-content
+  +box-shadow()
+
+  .node-title-text
+    display: inline-block
+    margin: $base-size / 3 0
+
+  .node-title-gap
+    display: inline-block
+    width: 42px
+    height: 1px
+
+  .btn.btn-sm
+    padding: 5px 15px
+
+treecontrol.tree-boot
+
+  &>ul
+    margin-top: 3px
+    color: $quattuor-color
+
+  li
+    margin: 1px
+
+    &.tree-expanded
+
+      i.tree-branch-head
+        background: url("../img/node-opened-2.png") no-repeat
+
+    &.tree-collapsed
+
+      i.tree-branch-head
+        background: url("../img/node-closed-2.png") no-repeat
+
+    &>.tree-label
+      +box-shadow()
+      margin: 1px
+      border-radius: 0
+      border-left: 5px solid $structure-1-color
+      padding: 0
+
+      &.tree-selected,
+      &.tree-selected:hover
+        background: transparent
+        color: $quattuor-color
+
+      .tree-label-inner
+        padding: 10px 5px
+
+        &.bems-node-selected
+          background-color: $unus-alt-color
+
+        .tree-label-wrapper
+          display: inline-block
+          padding: 0 $base-size / 2
+          width: calc(100% - 36px)
+
+      .btn
+        margin: 0
+
+      .spantext
+        float: left
+        display: inline
+        width: calc(100% -196px)
+        overflow-x: hidden
+
+    i
+      &.tree-branch-head,
+      &.tree-branch-leaf,
+      &.tree-leaf-head
+        margin: 12px
+
+    li
+
+      &>.tree-label
+        border-left: 5px solid $structure-2-color
+        margin-right: 0
+
+      li
+
+        &>.tree-label
+          border-left: 5px solid $structure-3-color
+
+        li
+
+          &>.tree-label
+            border-left: 5px solid $structure-4-color
+
+          li
+
+            &>.tree-label
+              border-left: 5px solid $structure-5-color
+
+            li
+
+              &>.tree-label
+                border-left: 5px solid $structure-6-color
+
+              li
+
+                &>.tree-label
+                  border-left: 5px solid $structure-7-color

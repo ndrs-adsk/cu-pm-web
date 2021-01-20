@@ -1,0 +1,15 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-admin
+    .bems-admin-container.bems-container.panel.panel-default
+      .bems-login-header.panel-heading.panel-superheader Profile Setting
+      .panel-body.row{"ng-controller" => "profileAdminCtrl"}
+        / .btn-toolbar.col-xs-12
+        /   .btn-group.btn-group-justified.btn-group-raised
+        /     .bems-admin-button.btn{"ng-click" => "tabbing(true)", "ng-class" => "{'btn-primary': tab}"} Subscription
+        /     .bems-admin-button.btn{"ng-click" => "tabbing(false)", "ng-class" => "{'btn-primary': !tab}"} Edit Profile
+        / .bems-admin-tab-point.col-xs-12{"ng-show" => "tab"}
+        /   +include 'src/dev/markups/admin-profile/subscribe.haml'
+        .bems-admin-tab-point.col-xs-12
+          +include 'src/dev/markups/admin-profile/edit.haml'
++include 'src/dev/markups/partials/footer.haml'

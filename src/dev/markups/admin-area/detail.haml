@@ -1,0 +1,23 @@
+%br
+.row
+  %legend.col-xs-6 Area Detail
+  .col-xs-6
+    %a.btn.btn-raised.pull-right.btn-success{"ng-click" => "update(detailRoom)"}
+      %i.material-icons save
+.form-group.label-static
+  %label.control-label Name
+  %input.form-control{:type => "text", "ng-model" => "detailRoom.name"}
+.form-group
+  %select.form-control{"ng-model" => "detailRoom.type"}
+    %option{"ng-repeat" => "type in roomType", :value => "{{type.name}}"} {{type.name}}
+%form.row{:name => "roomUpload"}
+  .col-xs-6
+    .form-group.label-static
+      %label.control-label File Upload
+      %input.form-control{:type => "text", :readonly => "", :placeholder => "Browse...", "ng-model" => "roomText"}
+      %input.form-control{:type => "file", "ngf-select" => true, "ng-model" => "roomFile", :name => "roomImg", :accept => "image/*", "ngf-max-size" => "5MB", :required => true, "ngf-model-invalid" => "errorFile"}
+  .col-xs-6
+    %button.btn.btn-raised.btn-info{"ng-disabled" => "!roomUpload.$valid", "ng-click" => "uploadFile(roomFile,detailRoom.id)"} Sumbit
+    %button.btn.btn-raised.btn-danger{"ng-disabled" => "!roomUpload.$valid", "ng-click" => "removeFile()"} Remove
+  %img.col-xs-offset-3.col-xs-6{"ng-show" => "roomUpload.roomImg.$valid", "ngf-thumbnail" => "roomFile"}
+  %img.col-xs-offset-3.col-xs-6{"ng-hide" => "roomUpload.roomImg.$valid", "ng-src" => "{{detailRoom.img}}"}

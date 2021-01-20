@@ -1,0 +1,67 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-admin
+    .bems-admin-container.bems-container.panel.panel-default
+      .bems-login-header.panel-heading.panel-superheader Area Setting
+      #bems-admin-room-modal-alert.bems-admin-room-modal-alert.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+        .modal-dialog{:role => "document"}
+          .modal-content
+            .modal-header
+              %button.close.bems-admin-room-modal-alert-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+              %h4.modal-title.bems-about-title
+                %i.material-icons wanring
+                Please fill name field.
+            .modal-footer.bems-admin-room-modal-alert-footer.text-center
+              %button.btn.btn-alert{:type => "button", "data-dismiss" => "modal"} Close
+      #bems-admin-room-modal-success.bems-admin-room-modal-success.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+        .modal-dialog{:role => "document"}
+          .modal-content
+            .modal-header
+              %button.close.bems-admin-room-modal-success-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+              %h4.modal-title.bems-about-title
+                %i.material-icons update
+                Update Successfully.
+            .modal-footer.bems-admin-room-modal-success-footer.text-center
+              %button.btn.btn-success{:type => "button", "data-dismiss" => "modal"} Close
+      #bems-admin-room-type-modal-alert.bems-admin-room-type-modal-alert.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+        .modal-dialog{:role => "document"}
+          .modal-content
+            .modal-header
+              %button.close.bems-admin-room-type-modal-alert-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+              %h4.modal-title.bems-about-title
+                %i.material-icons wanring
+                Please fill type name field.
+            .modal-footer.bems-admin-room-type-modal-alert-footer.text-center
+              %button.btn.btn-alert{:type => "button", "data-dismiss" => "modal"} Close
+      #bems-admin-room-type-modal-success.bems-admin-room-type-modal-success.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+        .modal-dialog{:role => "document"}
+          .modal-content
+            .modal-header
+              %button.close.bems-admin-room-type-modal-success-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+              %h4.modal-title.bems-about-title
+                %i.material-icons update
+                Update Room Type Successfully.
+            .modal-footer.bems-admin-room-type-modal-success-footer.text-center
+              %button.btn.btn-success{:type => "button", "data-dismiss" => "modal"} Close
+      #bems-admin-room-img-modal-success.bems-admin-room-img-modal-success.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+        .modal-dialog{:role => "document"}
+          .modal-content
+            .modal-header
+              %button.close.bems-admin-room-img-modal-success-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+              %h4.modal-title.bems-about-title
+                %i.material-icons update
+                Update Room Type Successfully.
+            .modal-footer.bems-admin-room-img-modal-success-footer.text-center
+              %button.btn.btn-success{:type => "button", "data-dismiss" => "modal"} Close
+      .panel-body.row{"ng-controller" => "roomAdminCtrl"}
+        .btn-toolbar.col-xs-12
+          .btn-group.btn-group-justified.btn-group-raised
+            .bems-admin-room-button-edit.btn{"ng-click" => "tabbing(true)", "ng-class" => "{'btn-primary': roomTab}"} Edit Area
+            .bems-admin-room-button-type.btn{"ng-click" => "tabbing(false)", "ng-class" => "{'btn-primary': !roomTab}"} Edit Area Type
+        .col-xs-12.col-md-6{"ng-show" => "roomTab"}
+          +include 'src/dev/markups/admin-area/directory.haml'
+        .col-xs-12.col-md-6{"ng-show" => "roomTab", "ng-hide" => "hideRoom"}
+          +include 'src/dev/markups/admin-area/detail.haml'
+        .col-xs-12{"ng-show" => "!roomTab"}
+          +include 'src/dev/markups/admin-area/type.haml'
++include 'src/dev/markups/partials/footer.haml'

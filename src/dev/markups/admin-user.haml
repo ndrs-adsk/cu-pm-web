@@ -1,0 +1,143 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-admin
+    .bems-admin-container.bems-container.panel.panel-default
+      .bems-login-header.panel-heading.panel-superheader User Setting
+      .panel-body.row{"ng-controller" => "userAdminCtrl"}
+        #bems-admin-user-modal-own.bems-admin-user-modal-own.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+          .modal-dialog{:role => "document"}
+            .modal-content
+              .modal-header
+                %button.close.bems-admin-user-modal-own-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+                %h4.modal-title.bems-about-title
+                  %i.material-icons book
+                  {{users[setOwnerId].name}}'s room
+              .modal-body
+                .row
+                  .col-xs-12
+                    %treecontrol.tree-boot{"tree-model" => "data", :options => "tOps"}
+                      .tree-label-inner{"ng-class" => "{'bems-node-selected':detailNode.id == node.id}", :title => "{{node.name}}"}
+                        .tree-label-wrapper
+                          .row
+                            .col-xs-6 {{node.name}}
+                            .col-xs-6
+                              .radio.radio-primary.pull-right{"ng-show" => "node.level_name == 'room'"}
+                                %label
+                                  %input{:type => "radio", :name => "setOwnerJa", "ng-checked" => "users[setOwnerId].room_owner === node.id", "ng-value" => "node.id", "ng-model" => "users[setOwnerId].room_owner"}
+              .modal-footer.bems-admin-user-modal-own-footer.text-center
+                %button.btn.btn-default{:type => "button", "data-dismiss" => "modal"} Close
+        #bems-admin-user-modal-delete.bems-admin-user-modal-delete.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+          .modal-dialog{:role => "document"}
+            .modal-content
+              .modal-header
+                %button.close.bems-admin-user-modal-delete-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+                %h4.modal-title.bems-about-title
+                  %i.material-icons delete_forever
+                  Do you want to delete {{ delUser }} ?
+              .modal-footer.bems-admin-user-modal-delete-footer.text-center
+                %button.btn.btn-success{:type => "button", "data-dismiss" => "modal", "ng-click" => "adminDelUser(delId)"} Confirm
+                %button.btn.btn-default{:type => "button", "data-dismiss" => "modal"} Cancel
+        #bems-admin-user-modal-alert.bems-admin-user-modal-alert.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+          .modal-dialog{:role => "document"}
+            .modal-content
+              .modal-header
+                %button.close.bems-admin-user-modal-alert-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+                %h4.modal-title.bems-about-title
+                  %i.material-icons warning
+                  Please fill in all field.
+              .modal-footer.bems-admin-user-modal-alert-footer.text-center
+                %button.btn.btn-alert{:type => "button", "data-dismiss" => "modal"} Close
+        #bems-admin-user-modal-success.bems-admin-user-modal-success.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+          .modal-dialog{:role => "document"}
+            .modal-content
+              .modal-header
+                %button.close.bems-admin-user-modal-success-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+                %h4.modal-title.bems-about-title
+                  %i.material-icons update
+                  Update Successfully.
+              .modal-footer.bems-admin-user-modal-success-footer.text-center
+                %button.btn.btn-success{:type => "button", "data-dismiss" => "modal"} Close
+        #bems-admin-user-modal-password.bems-admin-user-modal-password.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+          .modal-dialog{:role => "document"}
+            .modal-content
+              .modal-header
+                %button.close.bems-admin-user-modal-password-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+                %h4.modal-title.bems-about-title
+                  %i.material-icons security
+                  {{ users[setPasswordId].username }}'s password
+              .modal-body
+                .form-group.row
+                  %label.col-md-5.col-sm-4.text-right{:for => "bems-user-password-input", "control-label" => true} Password
+                  .col-md-4.col-sm-5
+                    %input.bems-user-facebook-input.form-control{"ng-show" => "visPswd", :type => "text", "ng-model" => "inputNewPSWD"}
+                      %input.bems-user-facebook-input.form-control{"ng-hide" => "visPswd", :type => "password", "ng-model" => "inputNewPSWD"}
+                      %button.btn.btn-sm.btn-primary{"ng-click" => "visPswd = !visPswd"}
+                        %i.material-icons{"ng-hide" => "visPswd"} visibility
+                        %span{"ng-hide" => "visPswd"} Show Password
+                        %i.material-icons{"ng-show" => "visPswd"} visibility_off
+                        %span{"ng-show" => "visPswd"} Hide Password
+              .modal-footer.bems-admin-user-modal-password-footer.text-center
+                %button.btn.btn-default{:type => "button", "data-dismiss" => "modal"} Close
+                %button.btn.btn-success{:type => "button", "data-dismiss" => "modal", "ng-show" => "inputNewPSWD.length >= 0", "ng-click" => "confirmSetPassword(users[setPasswordId],inputNewPSWD)"} Set Password
+        %legend.col-xs-6
+        .col-xs-6.bems-admin-add
+          %a.btn.btn-raised.btn-success{"ng-click" => "preAdminCreateUser()"} Add User
+        .col-xs-12
+          %table.table.table-striped.table-hover
+            %thead
+              %tr
+                %th Username
+                %th First Name
+                %th Last Name
+                %th Password
+                %th E-mail
+                %th Group
+                %th Active
+                %th{:style => "width:10%"} Last Login
+                %th{:colspan => "2"}
+            %tbody
+              %tr{"ng-repeat" => "user in users track by $index"}
+                %td
+                  .bems-admin-td.form-group.label-static
+                    %label.control-label username
+                    %input.form-control{:type => "text", "ng-model" => "user.username"}
+                %td
+                  .bems-admin-td.form-group.label-static
+                    %label.control-label first name
+                    %input.form-control{:type => "text", "ng-model" => "user.name"}
+                %td
+                  .bems-admin-td.form-group.label-static
+                    %label.control-label last name
+                    %input.form-control{:type => "text", "ng-model" => "user.lastname"}
+                %td
+                  %a.btn.btn-sm.btn-raised{"ng-click" => "setPassword($index)", "ng-show" => "user.id != -1"} Set
+                  .bems-admin-td.form-group.label-static{"ng-show"  => "user.id == -1"}
+                    %label.control-label password
+                    %input.form-control{:type => "password", "ng-model" => "user.password"}
+                %td
+                  .bems-admin-td.form-group.label-static
+                    %label.control-label email
+                    %input.form-control{:type => "email", "ng-model" => "user.email"}
+                %td{:style => "width:120px;"}
+                  .form-group
+                    %select.form-control{"ng-model" => "user.group_id", "ng-options" => "group.id as group.name for group in userType"}
+                  %a.btn.btn-raised.btn-sm{"ng-show" => "user.group_id == 2", "ng-click" => "setOwner($index)"} Select
+                %td
+                  .form-group.text-center
+                    .checkbox
+                      %label
+                        %input{:type => "checkbox", "ng-model" => "user.active"}
+                %td {{ user.last_login }}
+                %td{"ng-show" => "user.id != -1"}
+                  %button.btn.btn-success.btn-sm.btn-raised{"ng-click" => "adminUpdateUser(user.id,$index)"}
+                    %i.material-icons save
+                %td{"ng-show" => "user.id != -1"}
+                  %button.btn.btn-danger.btn-sm.btn-raised{"ng-click" => "adminConfirmDelUser(user.id,user.name)"}
+                    %i.material-icons delete
+                %td{"ng-show" => "user.id == -1"}
+                  %button.btn.btn-success.btn-sm.btn-raised{"ng-click" => "adminCreateUser(user)"}
+                    %i.material-icons cloud_download
+                %td{"ng-show" => "user.id == -1"}
+                  %button.btn.btn-warning.btn-sm.btn-raised{"ng-click" => "adminPopUser()"}
+                    %i.material-icons close
++include 'src/dev/markups/partials/footer.haml'

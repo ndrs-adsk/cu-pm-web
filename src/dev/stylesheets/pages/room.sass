@@ -1,0 +1,145 @@
+.bems
+
+  .bems-room-section
+    @extend %wrapper-parent
+
+    .bems-room-section-container
+      @extend %wrapper
+
+      hr
+        border-width: 2px
+        border-color: $quattuor-color
+
+      .bems-room-section-point-list
+        margin: 0 $base-size
+
+        .bems-room-section-point-item
+          padding: $base-size / 3
+          background-color: $quinque-color
+          border-radius: $base-size / 6
+          border: 1px solid $quattuor-color
+          margin-bottom: $base-size / 6
+
+          &:last-child
+            margin-bottom: $base-size / 2
+
+          .bems-room-section-point-name
+            font-weight: $font-bold
+
+          .btn
+            margin: 0
+
+          .bems-room-section-point-icon
+            background-color: $duo-color
+            width: $base-size
+            vertical-align: middle
+            margin-right: $base-size / 2
+
+          .checkbox
+            display: inline-block
+            margin-top: 0
+
+      .bems-room-section-img-super-wrapper
+        width: 100%
+        -webkit-text-size-adjust: auto
+        @media #{$media-no-widescreen}
+          overflow-x: auto
+
+      .bems-room-section-img-wrapper
+        width: 420px
+        position: relative
+        margin: 0 auto
+
+        .bems-room-section-img
+          width: 420px
+
+        .bems-room-section-img-device
+          position: absolute
+          z-index: 100
+          cursor: pointer
+
+          img
+            width: $base-size
+            background-color: $duo-color
+
+          span
+            display: block
+            width: $base-size / 2
+            height: $base-size / 2
+            position: relative
+            color: $tres-color
+            text-align: center
+            line-height: $base-size / 2
+            background-color: $caeruleus
+            border-radius: 9999px
+            left: 23px
+            bottom: 35px
+
+        .bems-room-section-img-device-alt
+
+          img
+            background-color: lighten($duo-color,30%)
+
+        .bems-room-section-img
+          width: 420px
+
+      .bems-room-section-legend
+
+        margin-top: $base-size / 3
+
+        .bems-room-section-legend-img
+          width: $base-size * 1.5
+          max-height: 350px
+          background-color: $room-section-map-icon-background-color
+          display: inline-block
+          margin-bottom: $base-size / 3
+          @media #{$media-handheld}
+            width: $base-size
+
+      .bems-control-list
+        max-height: 461px
+        overflow-x: hidden
+        overflow-y: scroll
+
+      .bems-room-section-title
+        font-weight: $font-bold
+        margin-top: 0
+
+        .bems-room-section-title-floor-name
+          color: $room-section-title-color
+
+      .bems-room-section-progress
+
+        .progress
+          height: 23px
+          margin-bottom: 2px
+          position: relative
+
+        .progress-bar-value
+          position: absolute
+          top: 2px
+          right: 5px
+          font-size: 14px
+
+        .progress-bar.progress-bar-info,
+        .progress-bar.progress-bar-success,
+        .progress-bar.progress-bar-warning,
+        .progress-bar.progress-bar-danger
+          float: right
+
+        .bems-room-section-map-usage-name
+          color: $floor-section-map-usage-name-color
+          font-weight: $font-bold
+          font-size: 18px
+
+          .bems-room-section-map-usage-name-percent
+            text-align: right
+
+        .bems-room-section-map-usage-peak
+          font-size: 12px
+
+      .bems-room-section-award
+        text-align: center
+
+        .bems-room-section-award-img
+          max-height: 6 * $base-size

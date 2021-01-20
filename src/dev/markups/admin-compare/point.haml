@@ -1,0 +1,20 @@
+.panel-body.row{"ng-show" => "comparePoints.length"}
+  .bems-search-device-title POINT ID LIST
+  .bems-search-device-list.col.xs-12
+    .bems-search-device-item.row{"ng-repeat" => "comparePoint in comparePoints"}
+      .bems-search-device-name-wrapper.col-md-7.col-xs-12
+        %i.material-icons{:style => "color:{{comparePoint.color}}"} fiber_manual_record
+        %span.bems-search-device-item-name {{comparePoint.name}}
+      .col-md-3.col-sm-6.col-xs-12
+        .bems-search-device-item-power.btn-group.btn-group-justified.btn-group-raised
+          %a.bems-search-device-item-power-on.btn.btn-sm{"ng-click" => "pointTabbing($index,true)", "ng-class" => "{'btn-primary' : comparePoint.show}"}
+            %span.bems-search-device-item-power-on-icon.glyphicon.glyphicon-eye-open{"aria-hidden" => "true"}
+            %span.bems-search-device-item-power-on-text &nbsp; Show
+          %a.bems-search-device-item-power-off.btn.btn-sm{"ng-click" => "pointTabbing($index,false)", "ng-class" => "{'btn-primary' : !comparePoint.show}"}
+            %span.bems-search-device-item-power-off-icon.glyphicon.glyphicon-eye-close{"aria-hidden" => "true"}
+            %span.bems-search-device-item-power-off-text &nbsp; Hide
+      .col-md-2.col-sm-6.col-xs-12
+        .bems-search-device-item-delete
+          %a.bems-search-device-item-delete-button.btn.btn-danger.btn-raised.btn-sm{"ng-click" => "removeComparePoint($index)"}
+            %span.bems-search-device-item-delete-button-icon.glyphicon.glyphicon-trash{"aria-hidden" => "true"}
+            %span.bems-search-device-item-delete-button-text &nbsp; Delete

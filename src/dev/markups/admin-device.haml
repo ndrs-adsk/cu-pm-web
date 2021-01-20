@@ -1,0 +1,11 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-admin
+    .bems-admin-container.bems-container.panel.panel-default
+      .bems-login-header.panel-heading.panel-superheader Device Management
+      .panel-body.row{"ng-controller" => "deviceAdminCtrl"}
+        .col-xs-6
+          +include 'src/dev/markups/admin-device/directory.haml'
+        .bems-admin-device.col-xs-6{"ng-hide" => "hidePanel"}
+          +include 'src/dev/markups/admin-device/detail.haml'
++include 'src/dev/markups/partials/footer.haml'

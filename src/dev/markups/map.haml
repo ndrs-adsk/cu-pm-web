@@ -1,0 +1,187 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-map{"ng-controller" => "mapCtrl"}
+    %br
+    %a.bems-map-zoom.btn.btn-primary.btn-fab.btn-fab-mini.btn-link.hidden-lg{"ng-click" => "zoomMap()"}
+      %i.material-icons{"ng-show" => "zoom"} zoom_in
+      %i.material-icons{"ng-show" => "!zoom"} zoom_out
+    %a.bems-map-visibility.btn.btn-primary.btn-fab.btn-fab-mini.btn-link{"ng-click" => "ShowAllName(ShowName)"}
+      %i.material-icons{"ng-show" => "ShowName == false"} visibility
+      %i.material-icons{"ng-show" => "ShowName == true"} visibility_off
+    .bems-map-inner-wrapper{"ng-style" => "mapStyle", "ng-class" => "setDefaultMapRes()", :style => "line-height: 0.5;"}
+      %img.bems-map-img{:src => "img/3dcula60_final-1.jpg", :usemap => "#bems-map-coord"}
+      %div{"ng-repeat" => "display in displays"}
+        %a.bems-map-div{:style => "{{stylePin(display.nameplace)}}"}
+          -# %h5.bems-map-evy-hr-text-box{"ng-click" => "GetDetailsModal(display.id);reFlowChart();"} {{displayPm[$index].avg1hr}}
+          %h5.bems-map-evy-hr-text-box{"ng-click" => "GetDetailsModal(display.id, display.nameplace);reFlowChart();"} {{displayPm[$index].avg1hr}}
+          %div.bems-map-pin-location-img{"ng-click" => "GetDetailsModal(display.id, display.nameplace);reFlowChart();", "ng-mouseover" => "ShowTextBox(display.id,display.nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+            %img.bems-map-img{"ng-src" => "{{getImg(display.hr24)}}", :style => "height:60px;"}
+              %h5.bems-map-pin-location-inner{"ng-hide" => "hidePM24avg()"} {{display.hr24}}
+          -# %div{"ng-class" => "GetClass(display.hr24)", "ng-click" => "GetDetailsModal(display.id);reFlowChart();", "ng-mouseover" => "ShowTextBox(display.id,display.nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+          -#   %h5.bems-map-pin-location-inner {{display.hr24}}
+        %a.bems-map-div.bems-name-box{:style => "{{styleNameplace(display.nameplace)}}"}
+          %h5{:id => "{{display.nameplace}}", "ng-class" => "chkClassTextBox(display.nameplace)", "ng-bind" => "nameBox(display.nameplace);", "ng-show" => "mousedisplay == display.id && ShowName == false"}
+          %h5.all-name{"ng-class" => "chkClassTextBox(display.nameplace)","ng-bind" => "nameBox(display.nameplace);", "ng-show" => "ShowName == true"}
+      //
+      -# %a.bems-map-div{:style => "{{stylePin(displays[0].nameplace)}}"}
+      -#   %h5.bems-map-evy-hr-text-box{"ng-click" => "GetDetailsModal(displays[0].id);reFlowChart();"} {{displays[0].avg1hr}}
+      -#   %div.bems-map-pin-location-img{"ng-click" => "GetDetailsModal(displays[0].id);reFlowChart();", "ng-mouseover" => "ShowTextBox(displays[0].id,displays[0].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#     %img.bems-map-img{"ng-src" => "{{getImg(displays[0].hr24)}}", :style => "height:60px;"}
+      -#       %h5.bems-map-pin-location-inner{"ng-hide" => "hidePM24avg()"} {{displays[0].hr24}}
+      -#   -# %div{"ng-class" => "GetClass(displays[0].hr24)", "ng-click" => "GetDetailsModal(displays[0].id);reFlowChart();", "ng-mouseover" => "ShowTextBox(displays[0].id,displays[0].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#   -#   %h5.bems-map-pin-location-inner {{displays[0].hr24}}
+      -# %a.bems-map-div{:style => "{{styleNameplace(displays[0].nameplace)}}"}
+      -#   %h5#env_dept.bems-map-evy-hr-text-box{"ng-bind" => "nameBox(displays[0].nameplace);", "ng-show" => "mousedisplay == displays[0].id && ShowName == false"}
+      -#   %h5.all-name.bems-map-name-box{"ng-bind" => "nameBox(displays[0].nameplace);", "ng-show" => "ShowName == true"}
+      -# //
+      -# %a.bems-map-div{:style => "{{stylePin(displays[2].nameplace)}}"}
+      -#   %h5.bems-map-evy-hr-text-box{"ng-click" => "GetDetailsModal(3);reFlowChart();"} {{displays[2].avg1hr}}
+      -#   %div.bems-map-pin-location-img{"ng-click" => "GetDetailsModal(3);reFlowChart();", "ng-mouseover" => "ShowTextBox(3,displays[2].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#     %img.bems-map-img{"ng-src" => "{{getImg(displays[2].hr24)}}", :style => "height:60px;"}
+      -#       %h5.bems-map-pin-location-inner{"ng-hide" => "hidePM24avg()"} {{displays[2].hr24}}
+      -#   -# %div{"ng-class" => "GetClass(displays[2].hr24)", "ng-click" => "GetDetailsModal(3);reFlowChart();", "ng-mouseover" => "ShowTextBox(3,displays[2].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#   -#   %h5.bems-map-pin-location-inner {{displays[2].hr24}}
+      -# %a.bems-map-div{:style => "{{styleNameplace(displays[2].nameplace)}}"}
+      -#   %h5#gate_3.bems-map-evy-hr-text-box{"ng-bind" => "nameBox(displays[2].nameplace);", "ng-show" => "mousedisplay == displays[2].id && ShowName == false"}
+      -#   %h5.all-name.bems-map-name-box{"ng-bind" => "nameBox(displays[2].nameplace);", "ng-show" => "ShowName == true"}
+      -# //
+      -# %a.bems-map-div{:style => "{{stylePin(displays[1].nameplace)}}"}
+      -#   %h5.bems-map-evy-hr-text-box{"ng-click" => "GetDetailsModal(2);reFlowChart();"} {{displays[1].avg1hr}}
+      -#   %div.bems-map-pin-location-img{"ng-click" => "GetDetailsModal(2);reFlowChart();", "ng-mouseover" => "ShowTextBox(2,displays[1].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#     %img.bems-map-img{"ng-src" => "{{getImg(displays[1].hr24)}}", :style => "height:60px;"}
+      -#       %h5.bems-map-pin-location-inner{"ng-hide" => "hidePM24avg()"} {{displays[1].hr24}}
+      -#   -# %div{"ng-class" => "GetClass(displays[1].hr24)", "ng-click" => "GetDetailsModal(2);reFlowChart();", "ng-mouseover" => "ShowTextBox(2,displays[1].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#   -#   %h5.bems-map-pin-location-inner {{displays[1].hr24}}
+      -# %a.bems-map-div{:style => "{{styleNameplace(displays[1].nameplace)}}"}
+      -#   %h5#gate_5.bems-map-evy-hr-text-box{"ng-show" => "mousedisplay == 2 && ShowName == false"} สาธิตจุฬาประถม ประตู 5
+      -#   %h5.all-name.bems-map-name-box{"ng-show" => "ShowName == true"} สาธิตจุฬาประถม ประตู 5
+      -# //
+      -# %a.bems-map-div{:style => "{{stylePin(displays[3].nameplace)}}"}
+      -#   %h5.bems-map-evy-hr-text-box{"ng-click" => "GetDetailsModal(4);reFlowChart();"} {{displays[3].avg1hr}}
+      -#   %div.bems-map-pin-location-img{"ng-click" => "GetDetailsModal(4);reFlowChart();", "ng-mouseover" => "ShowTextBox(4,displays[3].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#     %img.bems-map-img{"ng-src" => "{{getImg(displays[3].hr24)}}", :style => "height:60px;"}
+      -#       %h5.bems-map-pin-location-inner{"ng-hide" => "hidePM24avg()"} {{displays[3].hr24}}
+      -#   -# %div{"ng-class" => "GetClass(displays[3].hr24)", "ng-click" => "GetDetailsModal(4);reFlowChart();", "ng-mouseover" => "ShowTextBox(4,displays[3].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#   -#   %h5.bems-map-pin-location-inner {{displays[3].hr24}}
+      -# %a.bems-map-div{:style => "{{styleNameplace(displays[3].nameplace)}}"}
+      -#   %h5#soccer_field_in.bems-map-evy-hr-text-box{"ng-show" => "mousedisplay == 4 && ShowName == false"} สาธิตจุฬาประถม สนามฟุตบอลใน
+      -#   %h5.all-name.bems-map-name-box{"ng-show" => "ShowName == true"} สาธิตจุฬาประถม สนามฟุตบอลใน
+      -# //
+      -# %a.bems-map-div{:style => "{{stylePin(displays[4].nameplace)}}"}
+      -#   %h5.bems-map-evy-hr-text-box{"ng-click" => "GetDetailsModal(5);reFlowChart();"} {{displays[4].avg1hr}}
+      -#   %div.bems-map-pin-location-img{"ng-click" => "GetDetailsModal(5);reFlowChart();", "ng-mouseover" => "ShowTextBox(5,displays[4].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#     %img.bems-map-img{"ng-src" => "{{getImg(displays[4].hr24)}}", :style => "height:60px;"}
+      -#       %h5.bems-map-pin-location-inner{"ng-hide" => "hidePM24avg()"} {{displays[4].hr24}}
+      -#   -# %div{"ng-class" => "GetClass(displays[4].hr24)", "ng-click" => "GetDetailsModal(5);reFlowChart();", "ng-mouseover" => "ShowTextBox(5,displays[4].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#   -#   %h5.bems-map-pin-location-inner {{displays[4].hr24}}
+      -# %a.bems-map-div{:style => "{{styleNameplace(displays[4].nameplace)}}"}
+      -#   %h5#cu100_park.bems-map-evy-hr-text-box{"ng-show" => "mousedisplay == 5 && ShowName == false"} อุทยาน จุฬาฯ 100 ปี
+      -#   %h5.all-name.bems-map-name-box{"ng-show" => "ShowName == true"} อุทยาน จุฬาฯ 100 ปี
+      -# //
+      -# %a.bems-map-div{:style => "{{stylePin(displays[6].nameplace)}}"}
+      -#   %h5.bems-map-evy-hr-text-box{"ng-click" => "GetDetailsModal(7);reFlowChart();"} {{displays[6].avg1hr}}
+      -#   %div.bems-map-pin-location-img{"ng-click" => "GetDetailsModal(7);reFlowChart();", "ng-mouseover" => "ShowTextBox(7,displays[6].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#     %img.bems-map-img{"ng-src" => "{{getImg(displays[6].hr24)}}", :style => "height:60px;"}
+      -#       %h5.bems-map-pin-location-inner{"ng-hide" => "hidePM24avg()"} {{displays[6].hr24}}
+      -#   -# %div{"ng-class" => "GetClass(displays[6].hr24)", "ng-click" => "GetDetailsModal(7);reFlowChart();", "ng-mouseover" => "ShowTextBox(7,displays[6].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#   -#   %h5.bems-map-pin-location-inner {{displays[6].hr24}}
+      -# %a.bems-map-div{:style => "{{styleNameplace(displays[6].nameplace)}}"}
+      -#   %h5#walk_path.bems-map-evy-hr-text-box{"ng-show" => "mousedisplay == 7 && ShowName == false"} ทางเดินภายใน Siam Square One
+      -#   %h5.all-name.bems-map-name-box{"ng-show" => "ShowName == true"} ทางเดินภายใน Siam Square One
+      -# //
+      -# %a.bems-map-div{:style => "{{stylePin(displays[5].nameplace)}}"}
+      -#   %h5.bems-map-evy-hr-text-box{"ng-click" => "GetDetailsModal(6);reFlowChart();"} {{displays[5].avg1hr}}
+      -#   %div.bems-map-pin-location-img{"ng-click" => "GetDetailsModal(6);reFlowChart();", "ng-mouseover" => "ShowTextBox(6,displays[5].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#     %img.bems-map-img{"ng-src" => "{{getImg(displays[5].hr24)}}", :style => "height:60px;"}
+      -#       %h5.bems-map-pin-location-inner{"ng-hide" => "hidePM24avg()"} {{displays[5].hr24}}
+      -#   -# %div{"ng-class" => "GetClass(displays[5].hr24)", "ng-click" => "GetDetailsModal(6);reFlowChart();", "ng-mouseover" => "ShowTextBox(6,displays[5].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#   -#   %h5.bems-map-pin-location-inner {{displays[5].hr24}}
+      -# %a.bems-map-div{:style => "{{styleNameplace(displays[5].nameplace)}}"}
+      -#   %h5#siam_kit.bems-map-evy-hr-text-box{"ng-show" => "mousedisplay == 6 && ShowName == false"} สยามกิตติ์
+      -#   %h5.all-name.bems-map-name-box{"ng-show" => "ShowName == true"} สยามกิตติ์
+      -# //
+      -# %a.bems-map-div{:style => "{{stylePin(displays[7].nameplace)}}"}
+      -#   %h5.bems-map-evy-hr-text-box{"ng-click" => "GetDetailsModal(8);reFlowChart();"} {{displays[7].avg1hr}}
+      -#   %div.bems-map-pin-location-img{"ng-click" => "GetDetailsModal(8);reFlowChart();", "ng-mouseover" => "ShowTextBox(8,displays[7].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#     %img.bems-map-img{"ng-src" => "{{getImg(displays[7].hr24)}}", :style => "height:60px;"}
+      -#       %h5.bems-map-pin-location-inner{"ng-hide" => "hidePM24avg()"} {{displays[7].hr24}}
+      -#   -# %div{"ng-class" => "GetClass(displays[7].hr24)", "ng-click" => "GetDetailsModal(8);reFlowChart();", "ng-mouseover" => "ShowTextBox(8,displays[7].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#   -#   %h5.bems-map-pin-location-inner {{displays[7].hr24}}
+      -# %a.bems-map-div{:style => "{{styleNameplace(displays[7].nameplace)}}"}
+      -#   %h5#park_siam.bems-map-evy-hr-text-box{"ng-show" => "mousedisplay == 8 && ShowName == false"} Park @Siam
+      -#   %h5.all-name.bems-map-name-box{"ng-show" => "ShowName == true"} Park @Siam
+      -# //
+      -# %a.bems-map-div{:style => "{{stylePin(displays[8].nameplace)}}"}
+      -#   %h5.bems-map-evy-hr-text-box{"ng-click" => "GetDetailsModal(9);reFlowChart();"} {{displays[8].avg1hr}}
+      -#   %div.bems-map-pin-location-img{"ng-click" => "GetDetailsModal(9);reFlowChart();", "ng-mouseover" => "ShowTextBox(9,displays[8].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#     %img.bems-map-img{"ng-src" => "{{getImg(displays[8].hr24)}}", :style => "height:60px;"}
+      -#       %h5.bems-map-pin-location-inner{"ng-hide" => "hidePM24avg()"} {{displays[8].hr24}}
+      -#   -# %div{"ng-class" => "GetClass(displays[8].hr24)", "ng-click" => "GetDetailsModal(9);reFlowChart();", "ng-mouseover" => "ShowTextBox(9,displays[8].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#   -#   %h5.bems-map-pin-location-inner {{displays[8].hr24}}
+      -# %a.bems-map-div{:style => "{{styleNameplace(displays[8].nameplace)}}"}
+      -#   %h5#hall_office_bldg.bems-map-evy-hr-text-box{"ng-show" => "mousedisplay == 9 && ShowName == false"} จัตุรัสจามจุรี Office
+      -#   %h5.all-name.bems-map-name-box{"ng-show" => "ShowName == true"} จัตุรัสจามจุรี Office
+      -# //
+      -# %a.bems-map-div{:style => "{{stylePin(displays[9].nameplace)}}"}
+      -#   %h5.bems-map-evy-hr-text-box{"ng-click" => "GetDetailsModal(10);reFlowChart();"} {{displays[9].avg1hr}}
+      -#   %div.bems-map-pin-location-img{"ng-click" => "GetDetailsModal(10);reFlowChart();", "ng-mouseover" => "ShowTextBox(10,displays[9].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#     %img.bems-map-img{"ng-src" => "{{getImg(displays[9].hr24)}}", :style => "height:60px;"}
+      -#       %h5.bems-map-pin-location-inner{"ng-hide" => "hidePM24avg()"} {{displays[9].hr24}}
+      -#   -# %div{"ng-class" => "GetClass(displays[9].hr24)", "ng-click" => "GetDetailsModal(10);reFlowChart();", "ng-mouseover" => "ShowTextBox(10,displays[9].nameplace)", "ng-mouseleave"=>"ShowTextBox(0)"}
+      -#   -#   %h5.bems-map-pin-location-inner {{displays[9].hr24}}
+      -# %a.bems-map-div{:style => "{{styleNameplace(displays[9].nameplace)}}"}
+      -#   %h5#hall_res_lobby.bems-map-evy-hr-text-box{"ng-show" => "mousedisplay == 10 && ShowName == false"} จัตุรัสจามจุรี Residence
+      -#   %h5.all-name.bems-map-name-box{"ng-show" => "ShowName == true"} จัตุรัสจามจุรี Residence
+      %br
+      %div{:style => "height: 80px;"}
+        %img.bems-map-img{:src => "img/Legend.png", :style => "height:45px;"}
+      -# %div.col-xs-5{:style => "text-align: center;"}
+      -#   %div.bems-map-legend
+      -#     %div.bems-map-legend-text.bems-map-legend-box.bems-map-legend-first.blue
+      -#       %span ดีมาก
+      -#     %div.bems-map-legend-text.bems-map-legend-box.green
+      -#       %span ดี
+      -#     %div.bems-map-legend-text.bems-map-legend-box.yellow
+      -#       %span ปานกลาง
+      -#     %div.bems-map-legend-text.bems-map-legend-box.orange
+      -#       %span เริ่มมีผลต่อสุขภาพ
+      -#     %div.bems-map-legend-text.bems-map-legend-box.bems-map-legend-last.red
+      -#       %span มีผลต่อสุขภาพ
+      -# %div.col-xs-6{:style => "text-align: center; top: 4px;"}
+      -#   .col-xs-6
+      -#     %h4 All data are provided by EnvGIT.
+      -#   .col-xs-6
+      -#     %h4{:style => "displays : -webkit-inline-box;"}
+      -#       PM2.5(μg/m
+      -#         %sup{:style => "font-size: 63%; left: -.3em;"} 3
+      -#       %span{:style => "position: relative; left: -.3em;"} ):
+      -#       .bems-map-name-box{:style => "vertical-align: middle; position: relative; bottom: 10px; height: 30px;"} &nbsp; &nbsp;
+      -#       &nbsp; เฉลี่ย 1 ช.ม. &nbsp;
+      -#       %div{:style => "position: relative; bottom: 10;"}
+      -#       %img.bems-map-img{:src => "img/location-green.svg", :style => "height:30px;"}
+      -#       &nbsp; เฉลี่ย 24 ช.ม.
+
+    #bems-sensor-monitor.bems-about.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsAbout"}
+      .modal-dialog
+        .modal-content
+          .modal-header.modal-header-consumption
+            %span.modal-header-consumption-text PM2.5
+            %span.modal-header-consumption-text Monitoring
+            %h4.modal-header-name-place-text {{nameplace}}
+          .modal-body{:style => "background-color : #f4f4f4"}
+            %h1{:style => "text-align:center;"} PM2.5
+            %highchart#chart-data-PM.chart-directive.span10{:style => "margin:auto"}
+            %br
+            %hr.modal-hr-consumption
+            %h1{:style => "text-align:center;"} AQI of PM2.5
+            %highchart#chart-data-AQI.chart-directive.span10{:style => "margin:auto"}
+            %br
+            %hr.modal-hr-consumption
+            %div{:style => "text-align: center;"}
+              %img.bems-map-img-legend{:src => "img/Legend-level.png"}
+              %div.col-sm-12{:style => "text-align: center;"}
+                %span{:style => "font-size:14px;"} All data are provided by EnvGIT.
+            .modal-footer.bems-admin-room-modal-alert-footer.text-center
+              %button#close.btn.btn-default{"data-dismiss" => "modal", :style => "float:right;margin-right: 15px;", :type => "button"} Close
+
++include 'src/dev/markups/partials/footer.haml'

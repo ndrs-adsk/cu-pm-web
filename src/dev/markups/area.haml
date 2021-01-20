@@ -1,0 +1,61 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-room-section
+    .bems-room-section-container.bems-container.panel.panel-default{"ng-controller" => "roomCtrl"}
+      .bems-login-header.panel-heading
+        .row
+          .col-sm-4.col-xs-12.panel-superheader Area Section
+          .col-sm-8.col-xs-12
+            %ul.breadcrumb.pull-right
+              %li
+                %a{:href => "#/overview"} Home
+              %li
+                %a{"ng-href" => "#/floor/overview/{{tree.building.id}}"} {{ tree.building.name }}
+              %li
+                %a{"ng-href" => "#/floor/section/{{tree.building.id}}/{{tree.floor.id}}"} {{ tree.floor.name }}
+              %li.active {{ room.name }}
+      .panel-body.row
+        .col-xs-12
+          %h1.bems-room-section-title
+            %span.bems-room-section-title-room-name {{ room.name }}
+            %br.visible-xs-block
+            %span.bems-room-section-title-floor-name {{ tree.floor.name }}
+        .col-xs-12
+          +include 'src/dev/markups/room/graph.haml'
+        .col-xs-12.hidden-lg.hidden-xs
+          .bems-room-section-img-super-wrapper
+            .bems-room-section-img-wrapper
+              %a.bems-room-section-img-device{"ng-repeat" => "device2 in devices", "ng-class" => "{'bems-room-section-img-device-alt' : chkOp(device2.id)}", "ng-show" => "checkPin(device2.pin_pos)", "ng-style" => "device2.pin_pos", "ng-click" => "chooseDevice($index)"}
+                %img{"ng-src" => "{{device2.icon}}",:title => "{{device2.name}}"}
+                %span{"ng-show" => "checkBluePlus(device2.id,device2.pin_pos)"} +
+              %img.bems-room-section-img{"ng-src" => "{{room.img}}"}
+        .col-sm-5.col-xs-12
+          %a.btn.btn-fab.btn-primary.btn-fab-mini{"ng-click" => "zoomRoom()", "ng-show" => "showZoom()"}
+            %i.material-icons{"ng-show" => "zoom"} zoom_in
+            %i.material-icons{"ng-show" => "!zoom"} zoom_out
+          .bems-room-section-img-super-wrapper.hidden-sm.hidden-md{"ng-style" => "roomStyle"}
+            .bems-room-section-img-wrapper
+              %a.bems-room-section-img-device{"ng-repeat" => "device in devices", "ng-class" => "{'bems-room-section-img-device-alt' : chkOp(device.id)}", "ng-show" => "checkPin(device.pin_pos)", "ng-style" => "device.pin_pos", "ng-click" => "chooseDevice($index)"}
+                %img{"ng-src" => "{{device.icon}}",:title => "{{device.name}}"}
+                %span{"ng-show" => "checkBluePlus(device.id,device.pin_pos)"} +
+              %img.bems-room-section-img{"ng-src" => "{{room.img}}"}
+          .bems-room-section-legend.row
+            .col-lg-4.col-md-6.col-sm-5.col-xs-6
+              %img.bems-room-section-legend-img{:src => "svg/light.svg"}
+              %span.bems-room-section-legend-text &nbsp; Light
+            .col-lg-4.col-md-6.col-sm-7.col-xs-6
+              %img.bems-room-section-legend-img{:src => "svg/sensor.svg"}
+              %span.bems-room-section-legend-text &nbsp; Multisensor
+            .col-lg-4.col-md-6.col-sm-5.col-xs-6
+              %img.bems-room-section-legend-img{:src => "svg/outlet.svg"}
+              %span.bems-room-section-legend-text &nbsp; Outlet
+            .col-lg-4.col-md-6.col-sm-7.col-xs-6
+              %img.bems-room-section-legend-img{:src => "svg/air.svg"}
+              %span.bems-room-section-legend-text &nbsp; A/C
+            .col-lg-4.col-md-6.col-sm-7.col-xs-6
+              %img.bems-room-section-legend-img{:src => "svg/air3.svg"}
+              %span.bems-room-section-legend-text &nbsp; A/C 3 Phase
+          +include 'src/dev/markups/room/dir.haml'
+        .col-sm-7.col-xs-12
+          +include 'src/dev/markups/room/detail.haml'
++include 'src/dev/markups/partials/footer.haml'

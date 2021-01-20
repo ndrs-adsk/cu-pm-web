@@ -1,0 +1,40 @@
+.bems-control-status.row{ "ng-show" => "typeDevice == 'light' || typeDevice == 'outlet'"}
+  .col-md-6.col-xs-6
+    .bems-control-power{"ng-class" => "{'bems-control-active-box': ctrlMon.power.has}"}
+      %span.bems-control-power-text POWER
+      %hr
+      %span.bems-control-power-number{"ng-show" => "ctrlMon.power.has"} {{ctrlMon.power.val  | number:2}}
+      %span.bems-control-power-number{"ng-show" => "!ctrlMon.power.has"} -
+      %span.bems-control-power-sign &nbsp; W
+.bems-control-status.row.row-eq-heigh{"ng-show" => "typeDevice == 'multi sensor'"}
+  / .col-md-4.col-xs-4
+  /   .bems-control-temperature{"ng-class" => "{'bems-control-active-box': ctrlMon.temp.has}"}
+  /     %span.bems-control-temperature-text{:style => "margin-left: -10px;"} TEMPERATURE
+  /     %hr
+  /     %span.bems-control-temperature-number{"ng-show" => "ctrlMon.temp.has"} {{ctrlMon.temp.val | number:1}}
+  /     %span.bems-control-temperature-number{"ng-show" => "!ctrlMon.temp.has"} -
+  /     %span.bems-control-temperature-sign
+  /       &nbsp; °C
+
+  .col-md-4.col-xs-4
+    .bems-control-humidity{"ng-class" => "{'bems-control-active-box': ctrlMon.temp.has}",:style =>"background-color: #439a46;border: 3px solid #245326;"}
+      %span.bems-control-temperature-text TEMPERATURE
+      %hr
+      %span.bems-control-temperature-number{"ng-show" => "ctrlMon.temp.has"} {{ctrlMon.temp.val | number:1}}
+      %span.bems-control-temperature-number{"ng-show" => "!ctrlMon.temp.has"} -
+      %span.bems-control-temperature-sign &nbsp; °C
+  .col-md-4.col-xs-4
+    .bems-control-humidity{"ng-class" => "{'bems-control-active-box': ctrlMon.humid.has}"}
+      %span.bems-control-humidity-text HUMIDITY
+      %hr
+      %span.bems-control-humidity-number{"ng-show" => "ctrlMon.humid.has"} {{ctrlMon.humid.val | number:1}}
+      %span.bems-control-humidity-number{"ng-show" => "!ctrlMon.humid.has"} -
+      %span.bems-control-humidity-sign &nbsp; %
+  .col-md-4.col-xs-4
+    .bems-control-illuminance{"ng-class" => "{'bems-control-active-box': ctrlMon.illu.has}"}
+      %span.bems-control-illuminance-text{:style => "margin-left: -7px;"} ILLUMINANCE
+      %hr
+      %span.bems-control-illuminance-number{"ng-show" => "ctrlMon.illu.has"} {{ctrlMon.illu.val | number:1}}
+      %span.bems-control-illuminance-number{"ng-show" => "!ctrlMon.illu.has"} -
+      %span.bems-control-illuminance-sign &nbsp; lux
+%br

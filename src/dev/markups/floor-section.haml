@@ -1,0 +1,34 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-floor-section
+    .bems-floor-section-container.bems-container.panel.panel-default{"ng-controller" => "floorsCtrl"}
+      .bems-login-header.panel-heading
+        .row
+          .col-sm-6.col-xs-12.panel-superheader Floor Section
+          .col-sm-6.col-xs-12
+            %ul.breadcrumb.pull-right
+              %li
+                %a{:href => "#/overview"} Home
+              %li
+                %a{"ng-href" => "#/floor/overview/{{bld_id}}"} {{ bld.name }}
+              %li.active {{ floor.name }}
+      .panel-body.row
+        .col-lg-8.col-xs-12
+          +include 'src/dev/markups/floor-section/plan.haml'
+        .col-lg-4.col-xs-12
+          .row
+            .col-lg-12.col-sm-6.col-xs-12
+              .panel.panel-primary
+                .panel-heading.bems-floor-section-pie-title
+                  %h3.panel-title Floor Area Usage
+                .panel-body.bems-floor-section-area-usage-wrapper
+                  #bems-floor-section-area-usage.bems-floor-section-area-usage
+            .col-lg-12.col-sm-6.col-xs-12
+              .panel.panel-primary
+                .panel-heading.bems-floor-section-pie-title
+                  %h3.panel-title Floor Load Usage
+                .panel-body.bems-floor-section-load-usage-wrapper
+                  #bems-floor-section-load-usage.bems-floor-section-load-usage
+        .col-xs-12
+          #bems-floor-section-graph.bems-floor-section-graph
++include 'src/dev/markups/partials/footer.haml'

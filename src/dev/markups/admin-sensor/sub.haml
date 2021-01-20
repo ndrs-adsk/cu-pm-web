@@ -1,0 +1,27 @@
+%br
+.row
+  %legend.col-xs-12 {{ detailNode.name }}
+  .col-xs-12{"ng-repeat" => "eachSub in detailSub"}
+    .panel.panel-default
+      .panel-heading {{ eachSub.type }}
+      .panel-body.row
+        .col-xs-12
+          .btn.btn-raised.btn-info.pull-right.btn-sm{"ng-click" => "editSub(eachSub.type)"} Edit
+        .col-xs-12
+          %span{"ng-repeat" => "subber in eachSub.user"}
+            %span {{ subber.name }}
+            %span{"ng-hide" => "$last"} &#44;
+.modal.bems-admin-sensor-subscribe-modal#bems-admin-sensor-subscribe-modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "ng-click" => "sensorSubVisibility(0)"} x
+        %h4.modal-title Edit Subscriber : {{ detailNode.name }} | {{ detailType }}
+      .modal-body.row.bems-admin-sensor-subscribe-row.form-group
+        .bems-admin-sensor-subscribe-col.col-xs-6{"ng-repeat" => "subbed in users"}
+          .checkbox
+            %label
+              %input{:type => "checkbox", "ng-model" => "subbed.chk"}
+              &nbsp; {{ subbed.username }}
+        .col-xs-12.text-center
+          %button.btn.btn-raised.btn-success{"ng-click" => "sensorUpdateSub(detailNode.id,detailType)"} Save Changes

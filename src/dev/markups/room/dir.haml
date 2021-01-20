@@ -1,0 +1,9 @@
+.bems-control-list
+  %treecontrol.tree-boot{"tree-model" => "data", "expanded-nodes" => "expandedNodes", :options => "tOps"}
+    .tree-label-inner{"ng-class" => "{'bems-node-selected':detailNode.id == node.id}", :title => "{{node.name}}"}
+      .tree-label-wrapper
+        .row
+          .col-xs-9 {{node.name}}
+          .col-xs-3
+            %a.pull-right.btn.btn-sm{"ng-if" => "node.level_name == 'room'", "ng-class" => "{'btn-success' : (room_id == node.id)}", "ng-href" => "#/area/{{node.id}}"}
+              %span.glyphicon.glyphicon-record

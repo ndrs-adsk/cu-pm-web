@@ -1,0 +1,17 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-user
+    .bems-user-container.bems-container.panel.panel-default
+      .bems-login-header.panel-heading.panel-superheader User Setting
+      .panel-body.row{"ng-controller" => "userCtrl"}
+        .btn-toolbar.col-xs-12
+          .btn-group.btn-group-justified.btn-group-raised
+            .bems-user-button-edit.btn{"ng-click" => "tabbing(true)", "ng-class" => "{'btn-primary': userTab}"} Edit Profile
+            .bems-user-button-password.btn{"ng-click" => "tabbing(false)", "ng-class" => "{'btn-primary': !userTab}"}
+              %span.hidden-xs Change
+              %span Password
+        .bems-user-tab-edit.col-xs-12{"ng-show" => "userTab"}
+          +include 'src/dev/markups/user/edit.haml'
+        .bems-user-tab-password.col-xs-12{"ng-hide" => "userTab"}
+          +include 'src/dev/markups/user/pswd.haml'
++include 'src/dev/markups/partials/footer.haml'

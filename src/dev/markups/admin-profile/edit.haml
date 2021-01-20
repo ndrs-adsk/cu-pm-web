@@ -1,0 +1,139 @@
+#bems-admin-profile-modal-delete.bems-admin-profile-modal-delete.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-profile-modal-delete-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons delete_forever
+          Do you want to delete {{ delProfile }} ?
+      .modal-footer.bems-admin-profile-modal-delete-footer.text-center
+        %button.btn.btn-success{:type => "button", "data-dismiss" => "modal", "ng-click" => "adminDelProfile(delId)"} Confirm
+        %button.btn.btn-default{:type => "button", "data-dismiss" => "modal"} Cancel
+#bems-admin-profile-modal-alert.bems-admin-profile-modal-alert.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-profile-modal-alert-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons wanring
+          Please fill all field.
+      .modal-footer.bems-admin-profile-modal-alert-footer.text-center
+        %button.btn.btn-alert{:type => "button", "data-dismiss" => "modal"} Close
+#bems-admin-profile-modal-success.bems-admin-profile-modal-success.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-profile-modal-success-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons update
+          Update Successfully.
+      .modal-footer.bems-admin-profile-modal-success-footer.text-center
+        %button.btn.btn-success{:type => "button", "data-dismiss" => "modal"} Close
+.row
+  %legend.col-xs-6
+  .col-xs-6.bems-admin-add
+    %a.btn.btn-raised.btn-success{"ng-click" => "preAdminCreateProfile()"} Add Profile
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th Name
+      %th Display
+      %th Supply
+      %th Image
+      %th Node
+      %th Preview
+      %th
+  %tbody
+    %tr{"ng-repeat" => "profile in profiles track by $index"}
+      %td
+        .bems-admin-td.form-group.label-static
+          %label.control-label Name
+          %input.form-control{:type => "text", "ng-model" => "profile.display_name"}
+      %td
+        .form-group.text-center
+          .checkbox
+            %label
+              %input{:type => "checkbox", "ng-model" => "profile.display_status"}
+      %td
+        .form-group.text-center
+          .checkbox
+            %label
+              %input{:type => "checkbox", "ng-model" => "profile.is_supply"}
+      %td.text-center
+        %img.bems-admin-profile-load-image{:alt => "previewImg", "ng-src" => "svg/{{profile.img}}.svg", "ng-click" => "chooseIcon(profile.id,$index)"}
+      %td.text-center
+        %button.btn.btn-raised.btn-sm{"ng-click" => "chooseNode(profile.id,$index)"} Select Node
+      %td.text-center
+        %button.btn.btn-raised.btn-info.btn-sm{"ng-click" => "showProfileDemo(profile.display_name,profile.img)"} Preview
+      %td.text-center{"ng-show" => "profile.id != -1"}
+        %button.btn.btn-success.btn-raised.btn-sm{"ng-click" => "updateProfile(profile.id,$index)"}
+          %i.material-icons save
+        %button.btn.btn-danger.btn-raised.btn-sm{"ng-click" => "adminConfirmDelProfile(profile.id,profile.display_name)","ng-hide"=>"profile.id == 1"}
+          %i.material-icons delete
+      %td.text-center{"ng-show" => "profile.id == -1"}
+        %button.btn.btn-success.btn-raised.btn-sm{"ng-click" => "adminCreateProfile(profile)"}
+          %i.material-icons cloud_download
+        %button.btn.btn-warning.btn-raised.btn-sm{"ng-click" => "adminPopProfile()"}
+          %i.material-icons close
+.modal.fade#bems-admin-profile-popup.bems-admin-profile-popup{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document",:style => "width:1200px;"}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "ng-click" => "profileEditVisibility(0)"} x
+        %h4.modal-title {{ modalTitle }}
+      .modal-body
+        .bems-admin-profile-choose-icon.row{"ng-show" => "modalTab === 1 ? true:false"}
+          .form-group.col-xs-4{"ng-repeat" => "icon in icons"}
+            .radio.radio-primary
+              %label
+                %input{:type => "radio", "ng-model" => "profiles[iconIndex.index].img", "ng-value" => "icon.dir"} {{icon.name}}
+                %br
+                %br
+                %img.bems-admin-profile-load-image{:alt => "iconSample", "ng-src" => "svg/{{icon.dir}}.svg"}
+          .col-xs-12.text-center
+            %button.btn.btn-raised.btn-info{"ng-click" => "updateChoose(iconIndex.id,iconIndex.index)"} Close
+        .bems-admin-profile-choose-node.row{"ng-show" => "modalTab === 2 ? true:false"}
+          .col-xs-12
+            %treecontrol.tree-boot{"tree-model" => "data", :options => "tOps"}
+              .tree-label-inner{"ng-class" => "{'bems-node-selected':detailNode.id == node.id}", :title => "{{node.name}}"}
+                .tree-label-wrapper
+                  .row
+                    .col-xs-6 {{node.name}}
+                    .col-xs-6
+                      .checkbox.pull-right
+                        %label
+                          %input{:type => "checkbox", "ng-checked" => "checkNode(iconIndex.index,node.id)", "ng-click" => "applyNode(iconIndex.index,node.id)"}\
+          .col-xs-12.text-center
+            %button.btn.btn-raised.btn-info{"ng-click" => "updateChoose(iconIndex.id,iconIndex.index)"} Close
+        .bems-profile-admin-item.row{"ng-show" => "modalTab === 3 ? true:false"}
+          %legend.col-xs.bems-demand-item-name &nbsp; {{ demoName }}
+          .col-lg-2.col-sm-3.col-xs-4
+            .form-group.bems-profile-demand-item-checkbox-wrapper
+              .checkbox.bems-profile-demand-item-checkbox
+                %label
+                  %input.bems-profile-demand-item-checkbox-input{:type => "checkbox"} &nbsp; Compare
+            %img.bems-profile-demand-item-img{:alt => "building", "ng-src" => "svg/{{ demoIcon }}.svg"}
+          .col-md-3.col-sm-4.col-xs-4.hidden-xs
+            .bems-profile-demand-energy.panel.panel-default.row
+              .bems-profile-demand-energy-label.col-sm-5.col-xs-4 Energy
+              .col-sm-7.col-xs-8
+                %span.bems-profile-demand-energy-number 99.99
+                %span.bems-profile-demand-energy-sign kWh
+            .bems-profile-demand-power.panel.panel-default.row
+              .bems-profile-demand-power-label.col-sm-5.col-xs-4 Power
+              .col-sm-7.col-xs-8
+                %span.bems-profile-demand-power-number 99.99
+                %span.bems-profile-demand-power-sign kW
+            .bems-profile-demand-peak.panel.panel-default.row
+              .bems-profile-demand-peak-label.col-sm-5.col-xs-4
+                %span{"ng-show" => "profileType != 'bill'"} Peak
+                %span{"ng-show" => "profileType == 'bill'"} Bill
+              .col-sm-7.col-xs-8
+                %span.bems-profile-demand-peak-number
+                  %span{"ng-show" => "profileType != 'bill'"} 99.99
+                  %span{"ng-show" => "profileType == 'bill'"} 99.99
+                %span.bems-profile-demand-peak-sign
+                  %span{"ng-show" => "profileType != 'bill'"} kW
+                  %span{"ng-show" => "profileType == 'bill'"} Baht
+          .col-lg-7.col-md-6.col-sm-5.col-xs-8
+            #bems-admin-demo-graph.bems-admin-demo-graph{"admin-demo" => true}

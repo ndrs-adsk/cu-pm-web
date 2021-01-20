@@ -1,0 +1,22 @@
+%script{:id => "nodes_renderer.html", :type => "text/ng-template"}
+  .tree-node.tree-node-content.row{"ui-tree-handle" => "", "data-nodrag" => "", :class => "tree-node-content-{{node.level}}", "ng-class" => "{'bems-node-selected':detailNode.id === node.id}"}
+    .col-xs-6
+      %a.btn.btn-success.btn-sm{"data-nodrag" => "", "ng-click" => "toggle(this)", "ng-if" => "node.nodes && node.nodes.length > 0"}
+        %span.glyphicon{"ng-class" => "{\n'glyphicon-chevron-right': collapsed,\n'glyphicon-chevron-down': !collapsed\n}"}
+      %span.node-title-gap{"ng-show" => "isLast(node.nodes)"}
+      %span.node-title-text
+        %span.glyphicon{"ng-class" => "getNodeClass(node)"}
+        &nbsp;
+        %span {{node.name}}
+    .col-xs-6
+      %a.pull-right.btn.btn-info.btn-sm{"ng-show" => "checkEdit(node.pointid)", "ng-click" => "editNode(node.id)"}
+        %span.glyphicon.glyphicon-edit
+  %ol{"ng-class" => "{hidden: collapsed}", "ng-model" => "node.nodes", "ui-tree-nodes" => ""}
+    %li{"ng-include" => "'nodes_renderer.html'", "ng-repeat" => "node in node.nodes", "ui-tree-node" => ""}
+.col-xs-12
+  %button.btn.btn-raised.btn-info{"ng-click" => "expandAll()"} Expand all
+  %button.btn.btn-raised.btn-info{"ng-click" => "collapseAll()"} Collapse all
+.col-xs-12
+  #tree-root{"ui-tree" => ""}
+    %ol{"ng-model" => "data", "ui-tree-nodes" => ""}
+      %li{"ng-include" => "'nodes_renderer.html'", "ng-repeat" => "node in data", "ui-tree-node" => ""}

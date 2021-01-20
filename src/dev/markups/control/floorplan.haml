@@ -1,0 +1,18 @@
+.panel-body.row
+  .col-xs-12.hidden-lg.hidden-xs
+    .bems-room-section-img-super-wrapper
+      .bems-room-section-img-wrapper
+        %a.bems-room-section-img-device{"ng-repeat" => "device2 in devices", "ng-class" => "{'bems-room-section-img-device-alt' : chkOp(device2.id)}", "ng-show" => "checkPin(device2.pin_pos)", "ng-style" => "device2.pin_pos", "ng-click" => "chooseDevice($index)"}
+          %img{"ng-src" => "{{device2.icon}}",:title => "{{device2.name}}"}
+          %span{"ng-show" => "checkBluePlus(device2.id,device2.pin_pos)"} +
+        %img.bems-room-section-img{"ng-src" => "http://161.200.194.82/web/cham5-api/image/room/190.png"}
+  .col-sm-5.col-xs-12
+    %a.btn.btn-fab.btn-primary.btn-fab-mini{"ng-click" => "zoomRoom()", "ng-show" => "showZoom()"}
+      %i.material-icons{"ng-show" => "zoom"} zoom_in
+      %i.material-icons{"ng-show" => "!zoom"} zoom_out
+    .bems-room-section-img-super-wrapper.hidden-sm.hidden-md{"ng-style" => "roomStyle"}
+      .bems-room-section-img-wrapper
+        %a.bems-room-section-img-device{"ng-repeat" => "device in devices", "ng-class" => "{'bems-room-section-img-device-alt' : chkOp(device.id)}", "ng-show" => "checkPin(device.pin_pos)", "ng-style" => "device.pin_pos", "ng-click" => "chooseDevice($index)"}
+          %img{"ng-src" => "{{device.icon}}",:title => "{{device2.name}}"}
+          %span{"ng-show" => "checkBluePlus(device.id,device.pin_pos)"} +
+        %img.bems-room-section-img{"ng-src" => "http://161.200.194.82/web/cham5-api/image/room/190.png"}

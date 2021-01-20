@@ -1,0 +1,82 @@
+%br
+#bems-control-success-modal-alert.bems-control-success-modal-alert.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-control-success-modal-alert-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons update
+          Control Successfully.
+      .modal-footer.bems-control-success-modal-alert-footer.text-center
+        %button.btn.btn-alert{:type => "button", "data-dismiss" => "modal"} Close
+#bems-control-alert-modal-alert.bems-control-alert-modal-alert.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-control-alert-modal-alert-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons warning
+          CONTROL ERROR
+      .modal-footer.bems-control-alert-modal-alert-footer.text-center
+        %button.btn.btn-alert{:type => "button", "data-dismiss" => "modal"} Close
+.bems-control-manual.row{"ng-show" => "typeDevice == 'light' || typeDevice == 'outlet'"}
+  .col-lg-6.col-sm-6.col-xs-12.bems-control-manual-item-wrapper.ng-hide{"ng-show" => "ctrlNum == 'switch'"}
+    .bems-control-manual-item.panel.panel-primary
+      .bems-control-manual-item-title.panel-heading{:style => "text-align:center"} Control Power
+      .row
+        .bems-control-manual-item-body-wrapper.panel-body.col-lg-6.col-sm-6.col-xs-6
+          .bems-control-manual-item-body-inner-wrapper.bems-control-pointer{"ng-click" => "switchNode('control/status',1)"}
+            .bems-control-manual-item-body
+              .bems-control-manual-power
+                %i.bems-control-manual-power-icon.material-icons.bems-util-icon{"ng-class" => "{'bems-control-manual-power-icon-active': ctrlCtrl.power.val == '1'}",:style => "color:#0e880e"} power_settings_new
+                %br
+                %span.bems-control-manual-power-text
+                  %span ON
+        .bems-control-manual-item-body-wrapper.panel-body.col-lg-6.col-sm-6.col-xs-6
+          .bems-control-manual-item-body-inner-wrapper.bems-control-pointer.{"ng-click" => "switchNode('control/status',0)"}
+            .bems-control-manual-item-body
+              .bems-control-manual-power
+                %i.bems-control-manual-power-icon.material-icons.bems-util-icon{"ng-class" => "{'bems-control-manual-power-icon-active': ctrlCtrl.power.val == '0'}",:style => "color:#d73141"} power_settings_new
+                %br
+                %span.bems-control-manual-power-text
+                  %span OFF
+  .col-lg-6.col-sm-6.col-xs-12.bems-control-manual-item-wrapper.ng-hide{"ng-show" => "ctrlNum == '1switch' || ctrlNum == '2switch'"}
+    .bems-control-manual-item.panel.panel-primary
+      .bems-control-manual-item-title.panel-heading{:style => "text-align:center"} Control Power 1
+      .row
+        .bems-control-manual-item-body-wrapper.panel-body.col-lg-6.col-sm-6.col-xs-6
+          .bems-control-manual-item-body-inner-wrapper.bems-control-pointer{"ng-click" => "switchNode('control/status1',1)"}
+            .bems-control-manual-item-body
+              .bems-control-manual-power
+                %i.bems-control-manual-power-icon.material-icons.bems-util-icon{"ng-class" => "{'bems-control-manual-power-icon-active': ctrlCtrl.power.val == '1'}",:style => "color:#0e880e"} power_settings_new
+                %br
+                %span.bems-control-manual-power-text
+                  %span ON
+        .bems-control-manual-item-body-wrapper.panel-body.col-lg-6.col-sm-6.col-xs-6
+          .bems-control-manual-item-body-inner-wrapper.bems-control-pointer.{"ng-click" => "switchNode('control/status1',0)"}
+            .bems-control-manual-item-body
+              .bems-control-manual-power
+                %i.bems-control-manual-power-icon.material-icons.bems-util-icon{"ng-class" => "{'bems-control-manual-power-icon-active': ctrlCtrl.power.val == '0'}",:style => "color:#d73141"} power_settings_new
+                %br
+                %span.bems-control-manual-power-text
+                  %span OFF
+  .col-lg-6.col-sm-6.col-xs-12.bems-control-manual-item-wrapper.ng-hide{"ng-show" => "ctrlNum == '2switch'"}
+    .bems-control-manual-item.panel.panel-primary
+      .bems-control-manual-item-title.panel-heading{:style => "text-align:center"} Control Power 2
+      .row
+        .bems-control-manual-item-body-wrapper.panel-body.col-lg-6.col-sm-6.col-xs-6
+          .bems-control-manual-item-body-inner-wrapper.bems-control-pointer{"ng-click" => "switchNode('control/status2',1)"}
+            .bems-control-manual-item-body
+              .bems-control-manual-power
+                %i.bems-control-manual-power-icon.material-icons.bems-util-icon{"ng-class" => "{'bems-control-manual-power-icon-active': ctrlCtrl.power.val == '1'}",:style => "color:#0e880e"} power_settings_new
+                %br
+                %span.bems-control-manual-power-text
+                  %span ON
+        .bems-control-manual-item-body-wrapper.panel-body.col-lg-6.col-sm-6.col-xs-6
+          .bems-control-manual-item-body-inner-wrapper.bems-control-pointer.{"ng-click" => "switchNode('control/status2',0)"}
+            .bems-control-manual-item-body
+              .bems-control-manual-power
+                %i.bems-control-manual-power-icon.material-icons.bems-util-icon{"ng-class" => "{'bems-control-manual-power-icon-active': ctrlCtrl.power.val == '0'}",:style => "color:#d73141"} power_settings_new
+                %br
+                %span.bems-control-manual-power-text
+                  %span OFF

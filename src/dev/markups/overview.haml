@@ -1,0 +1,91 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper{"ng-controller" => "overviewCtrl"}
+  .bems-wrapper.bems-overview
+    %a.page-name
+      %span{:style => "color:#EB85B1 "} STATUS 
+      %span{:style => "color:#bfd532 "} OVERVIEW
+    .bems-overview-container.bems-container.panel.panel-default
+      .bems-overview-status-tab.hidden-lg.panel-body{"ng-show" => "overview.power > overview.quota.pw.red"}
+        .row
+          .col-xs-6
+            Current &nbsp;
+            %strong.lead {{ overview.power | number:1 }}
+            &nbsp; kW
+          .col-xs-6
+            Limit &nbsp;
+            %strong.lead {{ overview.quota.pw.red | number:1 }}
+            &nbsp; kW
+      .panel-body.row
+        .bems-overview-today.col-sm-3.col-xs-12 {{ date }}
+        .bems-overview-title.col-sm-9.col-xs-12 Building Energy Management System
+      .bems-overview-tag
+        .panel-body.row
+          .bems-overview-name.col-xs-12  Chamchuri 5 Building Energy Profile
+      .bems-overview-wrapper-stat.panel-body.row
+        .col-md-8.col-xs-7
+          %br.hidden-xs
+          .bems-overview-date
+            %span.bems-overview-date-number &nbsp; 1
+            %sup.bems-overview-date-rank> st
+            %span.bems-overview-date-text &nbsp;- Today
+          .bems-overview-usage
+            %span.bems-overview-usage-number {{ overview.energy_month | number:1 }}
+            %span.bems-overview-usage-sign> &nbsp; kWh
+        .col-md-4.col-xs-5
+          .bems-overview-percent
+            %span.bems-overview-percent-number{"ng-class" => "{'bems-overview-percent-number-alt' : getEnergyPercent(overview.energy_month,overview.quota.en.total,overview.quota.en.red,overview.quota.en.yellow) >= 100}"} {{ getEnergyPercent(overview.energy_month,overview.quota.en.total,overview.quota.en.red,overview.quota.en.yellow) | number: 0 }}
+            %span.bems-overview-percent-sign{"ng-class" => "{'bems-overview-percent-sign-alt' : getEnergyPercent(overview.energy_month,overview.quota.en.total,overview.quota.en.red,overview.quota.en.yellow) >= 100}"}> %
+      .bems-overview-tag
+        .bems-overview-status.visible-lg-block{"ng-show" => "overview.power > overview.quota.pw.red"}
+          .bems-overview-status-current-text CURRENT
+          %span.bems-overview-status-current-number {{ overview.power | number:1 }}
+          %span.bems-overview-status-current-sign kW
+          %hr
+          .bems-overview-status-limit-text LIMIT
+          %span.bems-overview-status-limit-number {{ overview.quota.pw.red | number:1 }}
+          %span.bems-overview-status-limit-sign kW
+        .panel-body.row
+          .col-xs-12
+            %span.bems-overview-accumulation-text Daily Energy Accumulation
+            %span.bems-overview-accumulation-number {{ overview.energy | number:1}}
+            %span.bems-overview-accumulation-sign kWh
+      .bems-overview-wrapper-graph.panel-body.row
+        .bems-overview-current-demand.col-xs-6
+          %br
+          %span.bems-overview-current-demand-text
+            Current
+            %span.hidden-xs Demand
+          %span.bems-overview-current-demand-number {{ overview.power | number:1}}
+          %span.bems-overview-current-demand-sign kw
+        .bems-overview-peak-demand.col-xs-6
+          %br
+          %span.bems-overview-peak-demand-text
+            Peak
+            %span.hidden-xs Demand
+          %span.bems-overview-peak-demand-number {{ overview.peak | number:1}}
+          %span.bems-overview-peak-demand-sign kw
+        #bems-overview-graph.bems-overview-graph
+        .bems-overview-graph-legend.text-center
+          %span.glyphicon.glyphicon-stop{"aria-hidden" => "true", "style" => "color:#9edf48"}
+          %span.glyphicon.glyphicon-stop{"aria-hidden" => "true", "style" => "color:#f5c922"}
+          %span.glyphicon.glyphicon-stop{"aria-hidden" => "true", "style" => "color:#bc250c"}
+          Today -
+          %span.glyphicon.glyphicon-stop{"aria-hidden" => "true", "style" => "color:rgba(171, 168, 168, 0.5)"}
+          Yesterday
+        .bems-overview-warning-level.col-xs-6
+          %i.material-icons.color-yellow.md-18 error
+          %span.bems-overview-warning-level-text.hidden-xs Warning Level
+          %span.bems-overview-warning-level-number {{ overview.quota.pw.yellow | number:1}}
+          %span.bems-overview-warning-level-sign kw
+        .bems-overview-danger-level.col-xs-6
+          %i.material-icons.color-red.md-18 error
+          %span.bems-overview-danger-level-text.hidden-xs Alert Level
+          %span.bems-overview-danger-level-number {{ overview.quota.pw.red | number:1}}
+          %span.bems-overview-danger-level-sign kw
+        .bems-overview-map-low.visible-lg-block
+          %a{:href => "#/map"}
+            %img.bems-map-btn{:src => "img/map-btn-pink.png"}
+    .bems-overview-map-high.hidden-lg
+      %a{:href => "#/map"}
+        %img.bems-map-btn{:src => "img/map-btn-pink.png"}
++include 'src/dev/markups/partials/footer.haml'

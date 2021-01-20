@@ -1,0 +1,26 @@
+.bems-control-graph-wrapper.panel-body.row{"ng-show" => "chosenNodeId !== 0"}
+  %legend.bems-control-room-name.col-xs-12 {{chosenNode.name}}
+  .bems-control-graph-control.col-lg-12.col-md-12.col-xs-12
+    %br.hidden-sm.hidden-xs
+    .form-group.row
+      .col-md-4.col-sm-4.col-xs-12{"ng-show" => "ctrlMon.power.has"}
+        .checkbox
+          %label
+            %input.bems-control-graph-power{:type => "checkbox", "ng-model" => "ctrlMon.power.show", "ng-change" => "showGraph()"}
+            %span.bems-control-graph-power-text &nbsp; Power
+      .col-md-4.col-sm-4.col-xs-12{"ng-show" => "ctrlMon.temp.has"}
+        .checkbox
+          %label
+            %input.bems-control-graph-temperature{:type => "checkbox", "ng-model" => "ctrlMon.temp.show", "ng-change" => "showGraph()"}
+            %span.bems-control-graph-temperature-text &nbsp; Temperature
+      .col-md-4.col-sm-4.col-xs-12{"ng-show" => "ctrlMon.humid.has"}
+        .checkbox
+          %label
+            %input.bems-control-graph-humidity{:type => "checkbox", "ng-model" => "ctrlMon.humid.show", "ng-change" => "showGraph()"}
+            %span.bems-control-graph-humidity-text.bems-control-graph-humidity-text &nbsp; Humidity
+      .col-md-4.col-sm-4.col-xs-12{"ng-show" => "ctrlMon.illu.has"}
+        .checkbox
+          %label
+            %input.bems-control-graph-illuminance{:type => "checkbox", "ng-model" => "ctrlMon.illu.show", "ng-change" => "showGraph()"}
+            %span.bems-control-graph-illuminance-text.bems-control-graph-illuminance-text &nbsp; Illuminance
+  #bems-control-graph.bems-control-graph.col-lg-12.col-md-12.col-xs-12

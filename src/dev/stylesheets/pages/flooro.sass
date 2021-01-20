@@ -1,0 +1,167 @@
+.bems
+
+  .bems-floor-overview
+    @extend %wrapper-parent
+
+    .bems-floor-overview-container
+      @extend %wrapper
+
+      hr
+        border-width: 2px
+        border-color: $quattuor-color
+
+      .bems-floor-overview-map
+        position: relative
+
+        .bems-floor-overview-line,
+        .bems-floor-overview-point
+          position: absolute
+
+        .bems-floor-overview-line
+          border-color: $floor-overview-border-color
+          border-width: 1px 0 0 1px
+          border-style: solid
+
+        .bems-floor-overview-point
+          width: $base-size * 0.75
+          height: $base-size * 0.75
+          background-color: $floor-overview-border-color
+          border-radius: $base-size * 9999
+
+        .bems-floor-overview-map-img
+          width: 100%
+          margin-top: $base-size * 10 - 50
+          opacity: 0.75
+
+      .bems-floor-overview-header-h1,
+      .bems-floor-overview-header-h3
+        color: $floor-overview-text
+
+      .bems-floor-overview-header-h1
+        font-weight: $font-bold
+        margin-top: 0
+        margin-bottom: $base-size / 6
+
+      .bems-floor-overview-header-h3
+        margin: $base-size / 6 0
+
+      .bems-floor-overview-item-list
+
+        .bems-floor-overview-item
+
+          &:not(:last-child)
+            margin-bottom: 20px
+
+          .bems-floor-overview-item-last
+            background-color: $overview-tag-background-color
+            height: 3px
+
+          .bems-floor-overview-tag,
+          .bems-floor-overview-tag-alt
+            padding: 8px
+
+          .bems-floor-overview-tag
+            background-color: $overview-tag-background-color
+            color: $overview-tag-color
+            font-weight: $font-bold
+            font-size: 20px
+            position: relative
+            margin-bottom: $base-size / 6
+
+          .bems-floor-overview-tag-alt
+            background-color: $floor-overview-tag-background-color
+            color: $overview-date-color
+            margin-top: $base-size / 3
+
+          .bems-floor-overview-wrapper-stat
+
+            .bems-floor-overview-date
+              color: $overview-date-color
+              @media #{$media-desktop}
+                font-size: $floor-overview-date-font-size-md
+              @media #{$media-tablet}
+                font-size: $floor-overview-date-font-size-sm
+              @media #{$media-phone}
+                font-size: $floor-overview-date-font-size-xs
+
+            .bems-floor-overview-usage
+              font-weight: $font-bold
+              text-align: right
+
+              .bems-floor-overview-usage-number
+                @media #{$media-desktop}
+                  font-size: $floor-overview-usage-number-font-size-md
+                @media #{$media-tablet}
+                  font-size: $floor-overview-usage-number-font-size-sm
+                @media #{$media-phone}
+                  font-size: $floor-overview-usage-number-font-size-xs
+                  line-height: 1.2
+
+              .bems-floor-overview-usage-sign
+                @media #{$media-desktop}
+                  font-size: $floor-overview-usage-unit-font-size-md
+                @media #{$media-tablet}
+                  font-size: $floor-overview-usage-unit-font-size-sm
+                @media #{$media-phone}
+                  font-size: $floor-overview-usage-unit-font-size-xs
+                  line-height: 1.2
+
+            .bems-floor-overview-percent
+              @extend %material-box
+              padding: $base-size / 3
+              background-color: $graph-alt-green
+              color: $overview-percent-color
+              border-radius: $base-size / 3
+
+              .bems-floor-overview-percent-number
+                line-height: 1.25
+                @media #{$media-desktop}
+                  font-size: $floor-overview-percent-number-font-size-md
+                @media #{$media-tablet}
+                  font-size: $floor-overview-percent-number-font-size-sm
+                @media #{$media-phone}
+                  font-size: $floor-overview-percent-number-font-size-xs
+
+              .bems-floor-overview-percent-sign
+                line-height: 1.25
+                @media #{$media-desktop}
+                  font-size: $floor-overview-percent-unit-font-size-md
+                @media #{$media-tablet}
+                  font-size: $floor-overview-percent-unit-font-size-sm
+                @media #{$media-phone}
+                  font-size: $floor-overview-percent-unit-font-size-xs
+
+              .bems-floor-overview-percent-number-alt
+                line-height: 1.55
+                @media #{$media-desktop}
+                  font-size: $floor-overview-percent-number-font-size-md-alt
+
+              .bems-floor-overview-percent-sign-alt
+                line-height: 1.55
+                @media #{$media-desktop}
+                  font-size: $floor-overview-percent-unit-font-size-md-alt
+
+          .bems-floor-overview-wrapper-graph
+            position: relative
+            padding-top: 0
+
+            .bems-floor-overview-peak-demand,
+            .bems-floor-overview-danger-level
+              text-align: right
+
+            .bems-floor-overview-graph
+              width: 100%
+
+            .bems-floor-overview-current-demand,
+            .bems-floor-overview-peak-demand,
+            .bems-floor-overview-warning-level,
+            .bems-floor-overview-danger-level
+              font-size: 11px
+              vertical-align: middle
+
+            .bems-floor-overview-graph-legend
+              font-size: $real-font-size * 0.7
+              text-align: right
+              position: relative
+              right: $base-size / 2
+              bottom: 5px

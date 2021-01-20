@@ -1,0 +1,19 @@
+.panel-body.row
+  .bems-sensor-list.col-xs-12{"ui-sortable" => true, "ng-model" => "sensors"}
+    .bems-sensor-item.row{"ng-repeat" => "sensor in sensors | orderBy:sensorSortType:sensorSortReverse"}
+      %legend.col-xs.bems-demand-item-name &nbsp; {{ sensor.node }}
+      .col-lg-2.col-sm-2.col-xs-3
+        .bems-sensor-item-img-wrapper
+          %img.bems-sensor-item-img{:alt => "sensor", "ng-src" => "{{getImgSrc(sensor.type)}}"}
+        .bems-sensor-value.visible-xs-block
+          %br.visible-xs-block
+          %span {{getLastVal($index)}} &nbsp; {{getLastUnit($index)}}
+      .col-md-3.col-xs-4.hidden-xs
+        %div{"ng-class" => "getClass(sensor.type)"}
+          %span.bems-sensor-temperature-text {{ sensor.type | limitTo:100:8 | uppercase }}
+          %hr
+          %span.bems-sensor-temperature-number {{getLastVal(sensor.graph)}}
+          %span.bems-sensor-temperature-sign &nbsp; {{getLastUnit(sensor.type)}}
+      .col-md-7.col-sm-6.col-xs-9
+        %highchart.chart-directive.span10{"config" => "sensor.chart"}
+      %i.material-icons.bems-sensor-close{"ng-click" => "pull($index)"} close

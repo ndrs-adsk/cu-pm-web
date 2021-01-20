@@ -1,0 +1,50 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-admin
+    .bems-admin-container.bems-container.panel.panel-default
+      .bems-login-header.panel-heading.panel-superheader Ranking Setting
+      .panel-body.row{"ng-controller" => "rankingAdminCtrl"}
+        %legend.col-xs-6
+        .col-xs-6.bems-admin-add
+          %a.btn.btn-raised.btn-success{"data-target" => "#bems-admin-user-modal-own", "data-toggle" => "modal", :type => "button"} Add Competitor
+        .col-xs-12
+          %table.table.table-striped.table-hover
+            %thead
+              %tr
+                %th Name
+                %th Create Date
+                %th{:colspan => "1"}
+            %tbody
+              %tr{"ng-repeat" => "result in result_data | orderBy:'name'"}
+                %td
+                  .bems-admin-td.form-group.label-static
+                    %input.form-control{:type => "text",:disabled => "disabled","ng-model" => "result.name"}
+                %td
+                  .bems-admin-td.form-group.label-static
+                    %input.form-control{:type => "text",:disabled => "disabled","ng-model" => "result.create_date"}
+                %td{:style =>"text-align:center"}
+                  %button.btn.btn-danger.btn-sm.btn-raised{"ng-click" => "removeCompetitor(result.id,result.name)"}
+                    %i.material-icons delete
+        #bems-admin-user-modal-own.bems-admin-user-modal-own.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+          .modal-dialog{:role => "document"}
+            .modal-content
+              .modal-header
+                %button.close.bems-admin-user-modal-own-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+                %h4.modal-title.bems-about-title
+                  %i.material-icons book
+                  Select Competitor
+              .modal-body
+                .bems-control-list
+                  %treecontrol.tree-boot{"tree-model" => "data", :options => "tOps"}
+                    .tree-label-inner{"ng-class" => "{'bems-node-selected':detailNode.id == node.id}", :title => "{{node.name}}"}
+                      .tree-label-wrapper
+                        .row
+                          .col-xs-6 {{node.name}}
+                          .col-xs-6
+                            %a.pull-right.btn.btn-sm{"ng-class" => "{'btn-success' : (room_id == node.id)}", "ng-click" => "addCompetitor(node.id,node.name)", "ng-show" => "!isCreated(node.id)"}
+                              %span.glyphicon.glyphicon-plus
+                            %a.pull-right.btn.btn-sm.btn-success{"ng-show" => "isCreated(node.id)"}
+                              %span.glyphicon.glyphicon-ok.pull-right
+              .modal-footer.bems-admin-user-modal-own-footer.text-center
+                %button.btn.btn-default{:type => "button", "data-dismiss" => "modal"} Close
++include 'src/dev/markups/partials/footer.haml'

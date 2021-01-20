@@ -1,0 +1,189 @@
++keyframes(superalert)
+  0%
+    background-color: $overview-status-background-color
+  80%
+    background-color: $overview-status-background-alt-color
+  100%
+    background-color: $overview-status-background-color
+
+.bems
+
+  .bems-overview-map-high
+    position: absolute
+    z-index: 20
+    right: $base-size
+    bottom: $base-size * 0.5
+    cursor: pointer
+
+  .bems-overview-map-low
+    position: absolute
+    z-index: 20
+    right: -12vw
+    bottom: 2vh
+    cursor: pointer
+
+    .btn-fab
+      width: 84px
+      height: 84px
+      vertical-align: middle
+      padding-left: -50px
+      text-decoration: none
+
+      .material-icons
+        vertical-align: middle
+        display: inline-flex
+        font-size: 64px
+        position: relative
+        left: -8px
+
+  .bems-overview
+    @extend %wrapper-parent
+    font-size: 16px
+    position: relative
+
+    .bems-overview-container
+      @extend %wrapper
+      max-width: $overview-width
+      @media #{$media-desktop}
+        border-radius: $base-size / 3
+
+      .panel-body
+        padding-top: 8px
+        padding-bottom: 8px
+
+      .bems-overview-status-tab
+        color: $overview-status-color
+        background-color: $overview-status-background-color
+        animation: superalert 0.5s infinite
+        @media #{$media-desktop-only}
+          border-top-left-radius: $base-size / 3
+          border-top-right-radius: $base-size / 3
+
+      .bems-overview-tag
+        background-color: $overview-tag-background-color
+        color: $overview-tag-color
+        font-weight: $font-bold
+        position: relative
+        background: linear-gradient(to bottom right, #bf6281,#fda7c3)
+      .bems-overview-wrapper-stat
+
+        .bems-overview-date
+          color: $overview-date-color
+          @media #{$media-desktop}
+            font-size: $overview-date-font-size-md
+          @media #{$media-tablet}
+            font-size: $overview-date-font-size-sm
+          @media #{$media-phone}
+            font-size: $overview-date-font-size-xs
+
+        .bems-overview-usage
+          font-weight: $font-bold
+          text-align: right
+
+          .bems-overview-usage-number
+            @media #{$media-desktop}
+              font-size: $overview-usage-number-font-size-md
+            @media #{$media-tablet}
+              font-size: $overview-usage-number-font-size-sm
+            @media #{$media-phone}
+              font-size: $overview-usage-number-font-size-xs
+
+          .bems-overview-usage-sign
+            @media #{$media-desktop}
+              font-size: $overview-usage-unit-font-size-md
+            @media #{$media-tablet}
+              font-size: $overview-usage-unit-font-size-sm
+            @media #{$media-phone}
+              font-size: $overview-usage-unit-font-size-xs
+
+        .bems-overview-percent
+          @extend %material-box
+          padding: $base-size / 2
+          background-color: $graph-alt-green
+          color: $overview-percent-color
+          border-radius: $base-size / 3
+
+          .bems-overview-percent-number
+            @media #{$media-desktop}
+              font-size: $overview-percent-number-font-size-md
+            @media #{$media-tablet}
+              font-size: $overview-percent-number-font-size-sm
+            @media #{$media-phone}
+              font-size: $overview-percent-number-font-size-xs
+
+          .bems-overview-percent-sign
+            @media #{$media-desktop}
+              font-size: $overview-percent-unit-font-size-md
+            @media #{$media-tablet}
+              font-size: $overview-percent-unit-font-size-sm
+            @media #{$media-phone}
+              font-size: $overview-percent-unit-font-size-xs
+
+          .bems-overview-percent-number-alt
+            @media #{$media-desktop}
+              font-size: $overview-percent-number-font-size-md-alt
+
+          .bems-overview-percent-sign-alt
+            @media #{$media-desktop}
+              font-size: $overview-percent-unit-font-size-md-alt
+
+      .bems-overview-wrapper-graph
+        position: relative
+        padding-top: 0
+
+        .bems-overview-peak-demand,
+        .bems-overview-danger-level
+          text-align: right
+
+        .bems-overview-graph
+          width: 100%
+
+        .bems-overview-graph-legend
+          font-size: $real-font-size * 0.7
+          text-align: right
+          position: relative
+          right: $base-size / 2
+          bottom: 5px
+
+  .bems-overview-status
+    color: $overview-status-color
+    background-color: $overview-status-background-color
+    +box-shadow(4)
+    border-radius: 9999px
+    text-align: center
+    padding: $base-size
+    font-weight: $font-bold
+    width: $overview-status-size
+    height: $overview-status-size
+    animation: superalert 0.5s infinite
+    position: absolute
+    z-index: 20
+    right: -7.75 * $base-size
+    top: -3.5 * $base-size
+
+    .bems-overview-status-current-text,
+    .bems-overview-status-limit-text,
+    .bems-overview-status-current-sign,
+    .bems-overview-status-limit-sign
+      font-size: $overview-status-text-font-size
+
+    .bems-overview-status-current-number,
+    .bems-overview-status-limit-number
+      font-size: $overview-status-number-font-size
+.page-name
+  top: 5px
+  font-size: 40px
+  left: 15%
+  position: absolute
+  @media #{$media-tablet}
+    top: 15px
+    font-size: 28px
+    left: 10%
+  @media #{$media-phone}
+    top: 15px
+    font-size: 28px
+    left: 5%
+.bems-map-btn
+  @media #{$media-phone}
+    height: 50px
+

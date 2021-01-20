@@ -1,0 +1,22 @@
+%script{:id => "nodes_renderer.html", :type => "text/ng-template"}
+  .tree-node.tree-node-content.row{"ui-tree-handle" => "", "data-nodrag" => "", :class => "tree-node-content-{{node.level}}"}
+    .col-xs-9
+      %a.btn.btn-success.btn-sm{"data-nodrag" => "", "ng-click" => "toggle(this)", "ng-if" => "node.nodes && node.nodes.length > 0"}
+        %span.glyphicon{"ng-class" => "{\n'glyphicon-chevron-right': collapsed,\n'glyphicon-chevron-down': !collapsed\n}"}
+      %span.node-title-gap{"ng-show" => "isLast(node.nodes)"}
+      %span.node-title-text {{node.name}}
+    .col-xs-3{"ng-show" => "node.ctrl_node || node.pointid.length !== 0"}
+      %a.pull-right.btn.btn-sm.btn-info{"ng-click" => "chooseNode(node.id)", "ng-show" => "(chosenNodeId !== node.id && node.ctrl_node)"}
+        %span.glyphicon.glyphicon-record
+      %a.pull-right.btn.btn-sm{"ng-click" => "chooseNode(node.id)", 'ng-class' => "{'btn-success': chosenNodeId == node.id}", "ng-hide" => "(chosenNodeId !== node.id && node.ctrl_node)"}
+        %span.glyphicon.glyphicon-stats{"ng-show" => "!node.ctrl_node"}
+        %span.glyphicon.glyphicon-record.bems-control-this{"ng-show" => "node.ctrl_node"}
+  %ol{"ng-class" => "{hidden: collapsed}", "ng-model" => "node.nodes", "ui-tree-nodes" => ""}
+    %li{"ng-include" => "'nodes_renderer.html'", "ng-repeat" => "node in node.nodes", "ui-tree-node" => "", "ng-hide" => "checkOwner(node)"}
+.btn-group.btn-group-justified
+  %a.btn.btn-raised.btn-info{"ng-click" => "expandAll()"} Expand
+  %a.btn.btn-raised.btn-info{"ng-click" => "collapseAll()"} Collapse
+.bems-control-list
+  #tree-root{"ui-tree" => ""}
+    %ol{"ng-model" => "data", "ui-tree-nodes" => ""}
+      %li{"ng-include" => "'nodes_renderer.html'", "ng-repeat" => "node in data", "ui-tree-node" => ""}

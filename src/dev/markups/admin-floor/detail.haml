@@ -1,0 +1,20 @@
+%br
+.row
+  %legend.col-xs-6 Floor Detail
+  .col-xs-6
+    %a.btn.btn-raised.pull-right.btn-success{"ng-click" => "update(detailFloor)"}
+      %i.material-icons save
+.form-group.label-static
+  %label.control-label Name
+  %input.form-control{:type => "text", "ng-model" => "detailFloor.name"}
+%form.row{:name => "floorUpload"}
+  .col-xs-6
+    .form-group.label-static
+      %label.control-label File Upload
+      %input.form-control{:type => "text", :readonly => "", :placeholder => "Browse...", "ng-model" => "floorText"}
+      %input.form-control{:type => "file", "ngf-select" => true, "ng-model" => "floorFile", :name => "floorImg", :accept => "image/*", "ngf-max-size" => "5MB", :required => true, "ngf-model-invalid" => "errorFile"}
+  .col-xs-6
+    %button.btn.btn-raised.btn-info{"ng-disabled" => "!floorUpload.$valid", "ng-click" => "uploadFile(floorFile,detailFloor.id)"} Sumbit
+    %button.btn.btn-raised.btn-danger{"ng-disabled" => "!floorUpload.$valid", "ng-click" => "removeFile()"} Remove
+  %img.col-xs-offset-3.col-xs-6{"ng-show" => "floorUpload.floorImg.$valid", "ngf-thumbnail" => "floorFile"}
+  %img.col-xs-offset-3.col-xs-6{"ng-hide" => "floorUpload.floorImg.$valid", "ng-src" => "{{nocacheImg(detailFloor.img)}}"}

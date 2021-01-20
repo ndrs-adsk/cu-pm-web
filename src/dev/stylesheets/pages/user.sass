@@ -1,0 +1,22 @@
+.bems
+
+  .bems-user
+    @extend %wrapper-parent
+
+    .bems-user-container
+      @extend %wrapper
+
+      label
+        @media #{$media-no-phone}
+          text-align: right
+          padding: 7px 0
+
+      .bems-user-password-submit-wrapper
+        text-align: center
+
+      .alert
+        width: 80%
+        margin: $base-size / 3 auto 0 auto
+
+      .bems-user-password-not
+        color: $user-error-color

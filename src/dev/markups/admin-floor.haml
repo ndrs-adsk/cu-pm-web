@@ -1,0 +1,11 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-admin
+    .bems-admin-container.bems-container.panel.panel-default
+      .bems-login-header.panel-heading.panel-superheader Floor Setting
+      .panel-body.row{"ng-controller" => "floorAdminCtrl"}
+        .col-xs-12.col-md-6
+          +include 'src/dev/markups/admin-floor/directory.haml'
+        .col-xs-12.col-md-6{"ng-hide" => "hideFloor"}
+          +include 'src/dev/markups/admin-floor/detail.haml'
++include 'src/dev/markups/partials/footer.haml'

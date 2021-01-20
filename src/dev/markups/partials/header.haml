@@ -1,0 +1,76 @@
+#bems-loader-wrapper.bems-loader-wrapper{:style => "display:none"}
+  .bems-loader
+    %svg.circular{:viewbox => "25 25 50 50"}
+      %circle.path{:cx => "50", :cy => "50", :fill => "none", :r => "20", "stroke-miterlimit" => "10", "stroke-width" => "7"}
+
+#bems-about.bems-about.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsAbout"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-about-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title CUBEMS :: PM2.5 MONITORING
+      .modal-body.bems-about-body
+        .row
+          .col-xs-12
+            %img.bems-about-logo{:src => "img/cubems_cham5_logo.png"}
+            %br
+            %br
+          .col-sm-6.col-xs-12{:style =>"margin-top: 10px;"}
+            %br.visible-xs-block
+            CUBEMS :: PM2.5 MONITORING
+            %br
+            Version 1.4.0
+            %br
+            %br
+            Release Date : 30 November 2020
+          .col-sm-6.col-xs-12
+            %br.visible-xs-block
+            %img{:src => "img/cu.png",:style =>"height:55px"}
+            %br
+            All data are provided by EnvGIT.
+            %br
+            Powered By NDR Solution
+            %img{:src => "img/logo_sm.jpg"}
+
+.bems-header-sm.visible-xs.visible-sm
+  %nav.bems-navbar.navbar.navbar-default
+    .container-fluid
+
+      .navbar-header
+        %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bems-navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand{:href => "#/overview"}
+          %img.hidden-lg{:alt => "brand", :src => "img/cubems_cham5_logo_w.png",:style => "height:40px;position:relative;top:-6px;"}
+          %img.visible-lg-block{:alt => "brand", :src => "img/cubems_cham5_logo_w.png",:style => "height:72px;position:relative;top:-15px;"}
+
+      #bems-navbar-collapse.collapse.navbar-collapse{"ng-controller" => "menuCtrl"}
+        %ul.nav.navbar-nav
+          %li
+            %a.bems-about-link{"data-toggle" => "modal", "data-target" => "#bems-about"} About
+      -#     %li
+      -#       %a{:href => "http://www.bems.ee.eng.chula.ac.th:9061/bems.web/", :target =>"_blank"} CUBEMS : Electrical Engineering Department
+      -#     %li
+      -#       %a{:href => "http://161.200.194.82/web/cham5/", :target =>"_blank"} CUBEMS : Chamchuri 5
+
+%header.bems-header.hidden-xs.hidden-sm
+  #header{"ng-controller" => "menuCtrl"}
+    %a{:href => "#/overview"}
+      %img.bems-logo{:src => "img/cubems_cham5_logo.png",:style =>"height: 63px"}
+    .timer
+      %span.show-time {{CurrentDate | date:'HH:mm'}}
+      %span.show-weekday {{CurrentDate | date:'EEEE'}}
+      .show-date {{CurrentDate | date:'dd, MMMM yyyy'}}
+    .menu-top
+      %ul.main-menu
+        -# %li#fat-menu.dropdown
+        -#   %a#drop3.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", :role => "button"} SITE
+        -#   %ul.dropdown-menu{"aria-labelledby" => "drop3", :role => "menu"}
+        -#     %li.pointer-mouse{:style => "float:left;width:100%"}
+        -#       %a{:href => "http://www.bems.ee.eng.chula.ac.th:9061/bems.web/", :target =>"_blank"} CUBEMS : Electrical Engineering Department
+        -#     %li.pointer-mouse{:style => "float:left;width:100%"}
+        -#       %a{:href => "http://161.200.194.82/web/cham5/", :target =>"_blank"} CUBEMS : Chamchuri 5
+        %li
+          %a#test_about{"data-toggle" => "modal", "data-target" => "#bems-about"} ABOUT US

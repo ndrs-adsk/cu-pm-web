@@ -1,0 +1,26 @@
+#bems-admin-room-type-modal-alert.bems-admin-room-type-modal-alert.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-room-type-modal-alert-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons wanring
+          Please fill type name field.
+      .modal-footer.bems-admin-room-type-modal-alert-footer.text-center
+        %button.btn.btn-alert{:type => "button", "data-dismiss" => "modal"} Close
+#bems-admin-room-type-modal-success.bems-admin-room-type-modal-success.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-room-type-modal-success-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons update
+          Update Room Type Successfully.
+      .modal-footer.bems-admin-room-type-modal-success-footer.text-center
+        %button.btn.btn-success{:type => "button", "data-dismiss" => "modal"} Close
+.row
+  .col-xs-12
+    %button.btn.btn-raised.btn-info.pull-right{"ng-click" => "updateType(roomType)"} Update Type Name
+  .col-xs-6{"ng-repeat" => "type in roomType"}
+    %i.material-icons {{type.icon}}
+    %input.form-control{:type => "text", "ng-model" => "type.name"}

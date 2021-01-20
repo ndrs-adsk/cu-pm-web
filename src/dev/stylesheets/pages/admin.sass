@@ -1,0 +1,302 @@
+.bems
+
+  .bems-admin
+    @extend %wrapper-parent
+
+    .bems-admin-container
+      @extend %wrapper
+
+      .bems-calendar
+        width: 315px
+        +box-shadow(2)
+
+        .date-gap
+          height: 20px 0
+          display: inline-block
+          padding: $base-size / 3
+
+        .bems-calendar-item
+          width: 45px
+          padding: $base-size / 3
+          text-align: center
+          font-weight: $font-bold
+          color: $unus-color
+          transition: all 0.5s linear
+          display: inline-block
+
+          &:hover
+            color: $tres-color
+            background-color: $unus-color
+
+        .bems-calendar-item.active
+          color: $tres-color
+          background-color: $unus-color
+
+        .bems-calendar-header
+          @extend .bems-calendar-item
+          background-color: desaturate(lighten($unus-color,10%),10%)
+          color: $tres-color
+
+          &:hover
+            background-color: desaturate(lighten($unus-color,10%),10%)
+
+        .bems-calendar-title
+          @extend .bems-calendar-header
+          width: 315px
+          background-color: desaturate(lighten($unus-color,20%),20%)
+
+          &:hover
+            background-color: desaturate(lighten($unus-color,20%),20%)
+
+
+      .bems-admin-add
+        text-align: right
+
+      .bems-table-center
+        text-align: center
+
+      table
+
+        tbody
+          font-weight: $font-normal
+
+        td, th
+          vertical-align: middle
+
+        .name
+          width: 48%
+
+        .balance
+          width: 12%
+
+        .manual
+          width: 10%
+
+        .manual-p
+          width: 13%
+
+        .text-right
+          text-align: right
+
+        th
+          text-align: center
+
+        .bems-admin-td
+          margin-top: $base-size / 2
+
+        .bems-admin-warning
+          color: $admin-warning-color
+
+        .bems-admin-danger
+          color: $admin-danger-color
+
+        .bemms-admin-ok
+          color: $viridis
+
+      .bems-admin-profile-load-image
+        height: $base-size * 2
+        cursor: pointer
+
+      .bems-admin-profile-popup
+
+        .bems-admin-profile-subscribe-row
+
+          .bems-admin-profile-subscribe-col
+            margin-top: 0
+            margin-bottom: 0
+            padding-top: 0
+            padding-bottom: 0
+
+        .bems-profile-admin-item
+          position: relative
+          background-color: $tres-color
+          margin-top: $base-size / 2
+          @media #{$media-no-widescreen}
+            border-bottom: $profile-split-line-color dotted 2px
+          @media #{$media-widescreen}
+            border: $profile-split-line-color dotted 2px
+            margin-left: $base-size / 2
+            margin-right: $base-size / 2
+            border-radius: $base-size / 5
+
+          .bems-demand-item-name
+            margin-bottom: 0
+            @media #{$media-widescreen}
+              margin-top: $base-size / 5
+            @media #{$media-phone}
+              font-size: 14px
+
+          &:last-child
+            margin-bottom: 0 $base-size / 2
+            @media #{$media-no-widescreen}
+              border-bottom-width: 0
+
+          .bems-profile-demand-item-checkbox,
+          .bems-profile-supply-item-checkbox
+            @media #{$media-phone}
+              margin: 0
+            label
+              @media #{$media-phone}
+                font-size: 0
+
+          .bems-profile-data-wrapper
+            @media #{$media-phone}
+              position: absolute !important
+              top: 120px
+              left: $base-size / 2
+
+          .chart-directive
+            height: 180px
+
+          .bems-profile-demand-close
+            color: $tres-color
+            background-color: darken($quinque-color,20%)
+            border-radius: $base-size / 6
+            position: absolute
+            font-size: 16px
+            top: 5px
+            transition: all 0.5s linear
+            @media #{$media-no-phone}
+              right: $base-size / 6
+            @media #{$media-phone}
+              right: 2vw
+
+            &:hover
+              background-color: $profile-close-color
+
+
+        .bems-profile-demand-item-img,
+        .bems-profile-supply-item-img
+          display: block
+          @media #{$media-no-phone}
+            max-height: $base-size * 3.5
+          @media #{$media-phone}
+            max-height: $base-size * 1.75
+
+
+        .bems-profile-demand-energy,
+        .bems-profile-demand-power,
+        .bems-profile-demand-peak,
+        .bems-profile-supply-energy,
+        .bems-profile-supply-power,
+        .bems-profile-supply-peak
+          font-size: $profile-status-font-size
+          margin-bottom: $base-size / 3
+          @media #{$media-phone}
+            font-size: 10px
+            margin-bottom: 8px
+
+          &>:first-child
+            font-weight: $font-bold
+            background-color: $profile-status-label-background-color
+
+          &>*
+            @media #{$media-no-phone}
+              padding: $base-size / 3
+            @media #{$media-phone}
+              padding: $base-size / 10 $base-size / 6
+
+          &>:last-child
+            text-align: right
+
+          .normal-value
+            background-color: $graph-green
+
+          .warning-value,
+          .alert-value
+            color: $tres-color
+
+          .warning-value
+            background-color: $graph-yellow
+
+          .alert-value
+            background-color: $graph-red
+
+      .bems-admin-device-modal-manipulate
+
+        .device-icon
+          width: $base-size
+          background-color: $duo-color
+
+      .bems-admin-device
+
+        .bems-admin-device-img-wrapper
+          width: 420px
+          margin: 0 auto
+          position: relative
+
+          .bems-admin-device-img
+            width: 100%
+
+          .bems-admin-device-img-pinpin
+            position: absolute
+            z-index: 100
+            cursor: pointer
+
+            img
+              width: $base-size
+              background-color:  $duo-color
+
+            span
+              display: block
+              width: $base-size / 2
+              height: $base-size / 2
+              position: relative
+              color: $tres-color
+              text-align: center
+              line-height: $base-size / 2
+              background-color: $caeruleus
+              border-radius: 9999px
+              left: 23px
+              bottom: 35px
+
+        .bems-admin-device-list
+          max-height: 500px
+          overflow-y: auto
+
+        .bems-admin-device-item-wrapper
+          margin-bottom: $base-size / 6
+          margin-right: $base-size / 2
+
+          &:first-child
+            margin-top: $base-size / 2
+
+          &:last-child
+            margin-bottom: 0
+
+          .bems-admin-device-item
+            border: 1px solid $unus-color
+            border-radius: $base-size / 3
+            padding: $base-size / 5 $base-size / 2
+
+            .bems-admin-device-item-icon
+              width: 40px
+              background-color: $duo-color
+              vertical-align: middle
+              margin-top: $base-size / 6
+              margin-right: $base-size / 3
+
+          .bems-admin-device-item-point
+            background-color: $unus-color
+            color: $tres-color
+            margin: 0 $base-size / 3
+            padding: $base-size / 2
+            border-bottom-left-radius: $base-size / 3
+            border-bottom-right-radius: $base-size / 3
+
+      .bems-admin-device-dialog-choose,
+      .bems-admin-device-modal-delete
+
+        .modal-body
+
+          button,
+          select
+            margin: 0
+
+        table
+          margin-bottom: 0
+
+        img
+          vertical-align: middle
+          width: $base-size
+          background-color: $duo-color

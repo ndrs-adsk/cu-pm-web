@@ -1,0 +1,32 @@
+.panel-body.row
+  .col-xs-10
+    .form-group.label-floating
+      %label.control-label{:for => "bems-search-search-input"} Search
+      %input#bems-search-search-input.bems-search-search-input.form-control{:type => "text", "ng-model" => "searchInput", "ng-blur" => "searchInput = ''"}
+  .col-xs-2
+    .bems-search-action.btn-group.btn-group-justified.btn-group-raised
+      %a.btn.btn-info.beme-search-action-button{"ng-click" => "genGraph()", "ng-show" => "showButton()"} Compare
+  .col-xs-12.bems-search-point-table-wrapper{"ng-show" => "searchInput.length !== 0"}
+    %table.bems-search-point-table.table.table-striped.table-hover
+      %tbody
+        %tr{"ng-repeat" => "point in points| filter:searchInput"}
+          %td{"ng-mousedown" => "addComparePoint(point.name,point.type)"} {{ point.name }}
+  .col-xs-12{"ng-show" => "showGraph"}
+    .btn.btn-danger.pull-right{"ng-click" => "showGraph = false"} CLOSE
+    #bems-search-graph.bems-search-graph
+  .col-md-3.col-sm-6.col-xs-12
+    .form-group.label-static
+      %label.control-label{:for => "bems-search-date-start"} Start Date
+      %input#bems-search-date-start.bems-search-date-start.form-control{:type => "text", "ng-model" => "searchStart"}
+  .col-md-3.col-sm-6.col-xs-12
+    .form-group.label-static
+      %label.control-label{:for => "bems-search-date-end"} Finish Date
+      %input#bems-search-date-end.bems-search-date-end.form-control{:type => "text", "ng-model" => "searchEnd"}
+  .col-md-3.col-sm-6.col-xs-12
+    .bems-search-type.btn-group.btn-group-justified.btn-group-raised
+      %a.btn.bems-search-type-Line{"ng-click" => "typeTabbing(true,'line')", "ng-class" => "{'btn-primary' : chartType}"} Line
+      %a.btn.bems-search-type-column{"ng-click" => "typeTabbing(false,'column')", "ng-class" => "{'btn-primary' : !chartType}"} Column
+  .col-md-3.col-sm-6.col-xs-12
+    .bems-search-gap.btn-group.btn-group-justified.btn-group-raised
+      %a.btn.bems-search-gap-Line{"ng-click" => "gapTabbing(true,1)", "ng-class" => "{'btn-primary' : chartGap}"} 1 MIN
+      %a.btn.bems-search-gap-column{"ng-click" => "gapTabbing(false,15)", "ng-class" => "{'btn-primary' : !chartGap}"} 15 MIN

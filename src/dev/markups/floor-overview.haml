@@ -1,0 +1,20 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-floor-overview
+    .bems-floor-overview-container.bems-container.panel.panel-default{"ng-controller" => "floorOverviewCtrl"}
+      .bems-login-header.panel-heading.panel-superheader Floor Overview
+      .panel-body.row
+        .bems-floor-overview-map.col-lg-3.col-xs-12.visible-lg-block
+          %a{:href => "#/map"}
+            %img.bems-floor-overview-map-img{:src => "img/cham-w-sm.png"}
+          .bems-floor-overview-line{:style => "width:80px;height:175px;top:30px;right:50px;"}
+          .bems-floor-overview-point{:style => "top:200px;right:118px;"}
+          .bems-floor-overview-point{:style => "top:20px;right:40px;"}
+        .col-lg-9.col-xs-12
+          %h1.bems-floor-overview-header-h1 {{ bld.name | uppercase }}
+          %h3.bems-floor-overview-header-h3 {{ date }}
+          %hr
+          +include 'src/dev/markups/floor-overview/list.haml'
+          %hr
+          #bems-floor-overview-donut.bems-floor-overview-donut
++include 'src/dev/markups/partials/footer.haml'

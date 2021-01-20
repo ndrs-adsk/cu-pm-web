@@ -1,0 +1,28 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-dashboard{"ng-controller" => "dashboardCtrl"}
+    %a.page-name
+      %span{:style => "color:#EB85B1 "} HEALTH 
+      %span{:style => "color:#bfd532 "} PAD
+    .bems-dashboard-containter
+      .bems-dashboard-item-wrapper{"ng-repeat" => "board in boards track by $index", "ng-class" => "{ 'flipped': $index == selectedED }", "ng-click" => "selectionED($index)"}
+        .bems-dashboard-item{"ng-class" => "classColor(board.id)"}
+          .bems-dashboard-item-front
+            .bems-dashboard-item-name{"ng-bind-html" => "board.display_name"}
+            .bems-dashboard-item-image-wrapper
+              %img.bems-dashboard-item-image{:alt => 'dashboard', "ng-src" => "svg/{{board.img}}"}
+            .bems-dashboard-item-text
+              %br.hidden-xs{"ng-show"=>"board.display_name === 'renewable<br>energy' ? true:false"}
+              .bems-dashboard-item-current
+                .bems-dashboard-item-current-value.text-right{"ng-show" => "$index == 0"} {{board.value | number:0}}
+                .bems-dashboard-item-current-value.text-right{"ng-show" => "$index != 0"} {{board.value | number:1}}
+                .bems-dashboard-item-current-unit-mfk.text-right{"ng-bind-html" => "board.unit", "ng-class" => "{'bems-dashboard-item-current-unit-mfk' : (board.unit == 'Metric Tons CO<sub>2</sub>')}"}
+              %br.visible-sm-inline-block
+              .bems-dashboard-item-target{"ng-hide"=>"board.display_name === 'renewable energy' ? true:false"}
+                .bems-dashboard-item-target-text.text-right target
+                .bems-dashboard-item-target-value.text-center{"ng-show" => "$index == 0"} {{board.target | number:0}}
+                .bems-dashboard-item-target-value.text-center{"ng-show" => "$index != 0"} {{board.target | number:1}}
+                .bems-dashboard-item-target-unit.text-right{"ng-bind-html" => "board.unit", "ng-class" => "{'bems-dashboard-item-target-unit-mfk' : (board.unit == 'Metric Tons CO<sub>2</sub>')}"}
+          .bems-dashboard-item-back {{board.desc}}
+    .bems-dashboard-clear.clearfix
++include 'src/dev/markups/partials/footer.haml'

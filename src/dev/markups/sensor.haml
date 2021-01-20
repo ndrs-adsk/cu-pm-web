@@ -1,0 +1,8 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-sensor
+    .bems-sensor-container.bems-container.panel.panel-default{"ng-controller" => "sensorCtrl"}
+      .bems-login-header.panel-heading.panel-superheader Sensor Status
+      +include 'src/dev/markups/sensor/option.haml'
+      +include 'src/dev/markups/sensor/list.haml'
++include 'src/dev/markups/partials/footer.haml'

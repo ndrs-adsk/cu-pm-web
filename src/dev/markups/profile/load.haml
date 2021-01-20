@@ -1,0 +1,123 @@
+.panel-body.row
+  .bems-profile-demand-header.col-xs-12 DEMAND
+  .bems-profile-demand-list.col-xs-12{"ui-sortable" => true, "ng-model" => "demands"}
+    .bems-profile-demand-item.row{"ng-repeat" => "demand in demands | orderBy:profileSortType:profileSortReverse track by demand.id", "ng-if" => "isPulled(demand.id,demand.is_supply,false)"}
+      %legend.col-xs.bems-demand-item-name &nbsp; {{demand.display_name}}
+      .col-lg-2.col-sm-2.col-xs-4
+        .row
+          .col-sm-12.col-xs-6
+            .form-group.bems-profile-demand-item-checkbox-wrapper
+              .checkbox.bems-profile-demand-item-checkbox
+                %label
+                  %input.bems-profile-demand-item-checkbox-input{:type => "checkbox", "ng-model" => "demand.compare"}
+                  %span.hidden-sm &nbsp; Compare
+          .col-sm-12.col-xs-6.bems-profile-demand-item-img-wrapper
+            %img.bems-profile-demand-item-img{:alt => "building", "ng-src" => "svg/{{demand.img}}.svg" , "ng-click" => "redirectProfile(demand.mapping[0].id,demand.mapping[0].level_name)" , :style => "cursor:pointer"}
+      .col-md-3.col-xs-4.hidden-xs
+        .bems-profile-demand-energy.panel.panel-default.row{"data-toggle" => "tooltip", :rel => "tooltip", "data-html" => "true", "ng-attr-title" => "{{getTooltipTextEN($index)}}"}
+          .bems-profile-demand-energy-label.col-sm-5.col-xs-4 Energy
+          .col-sm-7.col-xs-8{"ng-class" => "getClass(demand.quota.en,demand.energy,profileGap)"}
+            %span.bems-profile-demand-energy-number {{demand.energy | number:1}}
+            %span.bems-profile-demand-energy-sign kWh
+        .bems-profile-demand-power.panel.panel-default.row{"data-toggle" => "tooltip", :rel => "tooltip", "data-html" => "true", "ng-attr-title" => "{{getTooltipTextPW($index)}}"}
+          .bems-profile-demand-power-label.col-sm-5.col-xs-4 Power
+          .col-sm-7.col-xs-8{"ng-class" => "getClass(demand.quota.pw,demand.power,profileGap)"}
+            %span.bems-profile-demand-power-number {{demand.power | number:1}}
+            %span.bems-profile-demand-power-sign kW
+        .bems-profile-demand-peak.panel.panel-default.row
+          .bems-profile-demand-peak-label.col-sm-5.col-xs-4
+            %span{"ng-if" => "profileType != 'bill'"} Peak
+            %span{"ng-if" => "profileType == 'bill'"} Bill
+          .col-sm-7.col-xs-8
+            %span.bems-profile-demand-peak-number
+              %span{"ng-if" => "profileType != 'bill'"} {{demand.peak | number:1}}
+              %span{"ng-if" => "profileType == 'bill'"} {{demand.bill | number:0}}
+            %span.bems-profile-demand-peak-sign
+              %span{"ng-if" => "profileType != 'bill'"} kW
+              %span{"ng-if" => "profileType == 'bill'"} Baht
+      .col-md-7.col-sm-6.col-xs-8
+        %highchart.chart-directive.span10{"config" => "demand.chart"}
+      .col-md-3.col-xs-4.visible-xs-block.bems-profile-data-wrapper
+        .bems-profile-demand-energy.panel.panel-default.row
+          .bems-profile-demand-energy-label.col-sm-5.col-xs-4 Energy
+          .col-sm-7.col-xs-8{"ng-class" => "getClass(demand.quota.en,demand.energy,profileGap)"}
+            %span.bems-profile-demand-energy-number {{demand.energy | number:1}}
+            %span.bems-profile-demand-energy-sign kWh
+        .bems-profile-demand-power.panel.panel-default.row
+          .bems-profile-demand-power-label.col-sm-5.col-xs-4 Power
+          .col-sm-7.col-xs-8{"ng-class" => "getClass(demand.quota.pw,demand.power,profileGap)"}
+            %span.bems-profile-demand-power-number {{demand.power | number:1}}
+            %span.bems-profile-demand-power-sign kW
+        .bems-profile-demand-peak.panel.panel-default.row
+          .bems-profile-demand-peak-label.col-sm-5.col-xs-4
+            %span{"ng-if" => "profileType != 'bill'"} Peak
+            %span{"ng-if" => "profileType == 'bill'"} Bill
+          .col-sm-7.col-xs-8
+            %span.bems-profile-demand-peak-number
+              %span{"ng-if" => "profileType != 'bill'"} {{demand.peak | number:1}}
+              %span{"ng-if" => "profileType == 'bill'"} {{demand.bill | number:1}}
+            %span.bems-profile-demand-peak-sign
+              %span{"ng-if" => "profileType != 'bill'"} kW
+              %span{"ng-if" => "profileType == 'bill'"} Baht
+      %i.material-icons.bems-profile-demand-close{"ng-click" => "pullPie(demand.id)"} close
+  .bems-profile-supply-header.col-xs-12{"ng-show" => "supply"} SUPPLY
+  .bems-profile-supply-list.col-xs-12{"ui-sortable" => true, "ng-model" => "demands"}
+    .bems-profile-supply-item.row{"ng-repeat" => "demand in demands | orderBy:profileSortType:profileSortReverse track by demand.id", "ng-if" => "isPulled(demand.id,demand.is_supply,true)"}
+      %legend.col-xs.bems-supply-item-name &nbsp; {{demand.display_name}}
+      .col-lg-2.col-sm-2.col-xs-4
+        .row
+          .col-sm-12.col-xs-6
+            .form-group.bems-profile-supply-item-checkbox-wrapper
+              .checkbox.bems-profile-supply-item-checkbox
+                %label
+                  %input.bems-profile-supply-item-checkbox-input{:type => "checkbox", "ng-model" => "demand.compare"}
+                  %span.hidden-sm &nbsp; Compare
+          .col-sm-12.col-xs-6.bems-profile-supply-item-img-wrapper
+            %img.bems-profile-supply-item-img{:alt => "building", "ng-src" => "svg/{{demand.img}}.svg", "ng-click" => "redirectProfile(demand.mapping)"}
+      .col-md-3.col-xs-4.hidden-xs
+        .bems-profile-supply-energy.panel.panel-default.row
+          .bems-profile-supply-energy-label.col-sm-5.col-xs-4 Energy
+          .col-sm-7.col-xs-8
+            %span.bems-profile-supply-energy-number {{demand.energy | number:1}}
+            %span.bems-profile-supply-energy-sign kWh
+        .bems-profile-supply-power.panel.panel-default.row
+          .bems-profile-supply-power-label.col-sm-5.col-xs-4 Power
+          .col-sm-7.col-xs-8
+            %span.bems-profile-supply-power-number {{demand.power | number:1}}
+            %span.bems-profile-supply-power-sign kW
+        .bems-profile-supply-peak.panel.panel-default.row
+          .bems-profile-supply-peak-label.col-sm-5.col-xs-4
+            %span{"ng-if" => "profileType != 'bill'"} Peak
+            %span{"ng-if" => "profileType == 'bill'"} Bill
+          .col-sm-7.col-xs-8
+            %span.bems-profile-supply-peak-number
+              %span{"ng-if" => "profileType != 'bill'"} {{demand.peak | number:1}}
+              %span{"ng-if" => "profileType == 'bill'"} {{demand.bill | number:0}}
+            %span.bems-profile-supply-peak-sign
+              %span{"ng-if" => "profileType != 'bill'"} kW
+              %span{"ng-if" => "profileType == 'bill'"} Baht
+      .col-md-7.col-sm-6.col-xs-8
+        %highchart.chart-directive.span10{"config" => "demand.chart"}
+      .col-md-3.col-xs-4.visible-xs-block.bems-profile-data-wrapper
+        .bems-profile-supply-energy.panel.panel-default.row
+          .bems-profile-supply-energy-label.col-sm-5.col-xs-4 Energy
+          .col-sm-7.col-xs-8
+            %span.bems-profile-supply-energy-number {{demand.energy | number:1}}
+            %span.bems-profile-supply-energy-sign kWh
+        .bems-profile-supply-power.panel.panel-default.row
+          .bems-profile-supply-power-label.col-sm-5.col-xs-4 Power
+          .col-sm-7.col-xs-8
+            %span.bems-profile-supply-power-number {{demand.power | number:1}}
+            %span.bems-profile-supply-power-sign kW
+        .bems-profile-supply-peak.panel.panel-default.row
+          .bems-profile-supply-peak-label.col-sm-5.col-xs-4
+            %span{"ng-if" => "profileType != 'bill'"} Peak
+            %span{"ng-if" => "profileType == 'bill'"} Bill
+          .col-sm-7.col-xs-8
+            %span.bems-profile-supply-peak-number
+              %span{"ng-if" => "profileType != 'bill'"} {{demand.peak | number:1}}
+              %span{"ng-if" => "profileType == 'bill'"} {{demand.bill | number:1}}
+            %span.bems-profile-supply-peak-sign
+              %span{"ng-if" => "profileType != 'bill'"} kW
+              %span{"ng-if" => "profileType == 'bill'"} Baht
+      %i.material-icons.bems-profile-supply-close{"ng-click" => "pullPie(demand.id)"} close

@@ -1,0 +1,10 @@
+.bems-sensor-wrapper-pie.panel-body
+  .form-group.row{:style => "margin-top: 4px;"}
+    %label.bems-sensor-sort-icon.control-label.control-label-icon.col-lg-1.col-md-2.col-sm-3.col-xs-4{:for => "bems-sensor-sort"}
+      %i.bems-sensor-sort-icon.material-icons sort_by_alpha
+    .col-lg-3.col-md-5.col-sm-6.col-xs-8
+      %select#bems-sensor-sort-select.form-control{"ng-model" => "sensorSort", "ng-change" => "sensorSorting(sensorSort)"}
+        %option{:value => 1, "ng-selected" => "1"} Name Ascending
+        %option{:value => 2} Name Descending
+        %option{:value => 3} Type Ascending
+        %option{:value => 4} Type Descending

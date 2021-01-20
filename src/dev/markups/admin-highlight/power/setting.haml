@@ -1,0 +1,75 @@
+%br
+%ul.nav.nav-pills
+  %li{"ng-repeat" => "month in months", "ng-class" => "{'active': (activeMonth == $index ? true:false)}"}
+    %a{"ng-click" => "changeMonth($index)"} {{ month }}
+%button.btn.btn-raised.btn-info.pull-right{"ng-click" => "updateSetting()"} update quota
+.row
+  .col-xs-8
+    .row
+      .col-xs-6
+        .form-group
+          %label.control-label.bems.admin-highlight-mode-label{:for => "bems.admin-highlight-mode-select"} Select Mode
+          %select#bems.admin-highlight-mode-select.form-control{"ng-model" => "setObj.option.mode",
+            "ng-options" => "mode.mode as mode.name for mode in modeList", "ng-change" => "changeMode()"}
+      .col-xs-6
+        .form-group{"ng-show" => "setObj.option.mode !== 'manual'"}
+          %label.control-label{:for => "bems-admin-highlight-percent"} Remaining Percent
+          .input-group
+            %input.form-control{:type => "number", :min => "0", :max => "100", :id => "bems-admin-highlight-percent", "ng-model" => "setObj.option.percent"}
+            %span.input-group-btn
+              %button.btn.btn-link{:disabled => true} %
+        .btn-group{"ng-click" => "", "ng-show" => "setObj.option.mode === 'manual'"}
+          %br
+          %button.btn.btn-raised.dropdown-toggle{"data-target" => "#", "data-toggle" => "dropdown", :href => "bootstrap-elements.html"}
+            load data
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              %a{"ng-click" => "useData('3m_avg')"} Last 3 months average data
+            %li
+              %a{"ng-click" => "useData('last_year')"} This month of last year data
+            %li.divider
+            %li{"ng-repeat" => "dMonth in months | orderBy :'$index':true", "ng-show" => "months.indexOf(dMonth) < activeConstMonth"}
+              %a{"ng-click" => "useBackupData(months.indexOf(dMonth),activeYearPower)"} {{ activeYearPower }} {{ dMonth }}
+            %li.divider
+            %li{"ng-repeat" => "oDMonth in months | orderBy :'$index':true"}
+              %a{"ng-click" => "useBackupData(months.indexOf(oDMonth),activeYearPower - 1)"} {{ activeYearPower - 1}} {{ oDMonth }}
+            %li.divider
+            %li{"ng-repeat" => "o2DMonth in months | orderBy :'$index':true", "ng-show" => "months.indexOf(o2DMonth) >= activeConstMonth"}
+              %a{"ng-click" => "useBackupData(months.indexOf(o2DMonth),activeYearPower - 2)"} {{ activeYearPower - 2 }} {{ o2DMonth }}
+  .col-xs-4
+    .bems-calendar
+      .bems-calendar-title>< Holiday
+      .bems-calendar-header>< Su
+      .bems-calendar-header>< M
+      .bems-calendar-header>< Tu
+      .bems-calendar-header>< W
+      .bems-calendar-header>< Th
+      .bems-calendar-header>< F
+      .bems-calendar-header>< Sa
+      .date-gap{"ng-style" => "fGap"}><
+      .bems-calendar-item{"ng-repeat" => "n in getTimeArray(monthDay(activeMonth)) track by $index", "ng-class" => "{'active' : isHoliday($index)}", "ng-click" => "updateHoliday($index)"} {{ $index + 1 }}
+  .col-xs-12
+    %br
+    %table.table.table-striped.table-hover
+      %thead.bems-table-center
+        %tr
+          %th.bems-table-center{:rowspan => "2"} Name
+          %th.bems-table-center{:rowspan => "2"} Peak Quota in this month (kW)
+          %th.bems-table-center{:colspan => "2"} Limit
+        %tr
+          %th.bems-table-center.bems-admin-warning{:rowspan => "2"} Yellow Limit (%)
+          %th.bems-table-center.bems-admin-danger{:rowspan => "2"} Red Limit (%)
+      %tbody
+        %tr{"ng-repeat" => "pHighlight in setObj.quota | orderBy:'id'", "ng-class" => "{'danger':pHighlight.none}"}
+          %td.name {{ pHighlight.name }}
+          %td.text-center
+            %span{"ng-show" => "setObj.option.mode !== 'manual'"} {{ pHighlight.quota * (+setObj.option.percent/100) | number:2 }}
+            .form-group{"ng-show" => "setObj.option.mode === 'manual'"}
+              %input.form-control.text-right{:type => "number", "ng-model" => "pHighlight.quota", "ng-change" => "adjustValue(setObj.quota.indexOf(pHighlight))"}
+          %td.bems-admin-warning.text-center
+            .form-group.has-warning
+              %input.form-control.text-right{:type => "number", "ng-model" => "pHighlight.yellow"}
+          %td.bems-admin-danger.text-center
+            .form-group.has-danger
+              %input.form-control.text-right{:type => "number", "ng-model" => "pHighlight.red"}

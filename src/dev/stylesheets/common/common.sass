@@ -1,0 +1,454 @@
+*:not(input):not(textarea)
+  -webkit-user-select: none
+  -webkit-touch-callout: none
+.bems-loader-wrapper
+  position: fixed
+  width: 100%
+  height: 100%
+  background-color: $about-background-color
+  z-index: 2000
+
+  .bems-loader
+    margin: auto
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    width: 100px
+    height: 100px
+    &:before
+      content: ''
+      display: block
+      padding-top: 100%
+
+    .circular
+      animation: rotate 2s linear infinite
+      height: 100%
+      transform-origin: center center
+      width: 100%
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      margin: auto
+
+    .path
+      stroke-dasharray: 1, 200
+      stroke-dashoffset: 0
+      animation: dash 2s ease-in-out infinite, color 6s ease-in-out infinite
+      stroke-linecap: round
+
++keyframes(rotate)
+  100%
+    transform: rotate(360deg)
+
++keyframes(dash)
+  0%
+    stroke-dasharray: 1, 200
+    stroke-dashoffset: 0
+
+  50%
+    stroke-dasharray: 89, 200
+    stroke-dashoffset: -35px
+
+  100%
+    stroke-dasharray: 89, 200
+    stroke-dashoffset: -124px
+
++keyframes(color)
+  100%,
+  0%
+    stroke: $metro-lime
+
+  40%
+    stroke: $metro-blue
+
+  66%
+    stroke: $metro-red
+  80%,
+  90%
+    stroke: $metro-orange
+
+.modal
+  background-color: $about-background-color
+  .modal-dialog
+    margin-top : $base-size
+  .bems-about-body
+    text-align: center
+
+    .bems-about-logo
+      @media #{$media-desktop}
+        height: $base-size * 5
+      @media #{$media-no-phone}
+        height: $base-size * 5
+      @media #{$media-phone}
+        height: $base-size * 3.75
+
+.bems
+  font-family: 'Roboto'
+  font-weight: $font-normal
+  font-size: $base-font-size
+  background-color:#fff
+
+  .bems-header
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    border-top: 15px solid;
+    border-image: linear-gradient(to right, #bf6080 0%, #bf6080, 40%, #bf6080 50%, #bf6080 60%, #bf6080 100%);
+    border-image-slice: 1;
+
+    .bems-about-link,
+    .bems-nav-admin
+      cursor: pointer
+
+    .navbar, .navbar.navbar-default
+      max-width: $lg-min-width
+      background-color: $quattuor-color
+      margin: 0 auto
+      border-radius: 0
+      border: 0
+
+      .bems-dropdown-menu
+        height: 300px
+        overflow-y: auto
+
+      .dropdown-menu li > a:hover
+        color: lighten($quattuor-color, 10%)
+
+  .bems-wrapper
+    background: url('../img/bg-wrapper-p.png') $container-background-color repeat center bottom
+    
+    .panel-superheader
+      font-size: $header-font-size !important
+
+    .breadcrumb
+      margin-bottom: 0
+
+  .bems-wrapper-login
+    background: url('../img/bg-wrapper-p.png') $container-background-color repeat center bottom
+    background-size: 72%
+
+  .bems-footer
+    clear: both
+    background: linear-gradient(to bottom, $unus-color 0%, $unus-alt-color 80%)
+    border-top: 5px solid
+    border-bottom: 0
+    border-left: 0
+    border-right: 0
+    border-image: linear-gradient(to right, $pink-3 0%, $pink-3, 40%, $pink-3 50%)
+    border-image-slice: 1
+    max-height: 135px
+    background : #bf6080
+    position: fixed
+    bottom: 0
+    width: 100%
+    z-index: 9999
+
+    .bems-footer-container
+      max-width: $lg-min-width
+      margin: 0 auto
+      padding: 15px 0px
+      text-align: right
+      color: $footer-color
+      max-height: 135px
+
+      .bems-footer-pack
+        width: 100%
+        font-size: $real-font-size
+        font-weight: $font-bold
+        text-align: left
+        position: relative
+        bottom: 55px
+
+      .bems-footer-text
+        float: right
+        @media #{$media-desktop}
+          position: relative
+          bottom: 20px
+          text-align: left
+
+        span
+          &:first-child
+            font-weight: $font-bold
+            @media #{$media-no-phone}
+              font-size: $footer-font-size
+              line-height: $footer-font-size * 0.75
+            @media #{$media-phone}
+              font-size: $footer-font-size-xs * 0.75
+              line-height: $footer-font-size-xs
+          &:last-child
+            @media #{$media-no-phone}
+              font-size: $footer-font-size2
+              line-height: $footer-font-size2
+            @media #{$media-phone}
+              font-size: $footer-font-size2-xs
+              line-height: $footer-font-size2-xs
+
+      .bems-footer-navigation
+        position: relative
+        display: block
+
+        .bems-footer-navigation-point-wrapper
+          display: inline-block
+          padding: $base-size / 3 $base-size / 6
+          background: linear-gradient(to bottom, $pink-3 38%, $unus-color 39%)
+          @extend %border-circle
+
+          .bems-footer-navigation-point
+            padding: $base-size / 6 $base-size / 3
+            color: $footer-navigation-color
+            background-color: $footer-navigation-background-color
+            @extend %border-circle
+
+          .bems-footer-navigation-active
+            font-weight: $font-bold
+            color: $footer-navigation-color-active
+
+      .bems-footer-progress-wrapper
+        font-size: 12px
+        float: left
+        text-align: left
+        position: relative
+        bottom: 34px
+        color: #fff
+
+        .bems-footer-tooltip-warning,
+        .bems-footer-tooltip-danger
+          display: inline-block
+          font-weight: $font-bold
+
+        .bems-footer-tooltip-warning
+          position: relative
+          top: 17px
+          left: -95px
+
+        .bems-footer-tooltip-danger
+          position: relative
+          top: 29px
+          left: -70px
+
+        .bems-footer-progress
+          height: 34px
+          margin-bottom: 0
+          overflow-x: visible
+          border-radius: $base-size
+          border: solid 3px $tres-color
+
+          .progress-bar-success
+            background-color: $graph-green
+
+          .progress-bar-warning
+            background-color: $graph-yellow
+
+          .progress-bar-danger
+            background-color: $graph-red
+
+      .bems-footer-progress-text
+        font-size: 12px
+        text-align: left
+        float: left
+        margin-left: $base-size / -1
+        position: relative
+        top: -0.5 * $base-size
+        color: #fff
+
+        .title
+          font-weight: $font-bold
+    #footer-b-outter
+      color: white
+      position: relative
+      bottom: 0.25 * $base-size
+      background: #6E2D43
+      line-height: 24px
+      text-align: center
+
+  .color-red
+    color: $graph-red
+
+  .color-yellow
+    color: $graph-yellow
+  .footerImg
+    height: 90%
+    position: relative
+    bottom: 0px
+  .footerImgForIpad
+    height: 80%
+    position: relative
+    bottom: 15px
+  .footerImgLegend
+    position: relative
+
+  .logo-main
+    height: 100px
+    position: relative
+
+#main-site
+  border-top: 25px solid #008ec3
+  position: relative
+  background: url("../images/bems-background.jpg") top center repeat
+
+#site-content
+  min-height: 700px
+#header
+  max-width: 1200px
+  margin: 0 auto
+  padding: 15px 30px
+  color: #fff
+  max-height: 130px
+  position: relative
+  .bems-header-text
+    
+    float: right
+    @media #{$media-desktop}
+      position: relative
+      text-align: left
+      margin-top: -33px 
+    @media #{$media-phone}
+      margin-top: 15px 
+
+    span
+      &:first-child
+        font-weight: $font-bold
+        @media #{$media-no-phone}
+          font-size: $footer-font-size
+          line-height: $footer-font-size * 0.75
+        @media #{$media-phone}
+          font-size: $footer-font-size-xs * 0.75
+          line-height: $footer-font-size-xs
+        color: #A6CC08
+      &:last-child
+        @media #{$media-no-phone}
+          font-size: $footer-font-size2
+          line-height: $footer-font-size2
+        @media #{$media-phone}
+          font-size: $footer-font-size2-xs
+          line-height: $footer-font-size2-xs
+        color: #CCDD5C
+  .user-bar
+    position: absolute
+    right : 65px
+
+
+#header2
+  max-width: 1200px
+  margin: 0 auto
+  padding: 15px 30px
+  color: #fff
+  max-height: 130px
+  .bems-header-text
+    
+    float: right
+    @media #{$media-desktop}
+      position: relative
+      text-align: left
+      margin-top: -33px 
+    @media #{$media-phone}
+      margin-top: 15px 
+
+    span
+      &:first-child
+        font-weight: $font-bold
+        @media #{$media-no-phone}
+          font-size: $footer-font-size
+          line-height: $footer-font-size * 0.75
+        @media #{$media-phone}
+          font-size: $footer-font-size-xs * 0.75
+          line-height: $footer-font-size-xs
+        color: #A6CC08
+      &:last-child
+        @media #{$media-no-phone}
+          font-size: $footer-font-size2
+          line-height: $footer-font-size2
+        @media #{$media-phone}
+          font-size: $footer-font-size2-xs
+          line-height: $footer-font-size2-xs
+        color: #CCDD5C
+.show-time
+  color: #bfd532
+  font-size: 2.8em
+
+.show-weekday
+  color: #bfd532
+  font-size: 1.3em
+
+.show-date
+  color: #707070
+  font-size: 1.2em
+  margin-left: 8px
+
+.bems-logo
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: -56px;
+
+.timer
+  width: 220px
+  padding-left: 20px
+  border-left: 1px solid #ccc
+  display: inline-block
+
+.menu-top
+  display: inline-block
+  line-height: 30px
+  font-size: 1em
+  color: #707070
+  float: right
+  text-align: center
+  border-bottom: 1px solid #ccc
+  border-top: 1px solid #ccc
+  margin-top: 25px;
+  a
+    color: #707070
+    &:hover
+      color: #BF6181
+    cursor : pointer
+  ul.main-menu
+    padding: 0
+    margin: 0 auto
+    list-style: none
+    li
+      padding: 0
+      margin: 0 auto
+      list-style: none
+      width: 115px
+      display: inline-block
+      color: #707070
+      font-weight: 350
+  .dropdown-menu
+    li
+      a 
+        font-weight: 350
+        color: #707070
+.navbar
+  margin-bottom : 0px
+  @media (min-width:768px) and (max-width:1000px)
+
+@media (max-width:991px)
+  .navbar-header
+    float: none
+  .navbar-left, .navbar-right
+    float: none !important
+  .navbar-toggle
+    display: block
+  .navbar-collapse
+    border-top: 1px solid transparent
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1)
+  .navbar-fixed-top
+    top: 0
+    border-width: 0 0 1px
+  .navbar-collapse.collapse
+    display: none !important
+  .navbar-nav
+    float: none !important
+    margin-top: 7.5px
+    > li
+      float: none
+      > a
+        padding-top: 10px
+        padding-bottom: 10px
+  .collapse.in
+    display: block !important
+    

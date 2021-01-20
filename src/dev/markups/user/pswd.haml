@@ -1,0 +1,30 @@
+%br
+%form{:name => "changePassword"}
+  .form-group.row
+    %label.col-md-5.col-sm-4{:for => "bems-user-opswd-input", "control-label" => true} Old Password
+    .col-md-4.col-sm-5
+      %input#bems-user-opswd-input.bems-user-opswd-input.form-control{:type => "password", "ng-model" => "opswd", "ng-change" => "passwordFill()"}
+  .form-group.row
+    %label.col-md-5.col-sm-4{:for => "bems-user-npswd-input", "control-label" => true} New Password
+    .col-md-4.col-sm-5
+      %input#bems-user-npswd-input.bems-user-npswd-input.form-control{:type => "password", "ng-model" => "npswd", "ng-change" => "passwordFill()"}
+      %p.help-block Password has to contain 6 characters at least.
+  .form-group.row{"ng-class" => "{'has-error':!passMatch.match}"}
+    %label.col-md-5.col-sm-4{:for => "bems-user-cpswd-input", "control-label" => true, "ng-class" => "{'bems-user-password-not':!passMatch.match}"}
+      %span{"ng-show" => "passMatch.match"} Confirm New Password
+      %span{"ng-hide" => "passMatch.match"} Password is not Match
+    .col-md-4.col-sm-5
+      %input#bems-user-cpswd-input.bems-user-cpswd-input.form-control{:type => "password", "ng-model" => "cpswd", "ng-change" => "passwordFill()"}
+  .row
+    .col-xs-12.bems-user-password-submit-wrapper
+      %button.bems-user-password-submit.btn.btn-raised.btn-info{:type => "button", "ng-disabled" => "!passMatch.ok", "ng-click" => "updatePassword(opswd,npswd,callbackPassword)"} Change Password
+#bems-user-modal-password.bems-user-modal-password.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-user-modal-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %span{"ng-show" => "passMatch.msg"} Password had changed successfully.
+          %span{"ng-hide" => "passMatch.msg"} Current password is not correct.
+      .modal-footer.bems-user-modal-footer.text-center
+        %button.btn{:type => "button", "data-dismiss" => "modal", "ng-class" => "passMatch.msg ? 'btn-success':'btn-danger'"} Close

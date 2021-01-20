@@ -1,0 +1,42 @@
+%br
+.row
+  %legend.col-xs-6 Node Detail
+  .col-xs-6
+    %a.btn.btn-raised.pull-right.btn-success{"ng-click" => "update(detailNode)"}
+      %i.material-icons save
+.form-group.label-static
+  %label.control-label Name
+  %input.form-control{:type => "text", "ng-model" => "detailNode.name"}
+  .row
+    .col-xs-6
+      .btn-group.btn-group-justified.btn-group-raised
+        %a.btn.btn-raised{"ng-class" => "{'btn-primary':detailNode.ctrl_node}", "ng-click" => "controlUpdate(true)"} Control
+        %a.btn.btn-raised{"ng-class" => "{'btn-primary':!detailNode.ctrl_node}", "ng-click" => "controlUpdate(false)"} Monitor
+    .col-xs-6
+      .btn-group.btn-group-justified.btn-group-raised
+        %a.btn.btn-raised{"ng-class" => "{'btn-primary':!detailNode.supply_node}", "ng-click" => "detailNode.supply_node =  false "} Demand
+        %a.btn.btn-raised{"ng-class" => "{'btn-primary':detailNode.supply_node}", "ng-click" => "detailNode.supply_node = true"} Supply
+    .col-xs-6
+      .btn-group.btn-group-justified.btn-group-raised
+        %a.btn.btn-raised{"ng-class" => "{'btn-primary':!detailNode.negative}", "ng-click" => "detailNode.negative =  false "} Positive
+        %a.btn.btn-raised{"ng-class" => "{'btn-primary':detailNode.negative}", "ng-click" => "detailNode.negative = true"} Negative
+
+%legend Point ID List
+.row.form-group{"ng-repeat" => "point in detailNode.pointid"}
+  .col-xs-4
+    %label.form-control {{ point.type }}
+  .col-xs-6
+    %input.form-control{:type => "text", "ng-model" => "point.name"}
+  .col-xs-2
+    %a.pull-right.btn.btn-danger{"ng-click" => "deletePoint($index)"}
+      %span.glyphicon.glyphicon-remove
+.row
+  .col-xs-4
+    .form-group.label-static
+      %label.control-label Attribute
+      %select.form-control{"ng-model" => "newPoint.attr"}
+        %option{"ng-repeat" => "attrName in pointidList", :value => "{{attrName}}"} {{attrName}}
+  .col-xs-8
+    .form-group.label-static
+      %label.control-label Value
+      %input.form-control{:type => "text", "ng-model" => "newPoint.val", "ng-change" => "addPoint()", "ng-model-options" => "{updateOn: 'blur'}"}

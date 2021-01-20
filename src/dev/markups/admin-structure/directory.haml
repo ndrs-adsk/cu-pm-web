@@ -1,0 +1,44 @@
+#bems-admin-structure-modal-delete.bems-admin-structure-modal-delete.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-structure-modal-delete-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons delete_forever
+          Do you want to delete {{delName}} ?
+      .modal-footer.bems-admin-structure-modal-delete-footer.text-center
+        %button.btn.btn-success{:type => "button", "data-dismiss" => "modal", "ng-click" => "deleteNode(delId)"} Confirm
+        %button.btn.btn-default{:type => "button", "data-dismiss" => "modal"} Cancel
+#bems-admin-structure-modal-alert.bems-admin-structure-modal-alert.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-structure-modal-alert-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons wanring
+          Please fill name field.
+      .modal-footer.bems-admin-structure-modal-alert-footer.text-center
+        %button.btn.btn-alert{:type => "button", "data-dismiss" => "modal"} Close
+#bems-admin-structure-modal-success.bems-admin-structure-modal-success.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-structure-modal-success-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons update
+          Update Successfully.
+      .modal-footer.bems-admin-structure-modal-success-footer.text-center
+        %button.btn.btn-success{:type => "button", "data-dismiss" => "modal"} Close
+.col-xs-12
+  %treecontrol.tree-boot{"tree-model" => "data", :options => "tOps"}
+    .tree-label-inner{"ng-class" => "{'bems-node-selected':detailNode.id == node.id}", :title => "{{node.name}}"}
+      .tree-label-wrapper
+        .row
+          .col-xs-6 {{node.name}}
+          .col-xs-6
+            %a.pull-right.btn.btn-primary.btn-sm{"ng-click" => "newSubNode(node.id,node.name)"}
+              %span.glyphicon.glyphicon-plus
+            %a.pull-right.btn.btn-info.btn-sm{"ng-click" => "editNode(node.id)"}
+              %span.glyphicon.glyphicon-edit
+            %a.pull-right.btn.btn-danger.btn-sm{"ng-click" => "confirmDeleteNode(node.id,node.name)", "ng-hide" => "node.id === firstNode"}
+              %span.glyphicon.glyphicon-remove

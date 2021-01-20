@@ -1,0 +1,48 @@
+.bems-floor-overview-item-list
+  .bems-floor-overview-item.row{"ng-repeat" => "floor in floorList track by $index"}
+    %a.col-md-6.col-sm-7.col-xs-12{"ng-href" => "#/floor/section/{{floor.bld_id}}/{{floor.id}}"}
+      .bems-floor-overview-tag {{ floor.name }}
+      .bems-floor-overview-wrapper-stat.row
+        .col-md-8.col-xs-7
+          .bems-floor-overview-date
+            %span.bems-floor-overview-date-number &nbsp; 1
+            %sup.bems-floor-overview-date-rank> st
+            %span.bems-floor-overview-date-text &nbsp;- Today
+          .bems-floor-overview-usage
+            %span.bems-floor-overview-usage-number {{ floor.energy | number:1 }}
+            %span.bems-floor-overview-usage-sign> &nbsp; kWh
+        .col-md-4.col-xs-5
+          .bems-floor-overview-percent
+            %span.bems-floor-overview-percent-number{"ng-class" => "{'bems-floor-overview-percent-number-alt' : getEnergyPercent(floor.energy,floor.quota.en.total,floor.quota.en.red,floor.quota.en.yellow) >= 100}"} {{ getEnergyPercent(floor.energy,floor.quota.en.total,floor.quota.en.red,floor.quota.en.yellow) | number: 0 }}
+            %span.bems-floor-overview-percent-sign{"ng-class" => "{'bems-floor-overview-percent-sign-alt' : getEnergyPercent(floor.energy,floor.quota.en.total,floor.quota.en.red,floor.quota.en.yellow) >= 100}"}> %
+      .bems-floor-overview-tag-alt
+        %span.bems-floor-overview-accumulation-text Daily Energy Accumulation
+        %span.bems-floor-overview-accumulation-number {{ floor.energy | number:1}}
+        %span.bems-floor-overview-accumulation-sign kWh
+    .col-md-6.col-sm-5.col-xs-12
+      .bems-floor-overview-wrapper-graph.row
+        .bems-floor-overview-current-demand.col-xs-6
+          %span.bems-floor-overview-current-demand-text
+            Current
+            %span.hidden-xs Demand
+          %span.bems-floor-overview-current-demand-number {{ floor.power | number:1}}
+          %span.bems-floor-overview-current-demand-sign kw
+        .bems-floor-overview-peak-demand.col-xs-6
+          %span.bems-floor-overview-peak-demand-text
+            Peak
+            %span.hidden-xs Demand
+          %span.bems-floor-overview-peak-demand-number {{ floor.peak | number:1}}
+          %span.bems-floor-overview-peak-demand-sign kw
+        %highchart.chart-directive.span10{"config" => "floor.chart"}
+        .bems-floor-overview-warning-level.col-xs-6
+          %i.material-icons.color-yellow.md-18 error
+          %span.bems-floor-overview-warning-level-text.hidden-xs Warning Level
+          %span.bems-floor-overview-warning-level-number {{ floor.quota.pw.yellow | number:1}}
+          %span.bems-floor-overview-warning-level-sign kw
+        .bems-floor-overview-danger-level.col-xs-6
+          %i.material-icons.color-red.md-18 error
+          %span.bems-floor-overview-danger-level-text.hidden-xs Alert Level
+          %span.bems-floor-overview-danger-level-number {{ floor.quota.pw.red | number:1}}
+          %span.bems-floor-overview-danger-level-sign kw
+    .col-xs-12{"ng-hide" => "$last"}
+      .bems-floor-overview-item-last

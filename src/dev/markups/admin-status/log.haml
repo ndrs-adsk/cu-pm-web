@@ -1,0 +1,36 @@
+%br
+.form-group.label-floating
+  %label.control-label{:for => "bems-admin-log-input"} Search
+  %input#bems-admin-log-input.bems-admin-log-input.form-control{:type => "text", "ng-model" => "logFilter"}
+.row
+  .col-xs-5
+    .form-group.label-static
+      %label.control-label{:for => "bems-admin-log-start-input"} Start Time
+      %input#bems-admin-log-start-input.bems-admin-log-start-input.form-control{:type => "text", "ng-model" => "startTime"}
+  .col-xs-5
+    .form-group.label-static
+      %label.control-label{:for => "bems-admin-log-end-input"} End Time
+      %input#bems-admin-log-end-input.bems-admin-log-end-input.form-control{:type => "text", "ng-model" => "endTime"}
+  .col-xs-2
+    %a.btn.btn-info.btn-raised{"ng-click" => "reloadLog(startTime,endTime)"}
+      %i.material-icons refresh
+      %span Reload
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th Time
+      %th User
+      %th Platform
+      %th Ip Address
+      %th Activity
+  %tbody
+    %tr{"ng-repeat" => "log in logs | orderBy: createdate:true | filter:logFilter"}
+      %td {{log.createdate | limitTo:19}}
+      %td {{log.name}}
+      %td
+        %span {{platform(log.platform,true)}}
+        %p.help-block{:style => "margin-bottom:0"} {{platform(log.platform,false) | limitTo:30}}
+      %td {{log.ip_address}}
+      %td
+        %span {{log.activity}} | {{log.page}}
+        %p.help-block{:style => "margin-bottom:0"} {{log.description}}

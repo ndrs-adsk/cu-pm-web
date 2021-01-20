@@ -1,0 +1,127 @@
+.bems
+
+  .bems-sensor
+    @extend %wrapper-parent
+
+    .bems-sensor-container
+      @extend %wrapper
+
+      .bems-sensor-wrapper-pie
+        padding-bottom: 0
+
+      .bems-sensor-item
+        position: relative
+        background-color: $tres-color
+        margin-top: $base-size / 2
+        @media #{$media-no-widescreen}
+          border-bottom: $profile-split-line-color dotted 2px
+        @media #{$media-widescreen}
+          border: $profile-split-line-color dotted 2px
+          margin-left: $base-size / 2
+          margin-right: $base-size / 2
+          border-radius: $base-size / 5
+
+        .bems-demand-item-name,
+        .bems-supply-item-name
+          margin-bottom: 0
+          @media #{$media-widescreen}
+            margin-top: $base-size / 5
+          @media #{$media-phone}
+            font-size: 14px
+
+        &:last-child
+          margin-bottom: $base-size / 2
+          @media #{$media-no-widescreen}
+            border-bottom-width: 0
+
+        .bems-sensor-value
+          text-align: center
+          font-size: 1.25em
+          font-weight: $font-bold
+
+        .bems-sensor-temperature,
+        .bems-sensor-illuminance,
+        .bems-sensor-humidity
+          @extend %material-box
+          background-color: $control-info-background-color
+          color: $control-info-color
+          padding: 25px 30px
+
+          .bems-sensor-temperature-text,
+          .bems-sensor-temperature-sign,
+          .bems-sensor-illuminance-text,
+          .bems-sensor-illuminance-sign,
+          .bems-sensor-humidity-text,
+          .bems-sensor-humidity-sign
+            @media #{$media-widescreen}
+              font-size: $control-info-text-font-size-lg
+            @media #{$media-desktop-only}
+              font-size: $control-info-text-font-size-md
+            @media #{$media-tablet}
+              font-size: $control-info-text-font-size-sm
+            @media #{$media-phone}
+              font-size: $control-info-text-font-size-xs
+
+          .bems-sensor-temperature-number,
+          .bems-sensor-illuminance-number,
+          .bems-sensor-humidity-number
+            @media #{$media-widescreen}
+              font-size: $control-info-number-font-size-lg
+            @media #{$media-desktop-only}
+              font-size: $control-info-number-font-size-md
+            @media #{$media-tablet}
+              font-size: $control-info-number-font-size-sm * 0.75
+            @media #{$media-phone}
+              font-size: $control-info-number-font-size-xs
+
+        .bems-sensor-temperature
+          background-color: darken($viridis,10%)
+
+        .bems-sensor-illuminance
+          background-color: darken($aureus,10%)
+
+        .bems-sensor-humidity
+          background-color: darken($caeruleus,10%)
+
+        .bems-profile-data-wrapper
+          @media #{$media-phone}
+            position: absolute !important
+            top: 100px
+            left: $base-size / 2
+
+        .chart-directive
+          height: 180px
+
+        .bems-sensor-close
+          cursor: pointer
+          color: $tres-color
+          background-color: darken($quinque-color,20%)
+          border-radius: $base-size / 6
+          position: absolute
+          font-size: 16px
+          top: 5px
+          transition: all 0.5s linear
+          @media #{$media-no-phone}
+            right: $base-size / 6
+          @media #{$media-phone}
+            right: 2vw
+
+          &:hover
+            background-color: $profile-close-color
+
+      .bems-sensor-item-img-wrapper,
+        @media #{$media-phone}
+          padding-left: 0
+          padding-right: 0
+
+      .bems-sensor-item-img,
+        display: block
+        @media #{$media-no-phone}
+          margin-top: $base-size
+          max-height: $base-size * 3.5
+        @media #{$media-phone}
+          margin-top: $base-size
+          max-height: $base-size * 2.25
+
+      .bems-sensor-value
+        text-align: center

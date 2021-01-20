@@ -1,0 +1,16 @@
+.bems-footer{"ng-controller" => "footerCtrl"}
+  .bems-footer-container{"ng-show" => "showThis()"}
+    %br
+    %img.footerImg.hidden-xs.hidden-sm{:src => "img/PagePink2.png", "ng-class" => "{'footerImgForIpad' : checkDevice()}"}
+    .bems-footer-progress-wrapper.hidden-xs.hidden-sm{"ng-show" => "showThis()"}
+      %img.footerImgLegend.hidden-xs.hidden-sm{:src => "img/legend-p3.png"}
+      .bems-footer-tooltip-warning {{percent[0] | number:0}}%
+      .bems-footer-tooltip-danger {{percent[1] | number:0}}%
+    %p.bems-footer-progress-text.hidden-xs.hidden-sm{"ng-if" => "showThis()"}
+      %span.title Total Energy Target
+      %br
+      %span.value {{energyQuota.total | number:1}}
+      %span.unit kWh
+    .clearfix
+  #footer-b-outter.hidden-xs.hidden-sm Copyright 2019 , Chulalongkorn University Building Energy Management System  
+    

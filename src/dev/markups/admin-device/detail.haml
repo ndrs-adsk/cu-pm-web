@@ -1,0 +1,32 @@
+.row
+  %legend.col-xs-4 {{room.name}}
+  .col-xs-8
+    %button.btn.btn-raised.btn-success.pull-right{"ng-click" => "updateRoom(dList)"} Update All
+  .col-xs-12
+    .bems-admin-device-img-wrapper
+      %a.bems-admin-device-img-pinpin{"ng-repeat" => "pinpin in dList", "ng-show" => "checkPin(pinpin.pin_pos)", "ng-style" => "pinpin.pin_pos", "ng-click" => "maniPin(pinpin.pin_pos)"}
+        %img{"ng-src" => "{{pinpin.icon}}"}
+        %span{"ng-show" => "checkBluePlus(pinpin.id,pinpin.pin_pos)"} +
+      %img#bems-admin-device-img.bems-admin-device-img{"ng-click" => "pinDevice()", "ng-src" => "{{room.img}}"}
+  .col-xs-12.bems-admin-device-list
+    .bems-admin-device-item-wrapper{"ng-repeat" => "device in dList"}
+      .bems-admin-device-item
+        .row
+          .col-xs-4
+            %img.bems-admin-device-item-icon{"ng-src" => "{{device.icon}}"}
+            %span.bems-admin-device-item-name {{device.name}}
+          .col-xs-3
+            .form-group
+              %select.form-control{"ng-model" => "device.type", "ng-change" => "changeType($index,device.type)"}
+                %option{"ng-repeat" => "opt in type", "ng-value" => "opt.name", "ng-selected" => "opt.name === device.type"} {{ opt.name }}
+          .col-xs-5
+            %button.btn.btn-sm.btn-raised.btn-danger.pull-right{"ng-click" => "deleteDevice(device.id,device.name)"}
+              %i.material-icons delete_forever
+            %button.btn.btn-sm.btn-raised.pull-right{"ng-click" => "device.show=!device.show"}
+              %i.material-icons view_list
+      .bems-admin-device-item-point{"ng-show" => "device.show"}
+        %span{"ng-repeat" => "point in device.pointid"}
+          %span {{point.type}} | {{point.name}}
+          %br
+  .col-xs-12.text-center
+    %button.btn.btn-raised.btn-success{"ng-click" => "addNewDevice()"} Add Device

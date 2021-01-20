@@ -1,0 +1,28 @@
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th{:style => "width:50%"} Load Profile Name
+      %th{:colspan => "2"}Subscriber
+  %tbody
+    %tr{"ng-repeat" => "load in loads"}
+      %td {{ load.name }}
+      %td
+        %span{"ng-repeat" => "sub in load.user_subscribe"}
+          {{ sub.name }}
+          %span{"ng-hide" => "$last"} &#44;
+      %td.text-right
+        %a.btn.btn-raised.btn-sm{"ng-click" => "profileSub(load.id,load.name)"} Edit
+.modal.bems-admin-profile-subscribe-modal#bems-admin-profile-subscribe-modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "ng-click" => "profileSubVisibility(0)"} x
+        %h4.modal-title Edit Subscriber : {{ loadName }}
+      .modal-body.row.bems-admin-profile-subscribe-row.form-group
+        .bems-admin-profile-subscribe-col.col-xs-6{"ng-repeat" => "subbed in users"}
+          .checkbox
+            %label
+              %input{:type => "checkbox", "ng-model" => "subbed.chk"}
+              &nbsp; {{ subbed.username }}
+        .col-xs-12.text-center
+          %button.btn.btn-raised.btn-success{"ng-click" => "profileUpdateSub()"} Save Changes

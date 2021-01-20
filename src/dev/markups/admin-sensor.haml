@@ -1,0 +1,11 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-admin
+    .bems-admin-container.bems-container.panel.panel-default
+      .bems-login-header.panel-heading.panel-superheader Sensor Setting
+      .panel-body.row{"ng-controller" => "sensorAdminCtrl"}
+        .col-xs-6
+          +include 'src/dev/markups/admin-sensor/list.haml'
+        .col-xs-6{"ng-hide" => "hideNode"}
+          +include 'src/dev/markups/admin-sensor/sub.haml'
++include 'src/dev/markups/partials/footer.haml'

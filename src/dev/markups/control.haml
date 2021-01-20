@@ -1,0 +1,57 @@
++include 'src/dev/markups/partials/header.haml'
+.bems-outer-wrapper
+  .bems-wrapper.bems-control
+    .bems-control-container.bems-container.panel.panel-default{"ng-controller" => "ctrlCtrl"}
+      .bems-login-header.panel-heading
+        .row
+          .col-sm-4.col-xs-12.panel-superheader PRM Headquarter
+          .col-sm-8.col-xs-12
+      .panel-body.row
+        .col-xs-12.hidden-lg.hidden-xs
+          .bems-room-section-img-super-wrapper
+            .bems-room-section-img-wrapper
+              %a.bems-room-section-img-device{"ng-repeat" => "device2 in devices", "ng-class" => "{'bems-room-section-img-device-alt' : chkSta(device2.mStatus,device2.type)}", "ng-show" => "checkPin(device2.pin_pos)", "ng-style" => "device2.pin_pos", "ng-click" => "chooseNode($index,device2.id)"}
+                %img{"ng-src" => "{{device2.icon}}",:title => "{{device2.name}}"}
+                %span{"ng-show" => "checkBluePlus(device2.id,device2.pin_pos)"} +
+              %img.bems-room-section-img{"ng-src" => "img/cham5-showroom.png"}
+        .col-sm-5.col-xs-12
+          %a.btn.btn-fab.btn-primary.btn-fab-mini{"ng-click" => "zoomRoom()", "ng-show" => "showZoom()"}
+            %i.material-icons{"ng-show" => "zoom"} zoom_in
+            %i.material-icons{"ng-show" => "!zoom"} zoom_out
+          .bems-room-section-img-super-wrapper.hidden-sm.hidden-md{"ng-style" => "roomStyle"}
+            .bems-room-section-img-wrapper
+              %a.bems-room-section-img-device{"ng-repeat" => "device in devices", "ng-class" => "{'bems-room-section-img-device-alt' : chkSta(device.mStatus,device.type)}", "ng-show" => "checkPin(device.pin_pos)", "ng-style" => "device.pin_pos", "ng-click" => "chooseNode($index,device.id)"}
+                %img{"ng-src" => "{{device.icon}}",:title => "{{device.name}}"}
+                %span{"ng-show" => "checkBluePlus(device.id,device.pin_pos)"} +
+              %img.bems-room-section-img{"ng-src" => "img/cham5-showroom.png"}
+          .bems-room-section-legend.row
+            %br
+            %br
+            .col-lg-4.col-md-6.col-sm-5.col-xs-6
+              %img.icon-legend-img{:src => "svg/light.svg"}
+              %span.icon-legend-text &nbsp; Light
+            .col-lg-4.col-md-6.col-sm-7.col-xs-6
+              %img.icon-legend-img{:src => "svg/sensor.svg"}
+              %span.icon-legend-text &nbsp; Multisensor
+            .col-lg-4.col-md-6.col-sm-5.col-xs-6
+              %img.icon-legend-img{:src => "svg/outlet.svg"}
+              %span.icon-legend-text &nbsp; Outlet
+            .col-lg-4.col-md-6.col-sm-7.col-xs-6
+              %img.icon-legend-img{:src => "svg/air.svg"}
+              %span.icon-legend-text &nbsp; A/C
+            .col-lg-4.col-md-6.col-sm-7.col-xs-6
+              %img.icon-legend-img{:src => "svg/air3.svg"}
+              %span.icon-legend-text &nbsp; A/C 3 Phase
+          %hr
+          .col-lg-6.col-md-6.col-sm-6.col-xs-6
+            .legend-img-icon
+            %span.icon-legend-text &nbsp; Power ON
+          .col-lg-6.col-md-6.col-sm-6.col-xs-6
+            .legend-img-icon{:style => "background-color: #616161;"}
+            %span.icon-legend-text &nbsp; Power OFF
+        .col-md-7.col-sm-12.col-xs-12
+          / +include 'src/dev/markups/control/detail.haml'
+          +include 'src/dev/markups/control/graph.haml'
+          +include 'src/dev/markups/control/value.haml'
+          +include 'src/dev/markups/control/control.haml'
++include 'src/dev/markups/partials/footer.haml'

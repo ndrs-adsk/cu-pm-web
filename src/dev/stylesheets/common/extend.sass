@@ -1,0 +1,72 @@
+/*== KIT ==*/
+%border-circle
+  border-radius: $base-size * 9999
+
+%text-checkbox-line
+  display: inline-block
+  margin: $base-size / 3 0
+
+%material-text-line
+  vertical-align: middle
+
+%text-table-line
+  display: inline-block
+  padding: $base-size / 3 0
+
+%a-tag-material
+  color: $quattuor-color
+  transition: color 0.25s ease-in-out
+  &:hover
+    color: lighten($quattuor-color,10%)
+
+%material-box
+  @include box-shadow(3)
+  text-align: center
+  font-weight: $font-bold
+  @media #{$media-desktop}
+    padding: $base-size
+  @media #{$media-handheld}
+    padding: $base-size / 2
+
+  hr
+    margin : $base-size / 6 0
+    padding : $base-size / 6 0
+    border-top: dotted 2px $tres-color
+
+/*== COMMON ==*/
+%wrapper-parent
+  @media #{$media-desktop}
+    padding-bottom: $base-size * 2.75
+    padding-top: $base-size * 2.75
+  @media #{$media-handheld}
+    padding-bottom: $base-size * 3
+    padding-top: $base-size * 2.5
+
+%wrapper
+  @media #{$media-widescreen}
+    max-width: $lg-min-width
+  @media #{$media-no-widescreen}
+    width: 96%
+    overflow-x: hidden
+  margin: 0 auto
+
+%section-header
+  +metro-gradient($unus-color)
+  color: $tres-color
+  font-weight: $font-bold
+  padding: $base-size / 2.25 $base-size / 1.25
+  @media #{$media-phone}
+    font-size: 20px
+  @media #{$media-tablet}
+    font-size: 28px
+  @media #{$media-desktop}
+    font-size: 36px
+
+%section-sub-header
+  padding: $base-size / 3.25 $base-size / 2.25
+  @media #{$media-phone}
+    font-size: 12px
+  @media #{$media-tablet}
+    font-size: 16px
+  @media #{$media-desktop}
+    font-size: 20px

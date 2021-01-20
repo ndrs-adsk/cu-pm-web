@@ -1,0 +1,46 @@
+%br
+.form-group.row
+  %label.col-md-5.col-sm-4{:for => "bems-user-username-input", "control-label" => true} Username
+  .col-md-4.col-sm-5
+    %input#bems-user-username-input.bems-user-username-input.form-control{:type => "text", "ng-model" => "user.username", :disabled => true}
+.form-group.row
+  %label.col-md-5.col-sm-4{:for => "bems-user-full-input", "control-label" => true} First Name
+  .col-md-4.col-sm-5
+    %input#bems-user-full-input.bems-user-full-input.form-control{:type => "text", "ng-model" => "user.name"}
+.form-group.row
+  %label.col-md-5.col-sm-4{:for => "bems-user-full-input", "control-label" => true} Last Name
+  .col-md-4.col-sm-5
+    %input#bems-user-full-input.bems-user-full-input.form-control{:type => "text", "ng-model" => "user.lastname"}
+.form-group.row
+  %label.col-md-5.col-sm-4{:for => "bems-user-email-input", "control-label" => true} E-mail
+  .col-md-4.col-sm-5
+    %input#bems-user-email-input.bems-user-email-input.form-control{:type => "email", "ng-model" => "user.email"}
+/ .form-group.row
+/   %label.col-md-5.col-sm-4{:for => "bems-user-facebook-input", "control-label" => true} Facebook ID
+/   .col-md-4.col-sm-5
+/     %div{"ng-repeat" => "faceId in user.facebook track by $index", :style => "padding: 0 15px"}
+/       .row
+/         .col-xs-9
+/           %input#bems-user-facebook-new-input.bems-user-facebook-new-input.form-control{:type => "text", "ng-model" => "faceId.id"}
+/         .col-xs-3
+/           %a.btn.btn-danger{"ng-click" => "popFaceId($index)"}
+/             %span.glyphicon.glyphicon-remove
+/     %div{:style => "padding: 0 15px"}
+/       .row
+/         .col-xs-9
+/           %input#bems-user-facebook-input.bems-user-facebook-input.form-control{:type => "text", "ng-model" => "faceIdNew", "ng-keydown" => "keyEnter($event)"}
+/         .col-xs-3
+/           %a.btn.btn-success{"ng-click" => "pushFaceId()"}
+/             %span.glyphicon.glyphicon-plus
+.col-xs-12.text-center
+  %button.bems-user-password-submit.btn.btn-raised.btn-info{:type => "button", "ng-click" => "updateUser()"} Update Changes
+#bems-user-modal.bems-user-modal.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-user-modal-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons update
+          Update Successfully.
+      .modal-footer.bems-user-modal-footer.text-center
+        %button.btn.btn-success{:type => "button", "data-dismiss" => "modal"} Close

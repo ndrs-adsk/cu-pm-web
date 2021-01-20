@@ -1,0 +1,27 @@
+%br
+  .form-group.row
+    .col-xs-4
+    %label.col-xs-2.control-label.bems-admin-power-label{:for => "bems-admin-power-select"} Select Node
+    .col-xs-2
+      %select#bems-admin-power-select.form-control{"ng-model" => "selectedId", "ng-init" => "selectedId = 1",
+        "ng-options" => "node.id as checkPathName(node.id) for node in setObj.quota", "ng-change" => "changeView()"}
+  %br
+  %table.table.table-striped.table-hover.bems-table-center
+    %thead
+      %tr
+        %th{:rowspan => "2"} Months
+        %th{:rowspan => "2"} Quota (kW)
+        %th{:colspan => "2"} Limit
+        %th{:rowspan => "2"} Mode
+        %th{:rowspan => "2"} Remaining (%)
+      %tr
+        %th.bems-admin-warning Yellow Limit (%)
+        %th.bems-admin-danger Red Limit (%)
+    %tbody
+      %tr{"ng-repeat" => "view in views"}
+        %td {{ getFullMonth(view.month - 1) }}
+        %td {{ view.quota | number:2 }}
+        %td.bems-admin-warning {{ view.yellow }}
+        %td.bems-admin-danger {{ view.red }}
+        %td {{ view.mode }}
+        %td {{ view.percent }}

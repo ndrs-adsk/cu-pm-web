@@ -1,0 +1,33 @@
++include 'src/dev/markups/partials/header.haml'
+#bems-admin-dashboard-modal-success.bems-admin-dashboard-modal-success.modal.fade{:taboverview => "-1", :role => "dialog", "aria-labellyby" => "bemsModal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close.bems-admin-dashboard-modal-success-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.bems-about-title
+          %i.material-icons update
+          Update Successfully.
+      .modal-footer.bems-admin-dashboard-modal-success-footer.text-center
+        %button.btn.btn-success{:type => "button", "data-dismiss" => "modal"} Close
+.bems-outer-wrapper
+  .bems-wrapper.bems-admin
+    .bems-admin-container.bems-container.panel.panel-default
+      .bems-login-header.panel-heading.panel-superheader Health Pad Setting
+      .panel-body.row{"ng-controller" => "dashboardAdminCtrl"}
+        .col-xs-12
+          %a.btn.btn-raised.btn-success.pull-right{"ng-click" => "adminUpdateDashboard()"}
+            %i.material-icons save
+        .col-xs-4{"ng-repeat" => "set in dashboards"}
+          .form-group{"ng-if" => "set.title == 'Ft Value'"}
+            %label.control-label{:for => "bems-admin-setting-{{$index}}", "ng-bind-html" => "set.title",:style =>"font-weight:bold;font-size: 14px;"}
+            .input-group
+              %input.form-control{:type => "text", :id => "bems-admin-setting-{{$index}}", "ng-model" => "set.value"}
+              %span.input-group-btn
+                %button.btn.btn-link{:disabled => true, "ng-bind-html" => "set.prefix"}
+          .form-group{"ng-if" => "set.title !== 'Ft Value'"}
+            %label.control-label{:for => "bems-admin-setting-{{$index}}", "ng-bind-html" => "set.title"}
+            .input-group
+              %input.form-control{:type => "text", :id => "bems-admin-setting-{{$index}}", "ng-model" => "set.value"}
+              %span.input-group-btn
+                %button.btn.btn-link{:disabled => true, "ng-bind-html" => "set.prefix"}
++include 'src/dev/markups/partials/footer.haml'
